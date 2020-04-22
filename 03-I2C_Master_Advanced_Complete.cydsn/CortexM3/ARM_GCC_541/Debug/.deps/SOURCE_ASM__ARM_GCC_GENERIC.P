@@ -1,0 +1,10 @@
+D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cydevicegnu.inc D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+D:/Cloud/OneDrive\ -\ Politecnico\ di\ Milano/PhD/Materiale\ Esercitazioni/LabCerveri1920/SecondoSemestre/Practical\ lessons/I2C/PSoC_03/03-I2C_Master_Advanced_Complete.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+

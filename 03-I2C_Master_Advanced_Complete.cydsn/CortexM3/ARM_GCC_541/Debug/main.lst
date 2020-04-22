@@ -1,0 +1,2764 @@
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /**
+   2:main.c        **** * \brief Main source file for the I2C-Master project.
+   3:main.c        **** *
+   4:main.c        **** * In this project we set up a I2C master device with
+   5:main.c        **** * to understand the I2C protocol and communicate with a
+   6:main.c        **** * a I2C Slave device (LIS3DH Accelerometer).
+   7:main.c        **** *
+   8:main.c        **** * \author Gabriele Belotti
+   9:main.c        **** * \date , 2020
+  10:main.c        **** */
+  11:main.c        **** 
+  12:main.c        **** // Include required header files
+  13:main.c        **** #include "I2C_Interface.h"
+  14:main.c        **** #include "project.h"
+  15:main.c        **** #include "stdio.h"
+  16:main.c        **** 
+  17:main.c        **** /**
+  18:main.c        **** *   \brief 7-bit I2C address of the slave device.
+  19:main.c        **** */
+  20:main.c        **** #define LIS3DH_DEVICE_ADDRESS 0x18
+  21:main.c        **** 
+  22:main.c        **** /**
+  23:main.c        **** *   \brief Address of the WHO AM I register
+  24:main.c        **** */
+  25:main.c        **** #define LIS3DH_WHO_AM_I_REG_ADDR 0x0F
+  26:main.c        **** 
+  27:main.c        **** /**
+  28:main.c        **** *   \brief Address of the Status register
+  29:main.c        **** */
+  30:main.c        **** #define LIS3DH_STATUS_REG 0x27
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 2
+
+
+  31:main.c        **** 
+  32:main.c        **** /**
+  33:main.c        **** *   \brief Address of the Control register 1
+  34:main.c        **** */
+  35:main.c        **** #define LIS3DH_CTRL_REG1 0x20
+  36:main.c        **** 
+  37:main.c        **** /**
+  38:main.c        **** *   \brief Hex value to set normal mode to the accelerator
+  39:main.c        **** */
+  40:main.c        **** #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x47
+  41:main.c        **** 
+  42:main.c        **** /**
+  43:main.c        **** *   \brief  Address of the Temperature Sensor Configuration register
+  44:main.c        **** */
+  45:main.c        **** #define LIS3DH_TEMP_CFG_REG 0x1F
+  46:main.c        **** 
+  47:main.c        **** #define LIS3DH_TEMP_CFG_REG_ACTIVE 0xC0
+  48:main.c        **** 
+  49:main.c        **** /**
+  50:main.c        **** *   \brief Address of the Control register 4
+  51:main.c        **** */
+  52:main.c        **** #define LIS3DH_CTRL_REG4 0x23
+  53:main.c        **** 
+  54:main.c        **** #define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
+  55:main.c        **** 
+  56:main.c        **** /**
+  57:main.c        **** *   \brief Address of the ADC output LSB register
+  58:main.c        **** */
+  59:main.c        **** #define LIS3DH_OUT_ADC_3L 0x0C
+  60:main.c        **** 
+  61:main.c        **** /**
+  62:main.c        **** *   \brief Address of the ADC output MSB register
+  63:main.c        **** */
+  64:main.c        **** #define LIS3DH_OUT_ADC_3H 0x0D
+  65:main.c        **** 
+  66:main.c        **** int main(void)
+  67:main.c        **** {
+  28              		.loc 1 67 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 72
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 92B0     		sub	sp, sp, #72
+  37              		.cfi_def_cfa_offset 80
+  68:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  38              		.loc 1 68 0
+  39              		.syntax unified
+  40              	@ 68 "main.c" 1
+  41 0004 62B6     		CPSIE   i
+  42              	@ 0 "" 2
+  69:main.c        **** 
+  70:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  71:main.c        ****     I2C_Peripheral_Start();
+  43              		.loc 1 71 0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 3
+
+
+  44              		.thumb
+  45              		.syntax unified
+  46 0006 FFF7FEFF 		bl	I2C_Peripheral_Start
+  47              	.LVL0:
+  72:main.c        ****     UART_Debug_Start();
+  48              		.loc 1 72 0
+  49 000a FFF7FEFF 		bl	UART_Debug_Start
+  50              	.LVL1:
+  73:main.c        ****     
+  74:main.c        ****     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
+  51              		.loc 1 74 0
+  52 000e 0520     		movs	r0, #5
+  53 0010 FFF7FEFF 		bl	CyDelay
+  54              	.LVL2:
+  55              	.LBB2:
+  75:main.c        ****     
+  76:main.c        ****     // String to print out messages on the UART
+  77:main.c        ****     char message[50];
+  78:main.c        **** 
+  79:main.c        ****     // Check which devices are present on the I2C bus
+  80:main.c        ****     for (int i = 0 ; i < 128; i++)
+  56              		.loc 1 80 0
+  57 0014 0024     		movs	r4, #0
+  58 0016 0CE0     		b	.L2
+  59              	.LVL3:
+  60              	.L4:
+  81:main.c        ****     {
+  82:main.c        ****         if (I2C_Peripheral_IsDeviceConnected(i))
+  61              		.loc 1 82 0
+  62 0018 E0B2     		uxtb	r0, r4
+  63 001a FFF7FEFF 		bl	I2C_Peripheral_IsDeviceConnected
+  64              	.LVL4:
+  65 001e 38B1     		cbz	r0, .L3
+  83:main.c        ****         {
+  84:main.c        ****             // print out the address is hex format
+  85:main.c        ****             sprintf(message, "Device 0x%02X is connected\r\n", i);
+  66              		.loc 1 85 0
+  67 0020 2246     		mov	r2, r4
+  68 0022 7E49     		ldr	r1, .L26
+  69 0024 05A8     		add	r0, sp, #20
+  70 0026 FFF7FEFF 		bl	sprintf
+  71              	.LVL5:
+  86:main.c        ****             UART_Debug_PutString(message); 
+  72              		.loc 1 86 0
+  73 002a 05A8     		add	r0, sp, #20
+  74 002c FFF7FEFF 		bl	UART_Debug_PutString
+  75              	.LVL6:
+  76              	.L3:
+  80:main.c        ****     {
+  77              		.loc 1 80 0 discriminator 2
+  78 0030 0134     		adds	r4, r4, #1
+  79              	.LVL7:
+  80              	.L2:
+  80:main.c        ****     {
+  81              		.loc 1 80 0 is_stmt 0 discriminator 1
+  82 0032 7F2C     		cmp	r4, #127
+  83 0034 F0DD     		ble	.L4
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 4
+
+
+  84              	.LBE2:
+  87:main.c        ****         }
+  88:main.c        ****         
+  89:main.c        ****     }
+  90:main.c        ****     
+  91:main.c        ****     /******************************************/
+  92:main.c        ****     /*            I2C Reading                 */
+  93:main.c        ****     /******************************************/
+  94:main.c        ****     
+  95:main.c        ****     /* Read WHO AM I REGISTER register */
+  96:main.c        ****     uint8_t who_am_i_reg;
+  97:main.c        ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+  85              		.loc 1 97 0 is_stmt 1
+  86 0036 0DF11302 		add	r2, sp, #19
+  87 003a 0F21     		movs	r1, #15
+  88 003c 1820     		movs	r0, #24
+  89 003e FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+  90              	.LVL8:
+  98:main.c        ****                                                   LIS3DH_WHO_AM_I_REG_ADDR, 
+  99:main.c        ****                                                   &who_am_i_reg);
+ 100:main.c        ****     if (error == NO_ERROR)
+  91              		.loc 1 100 0
+  92 0042 48B9     		cbnz	r0, .L5
+ 101:main.c        ****     {
+ 102:main.c        ****         sprintf(message, "WHO AM I REG: 0x%02X [Expected: 0x33]\r\n", who_am_i_reg);
+  93              		.loc 1 102 0
+  94 0044 9DF81320 		ldrb	r2, [sp, #19]	@ zero_extendqisi2
+  95 0048 7549     		ldr	r1, .L26+4
+  96 004a 05A8     		add	r0, sp, #20
+  97              	.LVL9:
+  98 004c FFF7FEFF 		bl	sprintf
+  99              	.LVL10:
+ 103:main.c        ****         UART_Debug_PutString(message); 
+ 100              		.loc 1 103 0
+ 101 0050 05A8     		add	r0, sp, #20
+ 102 0052 FFF7FEFF 		bl	UART_Debug_PutString
+ 103              	.LVL11:
+ 104 0056 02E0     		b	.L6
+ 105              	.LVL12:
+ 106              	.L5:
+ 104:main.c        ****     }
+ 105:main.c        ****     else
+ 106:main.c        ****     {
+ 107:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm\r\n");   
+ 107              		.loc 1 107 0
+ 108 0058 7248     		ldr	r0, .L26+8
+ 109              	.LVL13:
+ 110 005a FFF7FEFF 		bl	UART_Debug_PutString
+ 111              	.LVL14:
+ 112              	.L6:
+ 108:main.c        ****     }
+ 109:main.c        ****     
+ 110:main.c        ****     /*      I2C Reading Status Register       */
+ 111:main.c        ****     
+ 112:main.c        ****     uint8_t status_register; 
+ 113:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 113              		.loc 1 113 0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 5
+
+
+ 114 005e 0DF11202 		add	r2, sp, #18
+ 115 0062 2721     		movs	r1, #39
+ 116 0064 1820     		movs	r0, #24
+ 117 0066 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 118              	.LVL15:
+ 114:main.c        ****                                         LIS3DH_STATUS_REG,
+ 115:main.c        ****                                         &status_register);
+ 116:main.c        ****     
+ 117:main.c        ****     if (error == NO_ERROR)
+ 119              		.loc 1 117 0
+ 120 006a 48B9     		cbnz	r0, .L7
+ 118:main.c        ****     {
+ 119:main.c        ****         sprintf(message, "STATUS REGISTER: 0x%02X\r\n", status_register);
+ 121              		.loc 1 119 0
+ 122 006c 9DF81220 		ldrb	r2, [sp, #18]	@ zero_extendqisi2
+ 123 0070 6D49     		ldr	r1, .L26+12
+ 124 0072 05A8     		add	r0, sp, #20
+ 125              	.LVL16:
+ 126 0074 FFF7FEFF 		bl	sprintf
+ 127              	.LVL17:
+ 120:main.c        ****         UART_Debug_PutString(message); 
+ 128              		.loc 1 120 0
+ 129 0078 05A8     		add	r0, sp, #20
+ 130 007a FFF7FEFF 		bl	UART_Debug_PutString
+ 131              	.LVL18:
+ 132 007e 02E0     		b	.L8
+ 133              	.LVL19:
+ 134              	.L7:
+ 121:main.c        ****     }
+ 122:main.c        ****     else
+ 123:main.c        ****     {
+ 124:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read status register\r\n");   
+ 135              		.loc 1 124 0
+ 136 0080 6A48     		ldr	r0, .L26+16
+ 137              	.LVL20:
+ 138 0082 FFF7FEFF 		bl	UART_Debug_PutString
+ 139              	.LVL21:
+ 140              	.L8:
+ 125:main.c        ****     }
+ 126:main.c        ****     
+ 127:main.c        ****     /******************************************/
+ 128:main.c        ****     /*        Read Control Register 1         */
+ 129:main.c        ****     /******************************************/
+ 130:main.c        ****     uint8_t ctrl_reg1; 
+ 131:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 141              		.loc 1 131 0
+ 142 0086 0DF11102 		add	r2, sp, #17
+ 143 008a 2021     		movs	r1, #32
+ 144 008c 1820     		movs	r0, #24
+ 145 008e FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 146              	.LVL22:
+ 132:main.c        ****                                         LIS3DH_CTRL_REG1,
+ 133:main.c        ****                                         &ctrl_reg1);
+ 134:main.c        ****     
+ 135:main.c        ****     if (error == NO_ERROR)
+ 147              		.loc 1 135 0
+ 148 0092 48B9     		cbnz	r0, .L9
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 6
+
+
+ 136:main.c        ****     {
+ 137:main.c        ****         sprintf(message, "CONTROL REGISTER 1: 0x%02X\r\n", ctrl_reg1);
+ 149              		.loc 1 137 0
+ 150 0094 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 151 0098 6549     		ldr	r1, .L26+20
+ 152 009a 05A8     		add	r0, sp, #20
+ 153              	.LVL23:
+ 154 009c FFF7FEFF 		bl	sprintf
+ 155              	.LVL24:
+ 138:main.c        ****         UART_Debug_PutString(message); 
+ 156              		.loc 1 138 0
+ 157 00a0 05A8     		add	r0, sp, #20
+ 158 00a2 FFF7FEFF 		bl	UART_Debug_PutString
+ 159              	.LVL25:
+ 160 00a6 02E0     		b	.L10
+ 161              	.LVL26:
+ 162              	.L9:
+ 139:main.c        ****     }
+ 140:main.c        ****     else
+ 141:main.c        ****     {
+ 142:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+ 163              		.loc 1 142 0
+ 164 00a8 6248     		ldr	r0, .L26+24
+ 165              	.LVL27:
+ 166 00aa FFF7FEFF 		bl	UART_Debug_PutString
+ 167              	.LVL28:
+ 168              	.L10:
+ 143:main.c        ****     }
+ 144:main.c        ****     
+ 145:main.c        ****     /******************************************/
+ 146:main.c        ****     /*            I2C Writing                 */
+ 147:main.c        ****     /******************************************/
+ 148:main.c        ****     
+ 149:main.c        ****         
+ 150:main.c        ****     UART_Debug_PutString("\r\nWriting new values..\r\n");
+ 169              		.loc 1 150 0
+ 170 00ae 6248     		ldr	r0, .L26+28
+ 171 00b0 FFF7FEFF 		bl	UART_Debug_PutString
+ 172              	.LVL29:
+ 151:main.c        ****     
+ 152:main.c        ****     if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
+ 173              		.loc 1 152 0
+ 174 00b4 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 175 00b8 472B     		cmp	r3, #71
+ 176 00ba 14D0     		beq	.L11
+ 153:main.c        ****     {
+ 154:main.c        ****         ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
+ 177              		.loc 1 154 0
+ 178 00bc 4722     		movs	r2, #71
+ 179 00be 8DF81120 		strb	r2, [sp, #17]
+ 155:main.c        ****     
+ 156:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 180              		.loc 1 156 0
+ 181 00c2 2021     		movs	r1, #32
+ 182 00c4 1820     		movs	r0, #24
+ 183 00c6 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 184              	.LVL30:
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 7
+
+
+ 157:main.c        ****                                              LIS3DH_CTRL_REG1,
+ 158:main.c        ****                                              ctrl_reg1);
+ 159:main.c        ****     
+ 160:main.c        ****         if (error == NO_ERROR)
+ 185              		.loc 1 160 0
+ 186 00ca 48B9     		cbnz	r0, .L12
+ 161:main.c        ****         {
+ 162:main.c        ****             sprintf(message, "CONTROL REGISTER 1 successfully written as: 0x%02X\r\n", ctrl_reg1);
+ 187              		.loc 1 162 0
+ 188 00cc 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 189 00d0 5A49     		ldr	r1, .L26+32
+ 190 00d2 05A8     		add	r0, sp, #20
+ 191              	.LVL31:
+ 192 00d4 FFF7FEFF 		bl	sprintf
+ 193              	.LVL32:
+ 163:main.c        ****             UART_Debug_PutString(message); 
+ 194              		.loc 1 163 0
+ 195 00d8 05A8     		add	r0, sp, #20
+ 196 00da FFF7FEFF 		bl	UART_Debug_PutString
+ 197              	.LVL33:
+ 198 00de 02E0     		b	.L11
+ 199              	.LVL34:
+ 200              	.L12:
+ 164:main.c        ****         }
+ 165:main.c        ****         else
+ 166:main.c        ****         {
+ 167:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");  
+ 201              		.loc 1 167 0
+ 202 00e0 5748     		ldr	r0, .L26+36
+ 203              	.LVL35:
+ 204 00e2 FFF7FEFF 		bl	UART_Debug_PutString
+ 205              	.LVL36:
+ 206              	.L11:
+ 168:main.c        ****         }
+ 169:main.c        ****     }
+ 170:main.c        ****     
+ 171:main.c        ****     /******************************************/
+ 172:main.c        ****     /*     Read Control Register 1 again      */
+ 173:main.c        ****     /******************************************/
+ 174:main.c        **** 
+ 175:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 207              		.loc 1 175 0
+ 208 00e6 0DF11102 		add	r2, sp, #17
+ 209 00ea 2021     		movs	r1, #32
+ 210 00ec 1820     		movs	r0, #24
+ 211 00ee FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 212              	.LVL37:
+ 176:main.c        ****                                         LIS3DH_CTRL_REG1,
+ 177:main.c        ****                                         &ctrl_reg1);
+ 178:main.c        ****     
+ 179:main.c        ****     if (error == NO_ERROR)
+ 213              		.loc 1 179 0
+ 214 00f2 48B9     		cbnz	r0, .L13
+ 180:main.c        ****     {
+ 181:main.c        ****         sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1);
+ 215              		.loc 1 181 0
+ 216 00f4 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 8
+
+
+ 217 00f8 5249     		ldr	r1, .L26+40
+ 218 00fa 05A8     		add	r0, sp, #20
+ 219              	.LVL38:
+ 220 00fc FFF7FEFF 		bl	sprintf
+ 221              	.LVL39:
+ 182:main.c        ****         UART_Debug_PutString(message); 
+ 222              		.loc 1 182 0
+ 223 0100 05A8     		add	r0, sp, #20
+ 224 0102 FFF7FEFF 		bl	UART_Debug_PutString
+ 225              	.LVL40:
+ 226 0106 02E0     		b	.L14
+ 227              	.LVL41:
+ 228              	.L13:
+ 183:main.c        ****     }
+ 184:main.c        ****     else
+ 185:main.c        ****     {
+ 186:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+ 229              		.loc 1 186 0
+ 230 0108 4A48     		ldr	r0, .L26+24
+ 231              	.LVL42:
+ 232 010a FFF7FEFF 		bl	UART_Debug_PutString
+ 233              	.LVL43:
+ 234              	.L14:
+ 187:main.c        ****     }
+ 188:main.c        ****     
+ 189:main.c        ****      /******************************************/
+ 190:main.c        ****      /* I2C Reading Temperature sensor CFG reg */
+ 191:main.c        ****      /******************************************/
+ 192:main.c        **** 
+ 193:main.c        ****     uint8_t tmp_cfg_reg;
+ 194:main.c        **** 
+ 195:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 235              		.loc 1 195 0
+ 236 010e 04AA     		add	r2, sp, #16
+ 237 0110 1F21     		movs	r1, #31
+ 238 0112 1820     		movs	r0, #24
+ 239 0114 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 240              	.LVL44:
+ 196:main.c        ****                                         LIS3DH_TEMP_CFG_REG,
+ 197:main.c        ****                                         &tmp_cfg_reg);
+ 198:main.c        ****     
+ 199:main.c        ****     if (error == NO_ERROR)
+ 241              		.loc 1 199 0
+ 242 0118 48B9     		cbnz	r0, .L15
+ 200:main.c        ****     {
+ 201:main.c        ****         sprintf(message, "TEMPERATURE CONFIG REGISTER: 0x%02X\r\n", tmp_cfg_reg);
+ 243              		.loc 1 201 0
+ 244 011a 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 245 011e 4A49     		ldr	r1, .L26+44
+ 246 0120 05A8     		add	r0, sp, #20
+ 247              	.LVL45:
+ 248 0122 FFF7FEFF 		bl	sprintf
+ 249              	.LVL46:
+ 202:main.c        ****         UART_Debug_PutString(message); 
+ 250              		.loc 1 202 0
+ 251 0126 05A8     		add	r0, sp, #20
+ 252 0128 FFF7FEFF 		bl	UART_Debug_PutString
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 9
+
+
+ 253              	.LVL47:
+ 254 012c 02E0     		b	.L16
+ 255              	.LVL48:
+ 256              	.L15:
+ 203:main.c        ****     }
+ 204:main.c        ****     else
+ 205:main.c        ****     {
+ 206:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\
+ 257              		.loc 1 206 0
+ 258 012e 4748     		ldr	r0, .L26+48
+ 259              	.LVL49:
+ 260 0130 FFF7FEFF 		bl	UART_Debug_PutString
+ 261              	.LVL50:
+ 262              	.L16:
+ 207:main.c        ****     }
+ 208:main.c        ****     
+ 209:main.c        ****     
+ 210:main.c        ****     tmp_cfg_reg = LIS3DH_TEMP_CFG_REG_ACTIVE; // must be changed to the appropriate value
+ 263              		.loc 1 210 0
+ 264 0134 C022     		movs	r2, #192
+ 265 0136 12AC     		add	r4, sp, #72
+ 266              	.LVL51:
+ 267 0138 04F8382D 		strb	r2, [r4, #-56]!
+ 211:main.c        ****     
+ 212:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 268              		.loc 1 212 0
+ 269 013c 1F21     		movs	r1, #31
+ 270 013e 1820     		movs	r0, #24
+ 271 0140 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 272              	.LVL52:
+ 213:main.c        ****                                          LIS3DH_TEMP_CFG_REG,
+ 214:main.c        ****                                          tmp_cfg_reg);
+ 215:main.c        ****     
+ 216:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 273              		.loc 1 216 0
+ 274 0144 2246     		mov	r2, r4
+ 275 0146 1F21     		movs	r1, #31
+ 276 0148 1820     		movs	r0, #24
+ 277 014a FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 278              	.LVL53:
+ 217:main.c        ****                                         LIS3DH_TEMP_CFG_REG,
+ 218:main.c        ****                                         &tmp_cfg_reg);
+ 219:main.c        ****     
+ 220:main.c        ****     
+ 221:main.c        ****     if (error == NO_ERROR)
+ 279              		.loc 1 221 0
+ 280 014e 48B9     		cbnz	r0, .L17
+ 222:main.c        ****     {
+ 223:main.c        ****         sprintf(message, "TEMPERATURE CONFIG REGISTER after being updated: 0x%02X\r\n", tmp_cfg_reg
+ 281              		.loc 1 223 0
+ 282 0150 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 283 0154 3E49     		ldr	r1, .L26+52
+ 284 0156 05A8     		add	r0, sp, #20
+ 285              	.LVL54:
+ 286 0158 FFF7FEFF 		bl	sprintf
+ 287              	.LVL55:
+ 224:main.c        ****         UART_Debug_PutString(message); 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 10
+
+
+ 288              		.loc 1 224 0
+ 289 015c 05A8     		add	r0, sp, #20
+ 290 015e FFF7FEFF 		bl	UART_Debug_PutString
+ 291              	.LVL56:
+ 292 0162 02E0     		b	.L18
+ 293              	.LVL57:
+ 294              	.L17:
+ 225:main.c        ****     }
+ 226:main.c        ****     else
+ 227:main.c        ****     {
+ 228:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\
+ 295              		.loc 1 228 0
+ 296 0164 3948     		ldr	r0, .L26+48
+ 297              	.LVL58:
+ 298 0166 FFF7FEFF 		bl	UART_Debug_PutString
+ 299              	.LVL59:
+ 300              	.L18:
+ 229:main.c        ****     }
+ 230:main.c        ****     
+ 231:main.c        ****     uint8_t ctrl_reg4;
+ 232:main.c        **** 
+ 233:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 301              		.loc 1 233 0
+ 302 016a 0DF10F02 		add	r2, sp, #15
+ 303 016e 2321     		movs	r1, #35
+ 304 0170 1820     		movs	r0, #24
+ 305 0172 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 306              	.LVL60:
+ 234:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 235:main.c        ****                                         &ctrl_reg4);
+ 236:main.c        ****     
+ 237:main.c        ****     if (error == NO_ERROR)
+ 307              		.loc 1 237 0
+ 308 0176 48B9     		cbnz	r0, .L19
+ 238:main.c        ****     {
+ 239:main.c        ****         sprintf(message, "CONTROL REGISTER 4: 0x%02X\r\n", ctrl_reg4);
+ 309              		.loc 1 239 0
+ 310 0178 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
+ 311 017c 3549     		ldr	r1, .L26+56
+ 312 017e 05A8     		add	r0, sp, #20
+ 313              	.LVL61:
+ 314 0180 FFF7FEFF 		bl	sprintf
+ 315              	.LVL62:
+ 240:main.c        ****         UART_Debug_PutString(message); 
+ 316              		.loc 1 240 0
+ 317 0184 05A8     		add	r0, sp, #20
+ 318 0186 FFF7FEFF 		bl	UART_Debug_PutString
+ 319              	.LVL63:
+ 320 018a 02E0     		b	.L20
+ 321              	.LVL64:
+ 322              	.L19:
+ 241:main.c        ****     }
+ 242:main.c        ****     else
+ 243:main.c        ****     {
+ 244:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+ 323              		.loc 1 244 0
+ 324 018c 3248     		ldr	r0, .L26+60
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 11
+
+
+ 325              	.LVL65:
+ 326 018e FFF7FEFF 		bl	UART_Debug_PutString
+ 327              	.LVL66:
+ 328              	.L20:
+ 245:main.c        ****     }
+ 246:main.c        ****     
+ 247:main.c        ****     
+ 248:main.c        ****     ctrl_reg4 = LIS3DH_CTRL_REG4_BDU_ACTIVE; // must be changed to the appropriate value
+ 329              		.loc 1 248 0
+ 330 0192 8022     		movs	r2, #128
+ 331 0194 12AC     		add	r4, sp, #72
+ 332 0196 04F8392D 		strb	r2, [r4, #-57]!
+ 249:main.c        ****     
+ 250:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 333              		.loc 1 250 0
+ 334 019a 2321     		movs	r1, #35
+ 335 019c 1820     		movs	r0, #24
+ 336 019e FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 337              	.LVL67:
+ 251:main.c        ****                                          LIS3DH_CTRL_REG4,
+ 252:main.c        ****                                          ctrl_reg4);
+ 253:main.c        ****     
+ 254:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 338              		.loc 1 254 0
+ 339 01a2 2246     		mov	r2, r4
+ 340 01a4 2321     		movs	r1, #35
+ 341 01a6 1820     		movs	r0, #24
+ 342 01a8 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 343              	.LVL68:
+ 255:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 256:main.c        ****                                         &ctrl_reg4);
+ 257:main.c        ****     
+ 258:main.c        ****     
+ 259:main.c        ****     if (error == NO_ERROR)
+ 344              		.loc 1 259 0
+ 345 01ac 48B9     		cbnz	r0, .L21
+ 260:main.c        ****     {
+ 261:main.c        ****         sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
+ 346              		.loc 1 261 0
+ 347 01ae 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
+ 348 01b2 2A49     		ldr	r1, .L26+64
+ 349 01b4 05A8     		add	r0, sp, #20
+ 350              	.LVL69:
+ 351 01b6 FFF7FEFF 		bl	sprintf
+ 352              	.LVL70:
+ 262:main.c        ****         UART_Debug_PutString(message); 
+ 353              		.loc 1 262 0
+ 354 01ba 05A8     		add	r0, sp, #20
+ 355 01bc FFF7FEFF 		bl	UART_Debug_PutString
+ 356              	.LVL71:
+ 357 01c0 02E0     		b	.L22
+ 358              	.LVL72:
+ 359              	.L21:
+ 263:main.c        ****     }
+ 264:main.c        ****     else
+ 265:main.c        ****     {
+ 266:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 12
+
+
+ 360              		.loc 1 266 0
+ 361 01c2 2548     		ldr	r0, .L26+60
+ 362              	.LVL73:
+ 363 01c4 FFF7FEFF 		bl	UART_Debug_PutString
+ 364              	.LVL74:
+ 365              	.L22:
+ 267:main.c        ****     }
+ 268:main.c        ****     
+ 269:main.c        ****     int16_t OutTemp;
+ 270:main.c        ****     uint8_t header = 0xA0;
+ 271:main.c        ****     uint8_t footer = 0xC0;
+ 272:main.c        ****     uint8_t OutArray[4]; 
+ 273:main.c        ****     uint8_t TemperatureData[2];
+ 274:main.c        ****     
+ 275:main.c        ****     OutArray[0] = header;
+ 366              		.loc 1 275 0
+ 367 01c8 A023     		movs	r3, #160
+ 368 01ca 8DF80830 		strb	r3, [sp, #8]
+ 276:main.c        ****     OutArray[3] = footer;
+ 369              		.loc 1 276 0
+ 370 01ce C023     		movs	r3, #192
+ 371 01d0 8DF80B30 		strb	r3, [sp, #11]
+ 372              	.L23:
+ 277:main.c        ****     
+ 278:main.c        ****     for(;;)
+ 279:main.c        ****     {
+ 280:main.c        ****         CyDelay(100);
+ 373              		.loc 1 280 0
+ 374 01d4 6420     		movs	r0, #100
+ 375 01d6 FFF7FEFF 		bl	CyDelay
+ 376              	.LVL75:
+ 281:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 377              		.loc 1 281 0
+ 378 01da 01AA     		add	r2, sp, #4
+ 379 01dc 0C21     		movs	r1, #12
+ 380 01de 1820     		movs	r0, #24
+ 381 01e0 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 382              	.LVL76:
+ 282:main.c        ****                                             LIS3DH_OUT_ADC_3L,
+ 283:main.c        ****                                             &TemperatureData[0]);
+ 284:main.c        ****         
+ 285:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 383              		.loc 1 285 0
+ 384 01e4 0DF10502 		add	r2, sp, #5
+ 385 01e8 0D21     		movs	r1, #13
+ 386 01ea 1820     		movs	r0, #24
+ 387 01ec FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 388              	.LVL77:
+ 286:main.c        ****                                             LIS3DH_OUT_ADC_3H,
+ 287:main.c        ****                                             &TemperatureData[1]);
+ 288:main.c        ****         if(error == NO_ERROR)
+ 389              		.loc 1 288 0
+ 390 01f0 0028     		cmp	r0, #0
+ 391 01f2 EFD1     		bne	.L23
+ 289:main.c        ****         {
+ 290:main.c        ****             OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
+ 392              		.loc 1 290 0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 13
+
+
+ 393 01f4 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 394 01f8 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 395 01fc 43EA0223 		orr	r3, r3, r2, lsl #8
+ 396 0200 43F38913 		sbfx	r3, r3, #6, #10
+ 397              	.LVL78:
+ 291:main.c        ****             OutArray[1] = (uint8_t)(OutTemp & 0xFF);
+ 398              		.loc 1 291 0
+ 399 0204 8DF80930 		strb	r3, [sp, #9]
+ 292:main.c        ****             OutArray[2] = (uint8_t)(OutTemp >> 8);
+ 400              		.loc 1 292 0
+ 401 0208 C3F30723 		ubfx	r3, r3, #8, #8
+ 402              	.LVL79:
+ 403 020c 8DF80A30 		strb	r3, [sp, #10]
+ 293:main.c        ****             UART_Debug_PutArray(OutArray, 4);
+ 404              		.loc 1 293 0
+ 405 0210 0421     		movs	r1, #4
+ 406 0212 02A8     		add	r0, sp, #8
+ 407              	.LVL80:
+ 408 0214 FFF7FEFF 		bl	UART_Debug_PutArray
+ 409              	.LVL81:
+ 410 0218 DCE7     		b	.L23
+ 411              	.L27:
+ 412 021a 00BF     		.align	2
+ 413              	.L26:
+ 414 021c 00000000 		.word	.LC0
+ 415 0220 20000000 		.word	.LC1
+ 416 0224 48000000 		.word	.LC2
+ 417 0228 6C000000 		.word	.LC3
+ 418 022c 88000000 		.word	.LC4
+ 419 0230 C4000000 		.word	.LC5
+ 420 0234 E4000000 		.word	.LC6
+ 421 0238 20010000 		.word	.LC7
+ 422 023c 3C010000 		.word	.LC8
+ 423 0240 74010000 		.word	.LC9
+ 424 0244 B0010000 		.word	.LC10
+ 425 0248 E8010000 		.word	.LC11
+ 426 024c 10020000 		.word	.LC12
+ 427 0250 58020000 		.word	.LC13
+ 428 0254 94020000 		.word	.LC14
+ 429 0258 B4020000 		.word	.LC15
+ 430 025c F0020000 		.word	.LC16
+ 431              		.cfi_endproc
+ 432              	.LFE64:
+ 433              		.size	main, .-main
+ 434              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 435              		.align	2
+ 436              	.LC0:
+ 437 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
+ 437      63652030 
+ 437      78253032 
+ 437      58206973 
+ 437      20636F6E 
+ 438 001d 000000   		.space	3
+ 439              	.LC1:
+ 440 0020 57484F20 		.ascii	"WHO AM I REG: 0x%02X [Expected: 0x33]\015\012\000"
+ 440      414D2049 
+ 440      20524547 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 14
+
+
+ 440      3A203078 
+ 440      25303258 
+ 441              	.LC2:
+ 442 0048 4572726F 		.ascii	"Error occurred during I2C comm\015\012\000"
+ 442      72206F63 
+ 442      63757272 
+ 442      65642064 
+ 442      7572696E 
+ 443 0069 000000   		.space	3
+ 444              	.LC3:
+ 445 006c 53544154 		.ascii	"STATUS REGISTER: 0x%02X\015\012\000"
+ 445      55532052 
+ 445      45474953 
+ 445      5445523A 
+ 445      20307825 
+ 446 0086 0000     		.space	2
+ 447              	.LC4:
+ 448 0088 4572726F 		.ascii	"Error occurred during I2C comm to read status regis"
+ 448      72206F63 
+ 448      63757272 
+ 448      65642064 
+ 448      7572696E 
+ 449 00bb 7465720D 		.ascii	"ter\015\012\000"
+ 449      0A00
+ 450 00c1 000000   		.space	3
+ 451              	.LC5:
+ 452 00c4 434F4E54 		.ascii	"CONTROL REGISTER 1: 0x%02X\015\012\000"
+ 452      524F4C20 
+ 452      52454749 
+ 452      53544552 
+ 452      20313A20 
+ 453 00e1 000000   		.space	3
+ 454              	.LC6:
+ 455 00e4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 455      72206F63 
+ 455      63757272 
+ 455      65642064 
+ 455      7572696E 
+ 456 0117 73746572 		.ascii	"ster 1\015\012\000"
+ 456      20310D0A 
+ 456      00
+ 457              	.LC7:
+ 458 0120 0D0A5772 		.ascii	"\015\012Writing new values..\015\012\000"
+ 458      6974696E 
+ 458      67206E65 
+ 458      77207661 
+ 458      6C756573 
+ 459 0139 000000   		.space	3
+ 460              	.LC8:
+ 461 013c 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
+ 461      524F4C20 
+ 461      52454749 
+ 461      53544552 
+ 461      20312073 
+ 462 016f 0A00     		.ascii	"\012\000"
+ 463 0171 000000   		.space	3
+ 464              	.LC9:
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 15
+
+
+ 465 0174 4572726F 		.ascii	"Error occurred during I2C comm to set control regis"
+ 465      72206F63 
+ 465      63757272 
+ 465      65642064 
+ 465      7572696E 
+ 466 01a7 74657220 		.ascii	"ter 1\015\012\000"
+ 466      310D0A00 
+ 467 01af 00       		.space	1
+ 468              	.LC10:
+ 469 01b0 434F4E54 		.ascii	"CONTROL REGISTER 1 after overwrite operation: 0x%02"
+ 469      524F4C20 
+ 469      52454749 
+ 469      53544552 
+ 469      20312061 
+ 470 01e3 580D0A00 		.ascii	"X\015\012\000"
+ 471 01e7 00       		.space	1
+ 472              	.LC11:
+ 473 01e8 54454D50 		.ascii	"TEMPERATURE CONFIG REGISTER: 0x%02X\015\012\000"
+ 473      45524154 
+ 473      55524520 
+ 473      434F4E46 
+ 473      49472052 
+ 474 020e 0000     		.space	2
+ 475              	.LC12:
+ 476 0210 4572726F 		.ascii	"Error occurred during I2C comm to read temperature "
+ 476      72206F63 
+ 476      63757272 
+ 476      65642064 
+ 476      7572696E 
+ 477 0243 636F6E66 		.ascii	"config register\015\012\000"
+ 477      69672072 
+ 477      65676973 
+ 477      7465720D 
+ 477      0A00
+ 478 0255 000000   		.space	3
+ 479              	.LC13:
+ 480 0258 54454D50 		.ascii	"TEMPERATURE CONFIG REGISTER after being updated: 0x"
+ 480      45524154 
+ 480      55524520 
+ 480      434F4E46 
+ 480      49472052 
+ 481 028b 25303258 		.ascii	"%02X\015\012\000"
+ 481      0D0A00
+ 482 0292 0000     		.space	2
+ 483              	.LC14:
+ 484 0294 434F4E54 		.ascii	"CONTROL REGISTER 4: 0x%02X\015\012\000"
+ 484      524F4C20 
+ 484      52454749 
+ 484      53544552 
+ 484      20343A20 
+ 485 02b1 000000   		.space	3
+ 486              	.LC15:
+ 487 02b4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 487      72206F63 
+ 487      63757272 
+ 487      65642064 
+ 487      7572696E 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 16
+
+
+ 488 02e7 73746572 		.ascii	"ster4\015\012\000"
+ 488      340D0A00 
+ 489 02ef 00       		.space	1
+ 490              	.LC16:
+ 491 02f0 434F4E54 		.ascii	"CONTROL REGISTER 4 after being updated: 0x%02X\015\012"
+ 491      524F4C20 
+ 491      52454749 
+ 491      53544552 
+ 491      20342061 
+ 492 0320 00       		.ascii	"\000"
+ 493              		.text
+ 494              	.Letext0:
+ 495              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 496              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 497              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 498              		.file 5 "ErrorCodes.h"
+ 499              		.file 6 "I2C_Interface.h"
+ 500              		.file 7 "d:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 501              		.file 8 "Generated_Source\\PSoC5/UART_Debug.h"
+ 502              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 503              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 504              		.section	.debug_info,"",%progbits
+ 505              	.Ldebug_info0:
+ 506 0000 4A070000 		.4byte	0x74a
+ 507 0004 0400     		.2byte	0x4
+ 508 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 509 000a 04       		.byte	0x4
+ 510 000b 01       		.uleb128 0x1
+ 511 000c A2000000 		.4byte	.LASF45
+ 512 0010 0C       		.byte	0xc
+ 513 0011 4F020000 		.4byte	.LASF46
+ 514 0015 90020000 		.4byte	.LASF47
+ 515 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 516 001d 00000000 		.4byte	0
+ 517 0021 00000000 		.4byte	.Ldebug_line0
+ 518 0025 02       		.uleb128 0x2
+ 519 0026 01       		.byte	0x1
+ 520 0027 06       		.byte	0x6
+ 521 0028 45030000 		.4byte	.LASF0
+ 522 002c 03       		.uleb128 0x3
+ 523 002d 0F000000 		.4byte	.LASF2
+ 524 0031 02       		.byte	0x2
+ 525 0032 1D       		.byte	0x1d
+ 526 0033 37000000 		.4byte	0x37
+ 527 0037 02       		.uleb128 0x2
+ 528 0038 01       		.byte	0x1
+ 529 0039 08       		.byte	0x8
+ 530 003a 94000000 		.4byte	.LASF1
+ 531 003e 03       		.uleb128 0x3
+ 532 003f 19000000 		.4byte	.LASF3
+ 533 0043 02       		.byte	0x2
+ 534 0044 29       		.byte	0x29
+ 535 0045 49000000 		.4byte	0x49
+ 536 0049 02       		.uleb128 0x2
+ 537 004a 02       		.byte	0x2
+ 538 004b 05       		.byte	0x5
+ 539 004c 77020000 		.4byte	.LASF4
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 17
+
+
+ 540 0050 02       		.uleb128 0x2
+ 541 0051 02       		.byte	0x2
+ 542 0052 07       		.byte	0x7
+ 543 0053 48010000 		.4byte	.LASF5
+ 544 0057 03       		.uleb128 0x3
+ 545 0058 44000000 		.4byte	.LASF6
+ 546 005c 02       		.byte	0x2
+ 547 005d 3F       		.byte	0x3f
+ 548 005e 62000000 		.4byte	0x62
+ 549 0062 02       		.uleb128 0x2
+ 550 0063 04       		.byte	0x4
+ 551 0064 05       		.byte	0x5
+ 552 0065 4E000000 		.4byte	.LASF7
+ 553 0069 02       		.uleb128 0x2
+ 554 006a 04       		.byte	0x4
+ 555 006b 07       		.byte	0x7
+ 556 006c 36010000 		.4byte	.LASF8
+ 557 0070 02       		.uleb128 0x2
+ 558 0071 08       		.byte	0x8
+ 559 0072 05       		.byte	0x5
+ 560 0073 30020000 		.4byte	.LASF9
+ 561 0077 02       		.uleb128 0x2
+ 562 0078 08       		.byte	0x8
+ 563 0079 07       		.byte	0x7
+ 564 007a C1010000 		.4byte	.LASF10
+ 565 007e 04       		.uleb128 0x4
+ 566 007f 04       		.byte	0x4
+ 567 0080 05       		.byte	0x5
+ 568 0081 696E7400 		.ascii	"int\000"
+ 569 0085 02       		.uleb128 0x2
+ 570 0086 04       		.byte	0x4
+ 571 0087 07       		.byte	0x7
+ 572 0088 B4010000 		.4byte	.LASF11
+ 573 008c 03       		.uleb128 0x3
+ 574 008d D8010000 		.4byte	.LASF12
+ 575 0091 03       		.byte	0x3
+ 576 0092 18       		.byte	0x18
+ 577 0093 2C000000 		.4byte	0x2c
+ 578 0097 03       		.uleb128 0x3
+ 579 0098 E8010000 		.4byte	.LASF13
+ 580 009c 03       		.byte	0x3
+ 581 009d 20       		.byte	0x20
+ 582 009e 3E000000 		.4byte	0x3e
+ 583 00a2 03       		.uleb128 0x3
+ 584 00a3 19020000 		.4byte	.LASF14
+ 585 00a7 03       		.byte	0x3
+ 586 00a8 2C       		.byte	0x2c
+ 587 00a9 57000000 		.4byte	0x57
+ 588 00ad 05       		.uleb128 0x5
+ 589 00ae 30010000 		.4byte	.LASF15
+ 590 00b2 04       		.byte	0x4
+ 591 00b3 E801     		.2byte	0x1e8
+ 592 00b5 49000000 		.4byte	0x49
+ 593 00b9 02       		.uleb128 0x2
+ 594 00ba 04       		.byte	0x4
+ 595 00bb 04       		.byte	0x4
+ 596 00bc 85000000 		.4byte	.LASF16
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 18
+
+
+ 597 00c0 02       		.uleb128 0x2
+ 598 00c1 08       		.byte	0x8
+ 599 00c2 04       		.byte	0x4
+ 600 00c3 62010000 		.4byte	.LASF17
+ 601 00c7 02       		.uleb128 0x2
+ 602 00c8 01       		.byte	0x1
+ 603 00c9 08       		.byte	0x8
+ 604 00ca 56020000 		.4byte	.LASF18
+ 605 00ce 06       		.uleb128 0x6
+ 606 00cf 01       		.byte	0x1
+ 607 00d0 37000000 		.4byte	0x37
+ 608 00d4 05       		.byte	0x5
+ 609 00d5 15       		.byte	0x15
+ 610 00d6 E7000000 		.4byte	0xe7
+ 611 00da 07       		.uleb128 0x7
+ 612 00db 81020000 		.4byte	.LASF19
+ 613 00df 00       		.byte	0
+ 614 00e0 07       		.uleb128 0x7
+ 615 00e1 8A020000 		.4byte	.LASF20
+ 616 00e5 01       		.byte	0x1
+ 617 00e6 00       		.byte	0
+ 618 00e7 03       		.uleb128 0x3
+ 619 00e8 6B000000 		.4byte	.LASF21
+ 620 00ec 05       		.byte	0x5
+ 621 00ed 18       		.byte	0x18
+ 622 00ee CE000000 		.4byte	0xce
+ 623 00f2 02       		.uleb128 0x2
+ 624 00f3 08       		.byte	0x8
+ 625 00f4 04       		.byte	0x4
+ 626 00f5 39030000 		.4byte	.LASF22
+ 627 00f9 02       		.uleb128 0x2
+ 628 00fa 04       		.byte	0x4
+ 629 00fb 07       		.byte	0x7
+ 630 00fc 21020000 		.4byte	.LASF23
+ 631 0100 08       		.uleb128 0x8
+ 632 0101 9B010000 		.4byte	.LASF48
+ 633 0105 01       		.byte	0x1
+ 634 0106 42       		.byte	0x42
+ 635 0107 7E000000 		.4byte	0x7e
+ 636 010b 00000000 		.4byte	.LFB64
+ 637 010f 60020000 		.4byte	.LFE64-.LFB64
+ 638 0113 01       		.uleb128 0x1
+ 639 0114 9C       		.byte	0x9c
+ 640 0115 A9060000 		.4byte	0x6a9
+ 641 0119 09       		.uleb128 0x9
+ 642 011a 00000000 		.4byte	.LASF24
+ 643 011e 01       		.byte	0x1
+ 644 011f 4D       		.byte	0x4d
+ 645 0120 A9060000 		.4byte	0x6a9
+ 646 0124 02       		.uleb128 0x2
+ 647 0125 91       		.byte	0x91
+ 648 0126 44       		.sleb128 -60
+ 649 0127 09       		.uleb128 0x9
+ 650 0128 51030000 		.4byte	.LASF25
+ 651 012c 01       		.byte	0x1
+ 652 012d 60       		.byte	0x60
+ 653 012e 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 19
+
+
+ 654 0132 02       		.uleb128 0x2
+ 655 0133 91       		.byte	0x91
+ 656 0134 43       		.sleb128 -61
+ 657 0135 0A       		.uleb128 0xa
+ 658 0136 2A020000 		.4byte	.LASF26
+ 659 013a 01       		.byte	0x1
+ 660 013b 61       		.byte	0x61
+ 661 013c E7000000 		.4byte	0xe7
+ 662 0140 00000000 		.4byte	.LLST0
+ 663 0144 09       		.uleb128 0x9
+ 664 0145 09020000 		.4byte	.LASF27
+ 665 0149 01       		.byte	0x1
+ 666 014a 70       		.byte	0x70
+ 667 014b 8C000000 		.4byte	0x8c
+ 668 014f 02       		.uleb128 0x2
+ 669 0150 91       		.byte	0x91
+ 670 0151 42       		.sleb128 -62
+ 671 0152 09       		.uleb128 0x9
+ 672 0153 A0010000 		.4byte	.LASF28
+ 673 0157 01       		.byte	0x1
+ 674 0158 82       		.byte	0x82
+ 675 0159 8C000000 		.4byte	0x8c
+ 676 015d 02       		.uleb128 0x2
+ 677 015e 91       		.byte	0x91
+ 678 015f 41       		.sleb128 -63
+ 679 0160 09       		.uleb128 0x9
+ 680 0161 FD010000 		.4byte	.LASF29
+ 681 0165 01       		.byte	0x1
+ 682 0166 C1       		.byte	0xc1
+ 683 0167 8C000000 		.4byte	0x8c
+ 684 016b 02       		.uleb128 0x2
+ 685 016c 91       		.byte	0x91
+ 686 016d 40       		.sleb128 -64
+ 687 016e 09       		.uleb128 0x9
+ 688 016f AA010000 		.4byte	.LASF30
+ 689 0173 01       		.byte	0x1
+ 690 0174 E7       		.byte	0xe7
+ 691 0175 8C000000 		.4byte	0x8c
+ 692 0179 03       		.uleb128 0x3
+ 693 017a 91       		.byte	0x91
+ 694 017b BF7F     		.sleb128 -65
+ 695 017d 0B       		.uleb128 0xb
+ 696 017e E0010000 		.4byte	.LASF31
+ 697 0182 01       		.byte	0x1
+ 698 0183 0D01     		.2byte	0x10d
+ 699 0185 97000000 		.4byte	0x97
+ 700 0189 D9000000 		.4byte	.LLST1
+ 701 018d 0C       		.uleb128 0xc
+ 702 018e 08000000 		.4byte	.LASF32
+ 703 0192 01       		.byte	0x1
+ 704 0193 0E01     		.2byte	0x10e
+ 705 0195 8C000000 		.4byte	0x8c
+ 706 0199 A07F     		.sleb128 -96
+ 707 019b 0C       		.uleb128 0xc
+ 708 019c 5B010000 		.4byte	.LASF33
+ 709 01a0 01       		.byte	0x1
+ 710 01a1 0F01     		.2byte	0x10f
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 20
+
+
+ 711 01a3 8C000000 		.4byte	0x8c
+ 712 01a7 40       		.sleb128 -64
+ 713 01a8 0D       		.uleb128 0xd
+ 714 01a9 8B000000 		.4byte	.LASF34
+ 715 01ad 01       		.byte	0x1
+ 716 01ae 1001     		.2byte	0x110
+ 717 01b0 B9060000 		.4byte	0x6b9
+ 718 01b4 03       		.uleb128 0x3
+ 719 01b5 91       		.byte	0x91
+ 720 01b6 B87F     		.sleb128 -72
+ 721 01b8 0D       		.uleb128 0xd
+ 722 01b9 75000000 		.4byte	.LASF35
+ 723 01bd 01       		.byte	0x1
+ 724 01be 1101     		.2byte	0x111
+ 725 01c0 C9060000 		.4byte	0x6c9
+ 726 01c4 03       		.uleb128 0x3
+ 727 01c5 91       		.byte	0x91
+ 728 01c6 B47F     		.sleb128 -76
+ 729 01c8 0E       		.uleb128 0xe
+ 730 01c9 14000000 		.4byte	.LBB2
+ 731 01cd 22000000 		.4byte	.LBE2-.LBB2
+ 732 01d1 2A020000 		.4byte	0x22a
+ 733 01d5 0F       		.uleb128 0xf
+ 734 01d6 6900     		.ascii	"i\000"
+ 735 01d8 01       		.byte	0x1
+ 736 01d9 50       		.byte	0x50
+ 737 01da 7E000000 		.4byte	0x7e
+ 738 01de 0A010000 		.4byte	.LLST2
+ 739 01e2 10       		.uleb128 0x10
+ 740 01e3 1E000000 		.4byte	.LVL4
+ 741 01e7 EA060000 		.4byte	0x6ea
+ 742 01eb F6010000 		.4byte	0x1f6
+ 743 01ef 11       		.uleb128 0x11
+ 744 01f0 01       		.uleb128 0x1
+ 745 01f1 50       		.byte	0x50
+ 746 01f2 02       		.uleb128 0x2
+ 747 01f3 74       		.byte	0x74
+ 748 01f4 00       		.sleb128 0
+ 749 01f5 00       		.byte	0
+ 750 01f6 10       		.uleb128 0x10
+ 751 01f7 2A000000 		.4byte	.LVL5
+ 752 01fb F5060000 		.4byte	0x6f5
+ 753 01ff 19020000 		.4byte	0x219
+ 754 0203 11       		.uleb128 0x11
+ 755 0204 01       		.uleb128 0x1
+ 756 0205 50       		.byte	0x50
+ 757 0206 02       		.uleb128 0x2
+ 758 0207 91       		.byte	0x91
+ 759 0208 44       		.sleb128 -60
+ 760 0209 11       		.uleb128 0x11
+ 761 020a 01       		.uleb128 0x1
+ 762 020b 51       		.byte	0x51
+ 763 020c 05       		.uleb128 0x5
+ 764 020d 03       		.byte	0x3
+ 765 020e 00000000 		.4byte	.LC0
+ 766 0212 11       		.uleb128 0x11
+ 767 0213 01       		.uleb128 0x1
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 21
+
+
+ 768 0214 52       		.byte	0x52
+ 769 0215 02       		.uleb128 0x2
+ 770 0216 74       		.byte	0x74
+ 771 0217 00       		.sleb128 0
+ 772 0218 00       		.byte	0
+ 773 0219 12       		.uleb128 0x12
+ 774 021a 30000000 		.4byte	.LVL6
+ 775 021e 00070000 		.4byte	0x700
+ 776 0222 11       		.uleb128 0x11
+ 777 0223 01       		.uleb128 0x1
+ 778 0224 50       		.byte	0x50
+ 779 0225 02       		.uleb128 0x2
+ 780 0226 91       		.byte	0x91
+ 781 0227 44       		.sleb128 -60
+ 782 0228 00       		.byte	0
+ 783 0229 00       		.byte	0
+ 784 022a 13       		.uleb128 0x13
+ 785 022b 0A000000 		.4byte	.LVL0
+ 786 022f 0B070000 		.4byte	0x70b
+ 787 0233 13       		.uleb128 0x13
+ 788 0234 0E000000 		.4byte	.LVL1
+ 789 0238 16070000 		.4byte	0x716
+ 790 023c 10       		.uleb128 0x10
+ 791 023d 14000000 		.4byte	.LVL2
+ 792 0241 21070000 		.4byte	0x721
+ 793 0245 4F020000 		.4byte	0x24f
+ 794 0249 11       		.uleb128 0x11
+ 795 024a 01       		.uleb128 0x1
+ 796 024b 50       		.byte	0x50
+ 797 024c 01       		.uleb128 0x1
+ 798 024d 35       		.byte	0x35
+ 799 024e 00       		.byte	0
+ 800 024f 10       		.uleb128 0x10
+ 801 0250 42000000 		.4byte	.LVL8
+ 802 0254 2C070000 		.4byte	0x72c
+ 803 0258 6D020000 		.4byte	0x26d
+ 804 025c 11       		.uleb128 0x11
+ 805 025d 01       		.uleb128 0x1
+ 806 025e 50       		.byte	0x50
+ 807 025f 01       		.uleb128 0x1
+ 808 0260 48       		.byte	0x48
+ 809 0261 11       		.uleb128 0x11
+ 810 0262 01       		.uleb128 0x1
+ 811 0263 51       		.byte	0x51
+ 812 0264 01       		.uleb128 0x1
+ 813 0265 3F       		.byte	0x3f
+ 814 0266 11       		.uleb128 0x11
+ 815 0267 01       		.uleb128 0x1
+ 816 0268 52       		.byte	0x52
+ 817 0269 02       		.uleb128 0x2
+ 818 026a 91       		.byte	0x91
+ 819 026b 43       		.sleb128 -61
+ 820 026c 00       		.byte	0
+ 821 026d 10       		.uleb128 0x10
+ 822 026e 50000000 		.4byte	.LVL10
+ 823 0272 F5060000 		.4byte	0x6f5
+ 824 0276 8A020000 		.4byte	0x28a
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 22
+
+
+ 825 027a 11       		.uleb128 0x11
+ 826 027b 01       		.uleb128 0x1
+ 827 027c 50       		.byte	0x50
+ 828 027d 02       		.uleb128 0x2
+ 829 027e 91       		.byte	0x91
+ 830 027f 44       		.sleb128 -60
+ 831 0280 11       		.uleb128 0x11
+ 832 0281 01       		.uleb128 0x1
+ 833 0282 51       		.byte	0x51
+ 834 0283 05       		.uleb128 0x5
+ 835 0284 03       		.byte	0x3
+ 836 0285 20000000 		.4byte	.LC1
+ 837 0289 00       		.byte	0
+ 838 028a 10       		.uleb128 0x10
+ 839 028b 56000000 		.4byte	.LVL11
+ 840 028f 00070000 		.4byte	0x700
+ 841 0293 9E020000 		.4byte	0x29e
+ 842 0297 11       		.uleb128 0x11
+ 843 0298 01       		.uleb128 0x1
+ 844 0299 50       		.byte	0x50
+ 845 029a 02       		.uleb128 0x2
+ 846 029b 91       		.byte	0x91
+ 847 029c 44       		.sleb128 -60
+ 848 029d 00       		.byte	0
+ 849 029e 10       		.uleb128 0x10
+ 850 029f 5E000000 		.4byte	.LVL14
+ 851 02a3 00070000 		.4byte	0x700
+ 852 02a7 B5020000 		.4byte	0x2b5
+ 853 02ab 11       		.uleb128 0x11
+ 854 02ac 01       		.uleb128 0x1
+ 855 02ad 50       		.byte	0x50
+ 856 02ae 05       		.uleb128 0x5
+ 857 02af 03       		.byte	0x3
+ 858 02b0 48000000 		.4byte	.LC2
+ 859 02b4 00       		.byte	0
+ 860 02b5 10       		.uleb128 0x10
+ 861 02b6 6A000000 		.4byte	.LVL15
+ 862 02ba 2C070000 		.4byte	0x72c
+ 863 02be D4020000 		.4byte	0x2d4
+ 864 02c2 11       		.uleb128 0x11
+ 865 02c3 01       		.uleb128 0x1
+ 866 02c4 50       		.byte	0x50
+ 867 02c5 01       		.uleb128 0x1
+ 868 02c6 48       		.byte	0x48
+ 869 02c7 11       		.uleb128 0x11
+ 870 02c8 01       		.uleb128 0x1
+ 871 02c9 51       		.byte	0x51
+ 872 02ca 02       		.uleb128 0x2
+ 873 02cb 08       		.byte	0x8
+ 874 02cc 27       		.byte	0x27
+ 875 02cd 11       		.uleb128 0x11
+ 876 02ce 01       		.uleb128 0x1
+ 877 02cf 52       		.byte	0x52
+ 878 02d0 02       		.uleb128 0x2
+ 879 02d1 91       		.byte	0x91
+ 880 02d2 42       		.sleb128 -62
+ 881 02d3 00       		.byte	0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 23
+
+
+ 882 02d4 10       		.uleb128 0x10
+ 883 02d5 78000000 		.4byte	.LVL17
+ 884 02d9 F5060000 		.4byte	0x6f5
+ 885 02dd F1020000 		.4byte	0x2f1
+ 886 02e1 11       		.uleb128 0x11
+ 887 02e2 01       		.uleb128 0x1
+ 888 02e3 50       		.byte	0x50
+ 889 02e4 02       		.uleb128 0x2
+ 890 02e5 91       		.byte	0x91
+ 891 02e6 44       		.sleb128 -60
+ 892 02e7 11       		.uleb128 0x11
+ 893 02e8 01       		.uleb128 0x1
+ 894 02e9 51       		.byte	0x51
+ 895 02ea 05       		.uleb128 0x5
+ 896 02eb 03       		.byte	0x3
+ 897 02ec 6C000000 		.4byte	.LC3
+ 898 02f0 00       		.byte	0
+ 899 02f1 10       		.uleb128 0x10
+ 900 02f2 7E000000 		.4byte	.LVL18
+ 901 02f6 00070000 		.4byte	0x700
+ 902 02fa 05030000 		.4byte	0x305
+ 903 02fe 11       		.uleb128 0x11
+ 904 02ff 01       		.uleb128 0x1
+ 905 0300 50       		.byte	0x50
+ 906 0301 02       		.uleb128 0x2
+ 907 0302 91       		.byte	0x91
+ 908 0303 44       		.sleb128 -60
+ 909 0304 00       		.byte	0
+ 910 0305 10       		.uleb128 0x10
+ 911 0306 86000000 		.4byte	.LVL21
+ 912 030a 00070000 		.4byte	0x700
+ 913 030e 1C030000 		.4byte	0x31c
+ 914 0312 11       		.uleb128 0x11
+ 915 0313 01       		.uleb128 0x1
+ 916 0314 50       		.byte	0x50
+ 917 0315 05       		.uleb128 0x5
+ 918 0316 03       		.byte	0x3
+ 919 0317 88000000 		.4byte	.LC4
+ 920 031b 00       		.byte	0
+ 921 031c 10       		.uleb128 0x10
+ 922 031d 92000000 		.4byte	.LVL22
+ 923 0321 2C070000 		.4byte	0x72c
+ 924 0325 3B030000 		.4byte	0x33b
+ 925 0329 11       		.uleb128 0x11
+ 926 032a 01       		.uleb128 0x1
+ 927 032b 50       		.byte	0x50
+ 928 032c 01       		.uleb128 0x1
+ 929 032d 48       		.byte	0x48
+ 930 032e 11       		.uleb128 0x11
+ 931 032f 01       		.uleb128 0x1
+ 932 0330 51       		.byte	0x51
+ 933 0331 02       		.uleb128 0x2
+ 934 0332 08       		.byte	0x8
+ 935 0333 20       		.byte	0x20
+ 936 0334 11       		.uleb128 0x11
+ 937 0335 01       		.uleb128 0x1
+ 938 0336 52       		.byte	0x52
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 24
+
+
+ 939 0337 02       		.uleb128 0x2
+ 940 0338 91       		.byte	0x91
+ 941 0339 41       		.sleb128 -63
+ 942 033a 00       		.byte	0
+ 943 033b 10       		.uleb128 0x10
+ 944 033c A0000000 		.4byte	.LVL24
+ 945 0340 F5060000 		.4byte	0x6f5
+ 946 0344 58030000 		.4byte	0x358
+ 947 0348 11       		.uleb128 0x11
+ 948 0349 01       		.uleb128 0x1
+ 949 034a 50       		.byte	0x50
+ 950 034b 02       		.uleb128 0x2
+ 951 034c 91       		.byte	0x91
+ 952 034d 44       		.sleb128 -60
+ 953 034e 11       		.uleb128 0x11
+ 954 034f 01       		.uleb128 0x1
+ 955 0350 51       		.byte	0x51
+ 956 0351 05       		.uleb128 0x5
+ 957 0352 03       		.byte	0x3
+ 958 0353 C4000000 		.4byte	.LC5
+ 959 0357 00       		.byte	0
+ 960 0358 10       		.uleb128 0x10
+ 961 0359 A6000000 		.4byte	.LVL25
+ 962 035d 00070000 		.4byte	0x700
+ 963 0361 6C030000 		.4byte	0x36c
+ 964 0365 11       		.uleb128 0x11
+ 965 0366 01       		.uleb128 0x1
+ 966 0367 50       		.byte	0x50
+ 967 0368 02       		.uleb128 0x2
+ 968 0369 91       		.byte	0x91
+ 969 036a 44       		.sleb128 -60
+ 970 036b 00       		.byte	0
+ 971 036c 10       		.uleb128 0x10
+ 972 036d AE000000 		.4byte	.LVL28
+ 973 0371 00070000 		.4byte	0x700
+ 974 0375 83030000 		.4byte	0x383
+ 975 0379 11       		.uleb128 0x11
+ 976 037a 01       		.uleb128 0x1
+ 977 037b 50       		.byte	0x50
+ 978 037c 05       		.uleb128 0x5
+ 979 037d 03       		.byte	0x3
+ 980 037e E4000000 		.4byte	.LC6
+ 981 0382 00       		.byte	0
+ 982 0383 10       		.uleb128 0x10
+ 983 0384 B4000000 		.4byte	.LVL29
+ 984 0388 00070000 		.4byte	0x700
+ 985 038c 9A030000 		.4byte	0x39a
+ 986 0390 11       		.uleb128 0x11
+ 987 0391 01       		.uleb128 0x1
+ 988 0392 50       		.byte	0x50
+ 989 0393 05       		.uleb128 0x5
+ 990 0394 03       		.byte	0x3
+ 991 0395 20010000 		.4byte	.LC7
+ 992 0399 00       		.byte	0
+ 993 039a 10       		.uleb128 0x10
+ 994 039b CA000000 		.4byte	.LVL30
+ 995 039f 37070000 		.4byte	0x737
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 25
+
+
+ 996 03a3 B9030000 		.4byte	0x3b9
+ 997 03a7 11       		.uleb128 0x11
+ 998 03a8 01       		.uleb128 0x1
+ 999 03a9 50       		.byte	0x50
+ 1000 03aa 01       		.uleb128 0x1
+ 1001 03ab 48       		.byte	0x48
+ 1002 03ac 11       		.uleb128 0x11
+ 1003 03ad 01       		.uleb128 0x1
+ 1004 03ae 51       		.byte	0x51
+ 1005 03af 02       		.uleb128 0x2
+ 1006 03b0 08       		.byte	0x8
+ 1007 03b1 20       		.byte	0x20
+ 1008 03b2 11       		.uleb128 0x11
+ 1009 03b3 01       		.uleb128 0x1
+ 1010 03b4 52       		.byte	0x52
+ 1011 03b5 02       		.uleb128 0x2
+ 1012 03b6 08       		.byte	0x8
+ 1013 03b7 47       		.byte	0x47
+ 1014 03b8 00       		.byte	0
+ 1015 03b9 10       		.uleb128 0x10
+ 1016 03ba D8000000 		.4byte	.LVL32
+ 1017 03be F5060000 		.4byte	0x6f5
+ 1018 03c2 D6030000 		.4byte	0x3d6
+ 1019 03c6 11       		.uleb128 0x11
+ 1020 03c7 01       		.uleb128 0x1
+ 1021 03c8 50       		.byte	0x50
+ 1022 03c9 02       		.uleb128 0x2
+ 1023 03ca 91       		.byte	0x91
+ 1024 03cb 44       		.sleb128 -60
+ 1025 03cc 11       		.uleb128 0x11
+ 1026 03cd 01       		.uleb128 0x1
+ 1027 03ce 51       		.byte	0x51
+ 1028 03cf 05       		.uleb128 0x5
+ 1029 03d0 03       		.byte	0x3
+ 1030 03d1 3C010000 		.4byte	.LC8
+ 1031 03d5 00       		.byte	0
+ 1032 03d6 10       		.uleb128 0x10
+ 1033 03d7 DE000000 		.4byte	.LVL33
+ 1034 03db 00070000 		.4byte	0x700
+ 1035 03df EA030000 		.4byte	0x3ea
+ 1036 03e3 11       		.uleb128 0x11
+ 1037 03e4 01       		.uleb128 0x1
+ 1038 03e5 50       		.byte	0x50
+ 1039 03e6 02       		.uleb128 0x2
+ 1040 03e7 91       		.byte	0x91
+ 1041 03e8 44       		.sleb128 -60
+ 1042 03e9 00       		.byte	0
+ 1043 03ea 10       		.uleb128 0x10
+ 1044 03eb E6000000 		.4byte	.LVL36
+ 1045 03ef 00070000 		.4byte	0x700
+ 1046 03f3 01040000 		.4byte	0x401
+ 1047 03f7 11       		.uleb128 0x11
+ 1048 03f8 01       		.uleb128 0x1
+ 1049 03f9 50       		.byte	0x50
+ 1050 03fa 05       		.uleb128 0x5
+ 1051 03fb 03       		.byte	0x3
+ 1052 03fc 74010000 		.4byte	.LC9
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 26
+
+
+ 1053 0400 00       		.byte	0
+ 1054 0401 10       		.uleb128 0x10
+ 1055 0402 F2000000 		.4byte	.LVL37
+ 1056 0406 2C070000 		.4byte	0x72c
+ 1057 040a 20040000 		.4byte	0x420
+ 1058 040e 11       		.uleb128 0x11
+ 1059 040f 01       		.uleb128 0x1
+ 1060 0410 50       		.byte	0x50
+ 1061 0411 01       		.uleb128 0x1
+ 1062 0412 48       		.byte	0x48
+ 1063 0413 11       		.uleb128 0x11
+ 1064 0414 01       		.uleb128 0x1
+ 1065 0415 51       		.byte	0x51
+ 1066 0416 02       		.uleb128 0x2
+ 1067 0417 08       		.byte	0x8
+ 1068 0418 20       		.byte	0x20
+ 1069 0419 11       		.uleb128 0x11
+ 1070 041a 01       		.uleb128 0x1
+ 1071 041b 52       		.byte	0x52
+ 1072 041c 02       		.uleb128 0x2
+ 1073 041d 91       		.byte	0x91
+ 1074 041e 41       		.sleb128 -63
+ 1075 041f 00       		.byte	0
+ 1076 0420 10       		.uleb128 0x10
+ 1077 0421 00010000 		.4byte	.LVL39
+ 1078 0425 F5060000 		.4byte	0x6f5
+ 1079 0429 3D040000 		.4byte	0x43d
+ 1080 042d 11       		.uleb128 0x11
+ 1081 042e 01       		.uleb128 0x1
+ 1082 042f 50       		.byte	0x50
+ 1083 0430 02       		.uleb128 0x2
+ 1084 0431 91       		.byte	0x91
+ 1085 0432 44       		.sleb128 -60
+ 1086 0433 11       		.uleb128 0x11
+ 1087 0434 01       		.uleb128 0x1
+ 1088 0435 51       		.byte	0x51
+ 1089 0436 05       		.uleb128 0x5
+ 1090 0437 03       		.byte	0x3
+ 1091 0438 B0010000 		.4byte	.LC10
+ 1092 043c 00       		.byte	0
+ 1093 043d 10       		.uleb128 0x10
+ 1094 043e 06010000 		.4byte	.LVL40
+ 1095 0442 00070000 		.4byte	0x700
+ 1096 0446 51040000 		.4byte	0x451
+ 1097 044a 11       		.uleb128 0x11
+ 1098 044b 01       		.uleb128 0x1
+ 1099 044c 50       		.byte	0x50
+ 1100 044d 02       		.uleb128 0x2
+ 1101 044e 91       		.byte	0x91
+ 1102 044f 44       		.sleb128 -60
+ 1103 0450 00       		.byte	0
+ 1104 0451 10       		.uleb128 0x10
+ 1105 0452 0E010000 		.4byte	.LVL43
+ 1106 0456 00070000 		.4byte	0x700
+ 1107 045a 68040000 		.4byte	0x468
+ 1108 045e 11       		.uleb128 0x11
+ 1109 045f 01       		.uleb128 0x1
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 27
+
+
+ 1110 0460 50       		.byte	0x50
+ 1111 0461 05       		.uleb128 0x5
+ 1112 0462 03       		.byte	0x3
+ 1113 0463 E4000000 		.4byte	.LC6
+ 1114 0467 00       		.byte	0
+ 1115 0468 10       		.uleb128 0x10
+ 1116 0469 18010000 		.4byte	.LVL44
+ 1117 046d 2C070000 		.4byte	0x72c
+ 1118 0471 86040000 		.4byte	0x486
+ 1119 0475 11       		.uleb128 0x11
+ 1120 0476 01       		.uleb128 0x1
+ 1121 0477 50       		.byte	0x50
+ 1122 0478 01       		.uleb128 0x1
+ 1123 0479 48       		.byte	0x48
+ 1124 047a 11       		.uleb128 0x11
+ 1125 047b 01       		.uleb128 0x1
+ 1126 047c 51       		.byte	0x51
+ 1127 047d 01       		.uleb128 0x1
+ 1128 047e 4F       		.byte	0x4f
+ 1129 047f 11       		.uleb128 0x11
+ 1130 0480 01       		.uleb128 0x1
+ 1131 0481 52       		.byte	0x52
+ 1132 0482 02       		.uleb128 0x2
+ 1133 0483 91       		.byte	0x91
+ 1134 0484 40       		.sleb128 -64
+ 1135 0485 00       		.byte	0
+ 1136 0486 10       		.uleb128 0x10
+ 1137 0487 26010000 		.4byte	.LVL46
+ 1138 048b F5060000 		.4byte	0x6f5
+ 1139 048f A3040000 		.4byte	0x4a3
+ 1140 0493 11       		.uleb128 0x11
+ 1141 0494 01       		.uleb128 0x1
+ 1142 0495 50       		.byte	0x50
+ 1143 0496 02       		.uleb128 0x2
+ 1144 0497 91       		.byte	0x91
+ 1145 0498 44       		.sleb128 -60
+ 1146 0499 11       		.uleb128 0x11
+ 1147 049a 01       		.uleb128 0x1
+ 1148 049b 51       		.byte	0x51
+ 1149 049c 05       		.uleb128 0x5
+ 1150 049d 03       		.byte	0x3
+ 1151 049e E8010000 		.4byte	.LC11
+ 1152 04a2 00       		.byte	0
+ 1153 04a3 10       		.uleb128 0x10
+ 1154 04a4 2C010000 		.4byte	.LVL47
+ 1155 04a8 00070000 		.4byte	0x700
+ 1156 04ac B7040000 		.4byte	0x4b7
+ 1157 04b0 11       		.uleb128 0x11
+ 1158 04b1 01       		.uleb128 0x1
+ 1159 04b2 50       		.byte	0x50
+ 1160 04b3 02       		.uleb128 0x2
+ 1161 04b4 91       		.byte	0x91
+ 1162 04b5 44       		.sleb128 -60
+ 1163 04b6 00       		.byte	0
+ 1164 04b7 10       		.uleb128 0x10
+ 1165 04b8 34010000 		.4byte	.LVL50
+ 1166 04bc 00070000 		.4byte	0x700
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 28
+
+
+ 1167 04c0 CE040000 		.4byte	0x4ce
+ 1168 04c4 11       		.uleb128 0x11
+ 1169 04c5 01       		.uleb128 0x1
+ 1170 04c6 50       		.byte	0x50
+ 1171 04c7 05       		.uleb128 0x5
+ 1172 04c8 03       		.byte	0x3
+ 1173 04c9 10020000 		.4byte	.LC12
+ 1174 04cd 00       		.byte	0
+ 1175 04ce 10       		.uleb128 0x10
+ 1176 04cf 44010000 		.4byte	.LVL52
+ 1177 04d3 37070000 		.4byte	0x737
+ 1178 04d7 EC040000 		.4byte	0x4ec
+ 1179 04db 11       		.uleb128 0x11
+ 1180 04dc 01       		.uleb128 0x1
+ 1181 04dd 50       		.byte	0x50
+ 1182 04de 01       		.uleb128 0x1
+ 1183 04df 48       		.byte	0x48
+ 1184 04e0 11       		.uleb128 0x11
+ 1185 04e1 01       		.uleb128 0x1
+ 1186 04e2 51       		.byte	0x51
+ 1187 04e3 01       		.uleb128 0x1
+ 1188 04e4 4F       		.byte	0x4f
+ 1189 04e5 11       		.uleb128 0x11
+ 1190 04e6 01       		.uleb128 0x1
+ 1191 04e7 52       		.byte	0x52
+ 1192 04e8 02       		.uleb128 0x2
+ 1193 04e9 09       		.byte	0x9
+ 1194 04ea C0       		.byte	0xc0
+ 1195 04eb 00       		.byte	0
+ 1196 04ec 10       		.uleb128 0x10
+ 1197 04ed 4E010000 		.4byte	.LVL53
+ 1198 04f1 2C070000 		.4byte	0x72c
+ 1199 04f5 0A050000 		.4byte	0x50a
+ 1200 04f9 11       		.uleb128 0x11
+ 1201 04fa 01       		.uleb128 0x1
+ 1202 04fb 50       		.byte	0x50
+ 1203 04fc 01       		.uleb128 0x1
+ 1204 04fd 48       		.byte	0x48
+ 1205 04fe 11       		.uleb128 0x11
+ 1206 04ff 01       		.uleb128 0x1
+ 1207 0500 51       		.byte	0x51
+ 1208 0501 01       		.uleb128 0x1
+ 1209 0502 4F       		.byte	0x4f
+ 1210 0503 11       		.uleb128 0x11
+ 1211 0504 01       		.uleb128 0x1
+ 1212 0505 52       		.byte	0x52
+ 1213 0506 02       		.uleb128 0x2
+ 1214 0507 74       		.byte	0x74
+ 1215 0508 00       		.sleb128 0
+ 1216 0509 00       		.byte	0
+ 1217 050a 10       		.uleb128 0x10
+ 1218 050b 5C010000 		.4byte	.LVL55
+ 1219 050f F5060000 		.4byte	0x6f5
+ 1220 0513 27050000 		.4byte	0x527
+ 1221 0517 11       		.uleb128 0x11
+ 1222 0518 01       		.uleb128 0x1
+ 1223 0519 50       		.byte	0x50
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 29
+
+
+ 1224 051a 02       		.uleb128 0x2
+ 1225 051b 91       		.byte	0x91
+ 1226 051c 44       		.sleb128 -60
+ 1227 051d 11       		.uleb128 0x11
+ 1228 051e 01       		.uleb128 0x1
+ 1229 051f 51       		.byte	0x51
+ 1230 0520 05       		.uleb128 0x5
+ 1231 0521 03       		.byte	0x3
+ 1232 0522 58020000 		.4byte	.LC13
+ 1233 0526 00       		.byte	0
+ 1234 0527 10       		.uleb128 0x10
+ 1235 0528 62010000 		.4byte	.LVL56
+ 1236 052c 00070000 		.4byte	0x700
+ 1237 0530 3B050000 		.4byte	0x53b
+ 1238 0534 11       		.uleb128 0x11
+ 1239 0535 01       		.uleb128 0x1
+ 1240 0536 50       		.byte	0x50
+ 1241 0537 02       		.uleb128 0x2
+ 1242 0538 91       		.byte	0x91
+ 1243 0539 44       		.sleb128 -60
+ 1244 053a 00       		.byte	0
+ 1245 053b 10       		.uleb128 0x10
+ 1246 053c 6A010000 		.4byte	.LVL59
+ 1247 0540 00070000 		.4byte	0x700
+ 1248 0544 52050000 		.4byte	0x552
+ 1249 0548 11       		.uleb128 0x11
+ 1250 0549 01       		.uleb128 0x1
+ 1251 054a 50       		.byte	0x50
+ 1252 054b 05       		.uleb128 0x5
+ 1253 054c 03       		.byte	0x3
+ 1254 054d 10020000 		.4byte	.LC12
+ 1255 0551 00       		.byte	0
+ 1256 0552 10       		.uleb128 0x10
+ 1257 0553 76010000 		.4byte	.LVL60
+ 1258 0557 2C070000 		.4byte	0x72c
+ 1259 055b 72050000 		.4byte	0x572
+ 1260 055f 11       		.uleb128 0x11
+ 1261 0560 01       		.uleb128 0x1
+ 1262 0561 50       		.byte	0x50
+ 1263 0562 01       		.uleb128 0x1
+ 1264 0563 48       		.byte	0x48
+ 1265 0564 11       		.uleb128 0x11
+ 1266 0565 01       		.uleb128 0x1
+ 1267 0566 51       		.byte	0x51
+ 1268 0567 02       		.uleb128 0x2
+ 1269 0568 08       		.byte	0x8
+ 1270 0569 23       		.byte	0x23
+ 1271 056a 11       		.uleb128 0x11
+ 1272 056b 01       		.uleb128 0x1
+ 1273 056c 52       		.byte	0x52
+ 1274 056d 03       		.uleb128 0x3
+ 1275 056e 91       		.byte	0x91
+ 1276 056f BF7F     		.sleb128 -65
+ 1277 0571 00       		.byte	0
+ 1278 0572 10       		.uleb128 0x10
+ 1279 0573 84010000 		.4byte	.LVL62
+ 1280 0577 F5060000 		.4byte	0x6f5
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 30
+
+
+ 1281 057b 8F050000 		.4byte	0x58f
+ 1282 057f 11       		.uleb128 0x11
+ 1283 0580 01       		.uleb128 0x1
+ 1284 0581 50       		.byte	0x50
+ 1285 0582 02       		.uleb128 0x2
+ 1286 0583 91       		.byte	0x91
+ 1287 0584 44       		.sleb128 -60
+ 1288 0585 11       		.uleb128 0x11
+ 1289 0586 01       		.uleb128 0x1
+ 1290 0587 51       		.byte	0x51
+ 1291 0588 05       		.uleb128 0x5
+ 1292 0589 03       		.byte	0x3
+ 1293 058a 94020000 		.4byte	.LC14
+ 1294 058e 00       		.byte	0
+ 1295 058f 10       		.uleb128 0x10
+ 1296 0590 8A010000 		.4byte	.LVL63
+ 1297 0594 00070000 		.4byte	0x700
+ 1298 0598 A3050000 		.4byte	0x5a3
+ 1299 059c 11       		.uleb128 0x11
+ 1300 059d 01       		.uleb128 0x1
+ 1301 059e 50       		.byte	0x50
+ 1302 059f 02       		.uleb128 0x2
+ 1303 05a0 91       		.byte	0x91
+ 1304 05a1 44       		.sleb128 -60
+ 1305 05a2 00       		.byte	0
+ 1306 05a3 10       		.uleb128 0x10
+ 1307 05a4 92010000 		.4byte	.LVL66
+ 1308 05a8 00070000 		.4byte	0x700
+ 1309 05ac BA050000 		.4byte	0x5ba
+ 1310 05b0 11       		.uleb128 0x11
+ 1311 05b1 01       		.uleb128 0x1
+ 1312 05b2 50       		.byte	0x50
+ 1313 05b3 05       		.uleb128 0x5
+ 1314 05b4 03       		.byte	0x3
+ 1315 05b5 B4020000 		.4byte	.LC15
+ 1316 05b9 00       		.byte	0
+ 1317 05ba 10       		.uleb128 0x10
+ 1318 05bb A2010000 		.4byte	.LVL67
+ 1319 05bf 37070000 		.4byte	0x737
+ 1320 05c3 D9050000 		.4byte	0x5d9
+ 1321 05c7 11       		.uleb128 0x11
+ 1322 05c8 01       		.uleb128 0x1
+ 1323 05c9 50       		.byte	0x50
+ 1324 05ca 01       		.uleb128 0x1
+ 1325 05cb 48       		.byte	0x48
+ 1326 05cc 11       		.uleb128 0x11
+ 1327 05cd 01       		.uleb128 0x1
+ 1328 05ce 51       		.byte	0x51
+ 1329 05cf 02       		.uleb128 0x2
+ 1330 05d0 08       		.byte	0x8
+ 1331 05d1 23       		.byte	0x23
+ 1332 05d2 11       		.uleb128 0x11
+ 1333 05d3 01       		.uleb128 0x1
+ 1334 05d4 52       		.byte	0x52
+ 1335 05d5 02       		.uleb128 0x2
+ 1336 05d6 09       		.byte	0x9
+ 1337 05d7 80       		.byte	0x80
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 31
+
+
+ 1338 05d8 00       		.byte	0
+ 1339 05d9 10       		.uleb128 0x10
+ 1340 05da AC010000 		.4byte	.LVL68
+ 1341 05de 2C070000 		.4byte	0x72c
+ 1342 05e2 F8050000 		.4byte	0x5f8
+ 1343 05e6 11       		.uleb128 0x11
+ 1344 05e7 01       		.uleb128 0x1
+ 1345 05e8 50       		.byte	0x50
+ 1346 05e9 01       		.uleb128 0x1
+ 1347 05ea 48       		.byte	0x48
+ 1348 05eb 11       		.uleb128 0x11
+ 1349 05ec 01       		.uleb128 0x1
+ 1350 05ed 51       		.byte	0x51
+ 1351 05ee 02       		.uleb128 0x2
+ 1352 05ef 08       		.byte	0x8
+ 1353 05f0 23       		.byte	0x23
+ 1354 05f1 11       		.uleb128 0x11
+ 1355 05f2 01       		.uleb128 0x1
+ 1356 05f3 52       		.byte	0x52
+ 1357 05f4 02       		.uleb128 0x2
+ 1358 05f5 74       		.byte	0x74
+ 1359 05f6 00       		.sleb128 0
+ 1360 05f7 00       		.byte	0
+ 1361 05f8 10       		.uleb128 0x10
+ 1362 05f9 BA010000 		.4byte	.LVL70
+ 1363 05fd F5060000 		.4byte	0x6f5
+ 1364 0601 15060000 		.4byte	0x615
+ 1365 0605 11       		.uleb128 0x11
+ 1366 0606 01       		.uleb128 0x1
+ 1367 0607 50       		.byte	0x50
+ 1368 0608 02       		.uleb128 0x2
+ 1369 0609 91       		.byte	0x91
+ 1370 060a 44       		.sleb128 -60
+ 1371 060b 11       		.uleb128 0x11
+ 1372 060c 01       		.uleb128 0x1
+ 1373 060d 51       		.byte	0x51
+ 1374 060e 05       		.uleb128 0x5
+ 1375 060f 03       		.byte	0x3
+ 1376 0610 F0020000 		.4byte	.LC16
+ 1377 0614 00       		.byte	0
+ 1378 0615 10       		.uleb128 0x10
+ 1379 0616 C0010000 		.4byte	.LVL71
+ 1380 061a 00070000 		.4byte	0x700
+ 1381 061e 29060000 		.4byte	0x629
+ 1382 0622 11       		.uleb128 0x11
+ 1383 0623 01       		.uleb128 0x1
+ 1384 0624 50       		.byte	0x50
+ 1385 0625 02       		.uleb128 0x2
+ 1386 0626 91       		.byte	0x91
+ 1387 0627 44       		.sleb128 -60
+ 1388 0628 00       		.byte	0
+ 1389 0629 10       		.uleb128 0x10
+ 1390 062a C8010000 		.4byte	.LVL74
+ 1391 062e 00070000 		.4byte	0x700
+ 1392 0632 40060000 		.4byte	0x640
+ 1393 0636 11       		.uleb128 0x11
+ 1394 0637 01       		.uleb128 0x1
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 32
+
+
+ 1395 0638 50       		.byte	0x50
+ 1396 0639 05       		.uleb128 0x5
+ 1397 063a 03       		.byte	0x3
+ 1398 063b B4020000 		.4byte	.LC15
+ 1399 063f 00       		.byte	0
+ 1400 0640 10       		.uleb128 0x10
+ 1401 0641 DA010000 		.4byte	.LVL75
+ 1402 0645 21070000 		.4byte	0x721
+ 1403 0649 54060000 		.4byte	0x654
+ 1404 064d 11       		.uleb128 0x11
+ 1405 064e 01       		.uleb128 0x1
+ 1406 064f 50       		.byte	0x50
+ 1407 0650 02       		.uleb128 0x2
+ 1408 0651 08       		.byte	0x8
+ 1409 0652 64       		.byte	0x64
+ 1410 0653 00       		.byte	0
+ 1411 0654 10       		.uleb128 0x10
+ 1412 0655 E4010000 		.4byte	.LVL76
+ 1413 0659 2C070000 		.4byte	0x72c
+ 1414 065d 73060000 		.4byte	0x673
+ 1415 0661 11       		.uleb128 0x11
+ 1416 0662 01       		.uleb128 0x1
+ 1417 0663 50       		.byte	0x50
+ 1418 0664 01       		.uleb128 0x1
+ 1419 0665 48       		.byte	0x48
+ 1420 0666 11       		.uleb128 0x11
+ 1421 0667 01       		.uleb128 0x1
+ 1422 0668 51       		.byte	0x51
+ 1423 0669 01       		.uleb128 0x1
+ 1424 066a 3C       		.byte	0x3c
+ 1425 066b 11       		.uleb128 0x11
+ 1426 066c 01       		.uleb128 0x1
+ 1427 066d 52       		.byte	0x52
+ 1428 066e 03       		.uleb128 0x3
+ 1429 066f 91       		.byte	0x91
+ 1430 0670 B47F     		.sleb128 -76
+ 1431 0672 00       		.byte	0
+ 1432 0673 10       		.uleb128 0x10
+ 1433 0674 F0010000 		.4byte	.LVL77
+ 1434 0678 2C070000 		.4byte	0x72c
+ 1435 067c 92060000 		.4byte	0x692
+ 1436 0680 11       		.uleb128 0x11
+ 1437 0681 01       		.uleb128 0x1
+ 1438 0682 50       		.byte	0x50
+ 1439 0683 01       		.uleb128 0x1
+ 1440 0684 48       		.byte	0x48
+ 1441 0685 11       		.uleb128 0x11
+ 1442 0686 01       		.uleb128 0x1
+ 1443 0687 51       		.byte	0x51
+ 1444 0688 01       		.uleb128 0x1
+ 1445 0689 3D       		.byte	0x3d
+ 1446 068a 11       		.uleb128 0x11
+ 1447 068b 01       		.uleb128 0x1
+ 1448 068c 52       		.byte	0x52
+ 1449 068d 03       		.uleb128 0x3
+ 1450 068e 91       		.byte	0x91
+ 1451 068f B57F     		.sleb128 -75
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 33
+
+
+ 1452 0691 00       		.byte	0
+ 1453 0692 12       		.uleb128 0x12
+ 1454 0693 18020000 		.4byte	.LVL81
+ 1455 0697 42070000 		.4byte	0x742
+ 1456 069b 11       		.uleb128 0x11
+ 1457 069c 01       		.uleb128 0x1
+ 1458 069d 50       		.byte	0x50
+ 1459 069e 03       		.uleb128 0x3
+ 1460 069f 91       		.byte	0x91
+ 1461 06a0 B87F     		.sleb128 -72
+ 1462 06a2 11       		.uleb128 0x11
+ 1463 06a3 01       		.uleb128 0x1
+ 1464 06a4 51       		.byte	0x51
+ 1465 06a5 01       		.uleb128 0x1
+ 1466 06a6 34       		.byte	0x34
+ 1467 06a7 00       		.byte	0
+ 1468 06a8 00       		.byte	0
+ 1469 06a9 14       		.uleb128 0x14
+ 1470 06aa C7000000 		.4byte	0xc7
+ 1471 06ae B9060000 		.4byte	0x6b9
+ 1472 06b2 15       		.uleb128 0x15
+ 1473 06b3 F9000000 		.4byte	0xf9
+ 1474 06b7 31       		.byte	0x31
+ 1475 06b8 00       		.byte	0
+ 1476 06b9 14       		.uleb128 0x14
+ 1477 06ba 8C000000 		.4byte	0x8c
+ 1478 06be C9060000 		.4byte	0x6c9
+ 1479 06c2 15       		.uleb128 0x15
+ 1480 06c3 F9000000 		.4byte	0xf9
+ 1481 06c7 03       		.byte	0x3
+ 1482 06c8 00       		.byte	0
+ 1483 06c9 14       		.uleb128 0x14
+ 1484 06ca 8C000000 		.4byte	0x8c
+ 1485 06ce D9060000 		.4byte	0x6d9
+ 1486 06d2 15       		.uleb128 0x15
+ 1487 06d3 F9000000 		.4byte	0xf9
+ 1488 06d7 01       		.byte	0x1
+ 1489 06d8 00       		.byte	0
+ 1490 06d9 16       		.uleb128 0x16
+ 1491 06da F0010000 		.4byte	.LASF49
+ 1492 06de 0A       		.byte	0xa
+ 1493 06df 1207     		.2byte	0x712
+ 1494 06e1 E5060000 		.4byte	0x6e5
+ 1495 06e5 17       		.uleb128 0x17
+ 1496 06e6 A2000000 		.4byte	0xa2
+ 1497 06ea 18       		.uleb128 0x18
+ 1498 06eb 23000000 		.4byte	.LASF36
+ 1499 06ef 23000000 		.4byte	.LASF36
+ 1500 06f3 06       		.byte	0x6
+ 1501 06f4 5D       		.byte	0x5d
+ 1502 06f5 18       		.uleb128 0x18
+ 1503 06f6 5E030000 		.4byte	.LASF37
+ 1504 06fa 5E030000 		.4byte	.LASF37
+ 1505 06fe 07       		.byte	0x7
+ 1506 06ff E7       		.byte	0xe7
+ 1507 0700 18       		.uleb128 0x18
+ 1508 0701 69010000 		.4byte	.LASF38
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 34
+
+
+ 1509 0705 69010000 		.4byte	.LASF38
+ 1510 0709 08       		.byte	0x8
+ 1511 070a 8B       		.byte	0x8b
+ 1512 070b 18       		.uleb128 0x18
+ 1513 070c 6E030000 		.4byte	.LASF39
+ 1514 0710 6E030000 		.4byte	.LASF39
+ 1515 0714 06       		.byte	0x6
+ 1516 0715 17       		.byte	0x17
+ 1517 0716 18       		.uleb128 0x18
+ 1518 0717 3E020000 		.4byte	.LASF40
+ 1519 071b 3E020000 		.4byte	.LASF40
+ 1520 071f 08       		.byte	0x8
+ 1521 0720 54       		.byte	0x54
+ 1522 0721 18       		.uleb128 0x18
+ 1523 0722 66030000 		.4byte	.LASF41
+ 1524 0726 66030000 		.4byte	.LASF41
+ 1525 072a 09       		.byte	0x9
+ 1526 072b 76       		.byte	0x76
+ 1527 072c 18       		.uleb128 0x18
+ 1528 072d 5B020000 		.4byte	.LASF42
+ 1529 0731 5B020000 		.4byte	.LASF42
+ 1530 0735 06       		.byte	0x6
+ 1531 0736 28       		.byte	0x28
+ 1532 0737 18       		.uleb128 0x18
+ 1533 0738 7E010000 		.4byte	.LASF43
+ 1534 073c 7E010000 		.4byte	.LASF43
+ 1535 0740 06       		.byte	0x6
+ 1536 0741 43       		.byte	0x43
+ 1537 0742 18       		.uleb128 0x18
+ 1538 0743 57000000 		.4byte	.LASF44
+ 1539 0747 57000000 		.4byte	.LASF44
+ 1540 074b 08       		.byte	0x8
+ 1541 074c 8C       		.byte	0x8c
+ 1542 074d 00       		.byte	0
+ 1543              		.section	.debug_abbrev,"",%progbits
+ 1544              	.Ldebug_abbrev0:
+ 1545 0000 01       		.uleb128 0x1
+ 1546 0001 11       		.uleb128 0x11
+ 1547 0002 01       		.byte	0x1
+ 1548 0003 25       		.uleb128 0x25
+ 1549 0004 0E       		.uleb128 0xe
+ 1550 0005 13       		.uleb128 0x13
+ 1551 0006 0B       		.uleb128 0xb
+ 1552 0007 03       		.uleb128 0x3
+ 1553 0008 0E       		.uleb128 0xe
+ 1554 0009 1B       		.uleb128 0x1b
+ 1555 000a 0E       		.uleb128 0xe
+ 1556 000b 55       		.uleb128 0x55
+ 1557 000c 17       		.uleb128 0x17
+ 1558 000d 11       		.uleb128 0x11
+ 1559 000e 01       		.uleb128 0x1
+ 1560 000f 10       		.uleb128 0x10
+ 1561 0010 17       		.uleb128 0x17
+ 1562 0011 00       		.byte	0
+ 1563 0012 00       		.byte	0
+ 1564 0013 02       		.uleb128 0x2
+ 1565 0014 24       		.uleb128 0x24
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 35
+
+
+ 1566 0015 00       		.byte	0
+ 1567 0016 0B       		.uleb128 0xb
+ 1568 0017 0B       		.uleb128 0xb
+ 1569 0018 3E       		.uleb128 0x3e
+ 1570 0019 0B       		.uleb128 0xb
+ 1571 001a 03       		.uleb128 0x3
+ 1572 001b 0E       		.uleb128 0xe
+ 1573 001c 00       		.byte	0
+ 1574 001d 00       		.byte	0
+ 1575 001e 03       		.uleb128 0x3
+ 1576 001f 16       		.uleb128 0x16
+ 1577 0020 00       		.byte	0
+ 1578 0021 03       		.uleb128 0x3
+ 1579 0022 0E       		.uleb128 0xe
+ 1580 0023 3A       		.uleb128 0x3a
+ 1581 0024 0B       		.uleb128 0xb
+ 1582 0025 3B       		.uleb128 0x3b
+ 1583 0026 0B       		.uleb128 0xb
+ 1584 0027 49       		.uleb128 0x49
+ 1585 0028 13       		.uleb128 0x13
+ 1586 0029 00       		.byte	0
+ 1587 002a 00       		.byte	0
+ 1588 002b 04       		.uleb128 0x4
+ 1589 002c 24       		.uleb128 0x24
+ 1590 002d 00       		.byte	0
+ 1591 002e 0B       		.uleb128 0xb
+ 1592 002f 0B       		.uleb128 0xb
+ 1593 0030 3E       		.uleb128 0x3e
+ 1594 0031 0B       		.uleb128 0xb
+ 1595 0032 03       		.uleb128 0x3
+ 1596 0033 08       		.uleb128 0x8
+ 1597 0034 00       		.byte	0
+ 1598 0035 00       		.byte	0
+ 1599 0036 05       		.uleb128 0x5
+ 1600 0037 16       		.uleb128 0x16
+ 1601 0038 00       		.byte	0
+ 1602 0039 03       		.uleb128 0x3
+ 1603 003a 0E       		.uleb128 0xe
+ 1604 003b 3A       		.uleb128 0x3a
+ 1605 003c 0B       		.uleb128 0xb
+ 1606 003d 3B       		.uleb128 0x3b
+ 1607 003e 05       		.uleb128 0x5
+ 1608 003f 49       		.uleb128 0x49
+ 1609 0040 13       		.uleb128 0x13
+ 1610 0041 00       		.byte	0
+ 1611 0042 00       		.byte	0
+ 1612 0043 06       		.uleb128 0x6
+ 1613 0044 04       		.uleb128 0x4
+ 1614 0045 01       		.byte	0x1
+ 1615 0046 0B       		.uleb128 0xb
+ 1616 0047 0B       		.uleb128 0xb
+ 1617 0048 49       		.uleb128 0x49
+ 1618 0049 13       		.uleb128 0x13
+ 1619 004a 3A       		.uleb128 0x3a
+ 1620 004b 0B       		.uleb128 0xb
+ 1621 004c 3B       		.uleb128 0x3b
+ 1622 004d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 36
+
+
+ 1623 004e 01       		.uleb128 0x1
+ 1624 004f 13       		.uleb128 0x13
+ 1625 0050 00       		.byte	0
+ 1626 0051 00       		.byte	0
+ 1627 0052 07       		.uleb128 0x7
+ 1628 0053 28       		.uleb128 0x28
+ 1629 0054 00       		.byte	0
+ 1630 0055 03       		.uleb128 0x3
+ 1631 0056 0E       		.uleb128 0xe
+ 1632 0057 1C       		.uleb128 0x1c
+ 1633 0058 0B       		.uleb128 0xb
+ 1634 0059 00       		.byte	0
+ 1635 005a 00       		.byte	0
+ 1636 005b 08       		.uleb128 0x8
+ 1637 005c 2E       		.uleb128 0x2e
+ 1638 005d 01       		.byte	0x1
+ 1639 005e 3F       		.uleb128 0x3f
+ 1640 005f 19       		.uleb128 0x19
+ 1641 0060 03       		.uleb128 0x3
+ 1642 0061 0E       		.uleb128 0xe
+ 1643 0062 3A       		.uleb128 0x3a
+ 1644 0063 0B       		.uleb128 0xb
+ 1645 0064 3B       		.uleb128 0x3b
+ 1646 0065 0B       		.uleb128 0xb
+ 1647 0066 27       		.uleb128 0x27
+ 1648 0067 19       		.uleb128 0x19
+ 1649 0068 49       		.uleb128 0x49
+ 1650 0069 13       		.uleb128 0x13
+ 1651 006a 8701     		.uleb128 0x87
+ 1652 006c 19       		.uleb128 0x19
+ 1653 006d 11       		.uleb128 0x11
+ 1654 006e 01       		.uleb128 0x1
+ 1655 006f 12       		.uleb128 0x12
+ 1656 0070 06       		.uleb128 0x6
+ 1657 0071 40       		.uleb128 0x40
+ 1658 0072 18       		.uleb128 0x18
+ 1659 0073 9742     		.uleb128 0x2117
+ 1660 0075 19       		.uleb128 0x19
+ 1661 0076 01       		.uleb128 0x1
+ 1662 0077 13       		.uleb128 0x13
+ 1663 0078 00       		.byte	0
+ 1664 0079 00       		.byte	0
+ 1665 007a 09       		.uleb128 0x9
+ 1666 007b 34       		.uleb128 0x34
+ 1667 007c 00       		.byte	0
+ 1668 007d 03       		.uleb128 0x3
+ 1669 007e 0E       		.uleb128 0xe
+ 1670 007f 3A       		.uleb128 0x3a
+ 1671 0080 0B       		.uleb128 0xb
+ 1672 0081 3B       		.uleb128 0x3b
+ 1673 0082 0B       		.uleb128 0xb
+ 1674 0083 49       		.uleb128 0x49
+ 1675 0084 13       		.uleb128 0x13
+ 1676 0085 02       		.uleb128 0x2
+ 1677 0086 18       		.uleb128 0x18
+ 1678 0087 00       		.byte	0
+ 1679 0088 00       		.byte	0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 37
+
+
+ 1680 0089 0A       		.uleb128 0xa
+ 1681 008a 34       		.uleb128 0x34
+ 1682 008b 00       		.byte	0
+ 1683 008c 03       		.uleb128 0x3
+ 1684 008d 0E       		.uleb128 0xe
+ 1685 008e 3A       		.uleb128 0x3a
+ 1686 008f 0B       		.uleb128 0xb
+ 1687 0090 3B       		.uleb128 0x3b
+ 1688 0091 0B       		.uleb128 0xb
+ 1689 0092 49       		.uleb128 0x49
+ 1690 0093 13       		.uleb128 0x13
+ 1691 0094 02       		.uleb128 0x2
+ 1692 0095 17       		.uleb128 0x17
+ 1693 0096 00       		.byte	0
+ 1694 0097 00       		.byte	0
+ 1695 0098 0B       		.uleb128 0xb
+ 1696 0099 34       		.uleb128 0x34
+ 1697 009a 00       		.byte	0
+ 1698 009b 03       		.uleb128 0x3
+ 1699 009c 0E       		.uleb128 0xe
+ 1700 009d 3A       		.uleb128 0x3a
+ 1701 009e 0B       		.uleb128 0xb
+ 1702 009f 3B       		.uleb128 0x3b
+ 1703 00a0 05       		.uleb128 0x5
+ 1704 00a1 49       		.uleb128 0x49
+ 1705 00a2 13       		.uleb128 0x13
+ 1706 00a3 02       		.uleb128 0x2
+ 1707 00a4 17       		.uleb128 0x17
+ 1708 00a5 00       		.byte	0
+ 1709 00a6 00       		.byte	0
+ 1710 00a7 0C       		.uleb128 0xc
+ 1711 00a8 34       		.uleb128 0x34
+ 1712 00a9 00       		.byte	0
+ 1713 00aa 03       		.uleb128 0x3
+ 1714 00ab 0E       		.uleb128 0xe
+ 1715 00ac 3A       		.uleb128 0x3a
+ 1716 00ad 0B       		.uleb128 0xb
+ 1717 00ae 3B       		.uleb128 0x3b
+ 1718 00af 05       		.uleb128 0x5
+ 1719 00b0 49       		.uleb128 0x49
+ 1720 00b1 13       		.uleb128 0x13
+ 1721 00b2 1C       		.uleb128 0x1c
+ 1722 00b3 0D       		.uleb128 0xd
+ 1723 00b4 00       		.byte	0
+ 1724 00b5 00       		.byte	0
+ 1725 00b6 0D       		.uleb128 0xd
+ 1726 00b7 34       		.uleb128 0x34
+ 1727 00b8 00       		.byte	0
+ 1728 00b9 03       		.uleb128 0x3
+ 1729 00ba 0E       		.uleb128 0xe
+ 1730 00bb 3A       		.uleb128 0x3a
+ 1731 00bc 0B       		.uleb128 0xb
+ 1732 00bd 3B       		.uleb128 0x3b
+ 1733 00be 05       		.uleb128 0x5
+ 1734 00bf 49       		.uleb128 0x49
+ 1735 00c0 13       		.uleb128 0x13
+ 1736 00c1 02       		.uleb128 0x2
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 38
+
+
+ 1737 00c2 18       		.uleb128 0x18
+ 1738 00c3 00       		.byte	0
+ 1739 00c4 00       		.byte	0
+ 1740 00c5 0E       		.uleb128 0xe
+ 1741 00c6 0B       		.uleb128 0xb
+ 1742 00c7 01       		.byte	0x1
+ 1743 00c8 11       		.uleb128 0x11
+ 1744 00c9 01       		.uleb128 0x1
+ 1745 00ca 12       		.uleb128 0x12
+ 1746 00cb 06       		.uleb128 0x6
+ 1747 00cc 01       		.uleb128 0x1
+ 1748 00cd 13       		.uleb128 0x13
+ 1749 00ce 00       		.byte	0
+ 1750 00cf 00       		.byte	0
+ 1751 00d0 0F       		.uleb128 0xf
+ 1752 00d1 34       		.uleb128 0x34
+ 1753 00d2 00       		.byte	0
+ 1754 00d3 03       		.uleb128 0x3
+ 1755 00d4 08       		.uleb128 0x8
+ 1756 00d5 3A       		.uleb128 0x3a
+ 1757 00d6 0B       		.uleb128 0xb
+ 1758 00d7 3B       		.uleb128 0x3b
+ 1759 00d8 0B       		.uleb128 0xb
+ 1760 00d9 49       		.uleb128 0x49
+ 1761 00da 13       		.uleb128 0x13
+ 1762 00db 02       		.uleb128 0x2
+ 1763 00dc 17       		.uleb128 0x17
+ 1764 00dd 00       		.byte	0
+ 1765 00de 00       		.byte	0
+ 1766 00df 10       		.uleb128 0x10
+ 1767 00e0 898201   		.uleb128 0x4109
+ 1768 00e3 01       		.byte	0x1
+ 1769 00e4 11       		.uleb128 0x11
+ 1770 00e5 01       		.uleb128 0x1
+ 1771 00e6 31       		.uleb128 0x31
+ 1772 00e7 13       		.uleb128 0x13
+ 1773 00e8 01       		.uleb128 0x1
+ 1774 00e9 13       		.uleb128 0x13
+ 1775 00ea 00       		.byte	0
+ 1776 00eb 00       		.byte	0
+ 1777 00ec 11       		.uleb128 0x11
+ 1778 00ed 8A8201   		.uleb128 0x410a
+ 1779 00f0 00       		.byte	0
+ 1780 00f1 02       		.uleb128 0x2
+ 1781 00f2 18       		.uleb128 0x18
+ 1782 00f3 9142     		.uleb128 0x2111
+ 1783 00f5 18       		.uleb128 0x18
+ 1784 00f6 00       		.byte	0
+ 1785 00f7 00       		.byte	0
+ 1786 00f8 12       		.uleb128 0x12
+ 1787 00f9 898201   		.uleb128 0x4109
+ 1788 00fc 01       		.byte	0x1
+ 1789 00fd 11       		.uleb128 0x11
+ 1790 00fe 01       		.uleb128 0x1
+ 1791 00ff 31       		.uleb128 0x31
+ 1792 0100 13       		.uleb128 0x13
+ 1793 0101 00       		.byte	0
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 39
+
+
+ 1794 0102 00       		.byte	0
+ 1795 0103 13       		.uleb128 0x13
+ 1796 0104 898201   		.uleb128 0x4109
+ 1797 0107 00       		.byte	0
+ 1798 0108 11       		.uleb128 0x11
+ 1799 0109 01       		.uleb128 0x1
+ 1800 010a 31       		.uleb128 0x31
+ 1801 010b 13       		.uleb128 0x13
+ 1802 010c 00       		.byte	0
+ 1803 010d 00       		.byte	0
+ 1804 010e 14       		.uleb128 0x14
+ 1805 010f 01       		.uleb128 0x1
+ 1806 0110 01       		.byte	0x1
+ 1807 0111 49       		.uleb128 0x49
+ 1808 0112 13       		.uleb128 0x13
+ 1809 0113 01       		.uleb128 0x1
+ 1810 0114 13       		.uleb128 0x13
+ 1811 0115 00       		.byte	0
+ 1812 0116 00       		.byte	0
+ 1813 0117 15       		.uleb128 0x15
+ 1814 0118 21       		.uleb128 0x21
+ 1815 0119 00       		.byte	0
+ 1816 011a 49       		.uleb128 0x49
+ 1817 011b 13       		.uleb128 0x13
+ 1818 011c 2F       		.uleb128 0x2f
+ 1819 011d 0B       		.uleb128 0xb
+ 1820 011e 00       		.byte	0
+ 1821 011f 00       		.byte	0
+ 1822 0120 16       		.uleb128 0x16
+ 1823 0121 34       		.uleb128 0x34
+ 1824 0122 00       		.byte	0
+ 1825 0123 03       		.uleb128 0x3
+ 1826 0124 0E       		.uleb128 0xe
+ 1827 0125 3A       		.uleb128 0x3a
+ 1828 0126 0B       		.uleb128 0xb
+ 1829 0127 3B       		.uleb128 0x3b
+ 1830 0128 05       		.uleb128 0x5
+ 1831 0129 49       		.uleb128 0x49
+ 1832 012a 13       		.uleb128 0x13
+ 1833 012b 3F       		.uleb128 0x3f
+ 1834 012c 19       		.uleb128 0x19
+ 1835 012d 3C       		.uleb128 0x3c
+ 1836 012e 19       		.uleb128 0x19
+ 1837 012f 00       		.byte	0
+ 1838 0130 00       		.byte	0
+ 1839 0131 17       		.uleb128 0x17
+ 1840 0132 35       		.uleb128 0x35
+ 1841 0133 00       		.byte	0
+ 1842 0134 49       		.uleb128 0x49
+ 1843 0135 13       		.uleb128 0x13
+ 1844 0136 00       		.byte	0
+ 1845 0137 00       		.byte	0
+ 1846 0138 18       		.uleb128 0x18
+ 1847 0139 2E       		.uleb128 0x2e
+ 1848 013a 00       		.byte	0
+ 1849 013b 3F       		.uleb128 0x3f
+ 1850 013c 19       		.uleb128 0x19
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 40
+
+
+ 1851 013d 3C       		.uleb128 0x3c
+ 1852 013e 19       		.uleb128 0x19
+ 1853 013f 6E       		.uleb128 0x6e
+ 1854 0140 0E       		.uleb128 0xe
+ 1855 0141 03       		.uleb128 0x3
+ 1856 0142 0E       		.uleb128 0xe
+ 1857 0143 3A       		.uleb128 0x3a
+ 1858 0144 0B       		.uleb128 0xb
+ 1859 0145 3B       		.uleb128 0x3b
+ 1860 0146 0B       		.uleb128 0xb
+ 1861 0147 00       		.byte	0
+ 1862 0148 00       		.byte	0
+ 1863 0149 00       		.byte	0
+ 1864              		.section	.debug_loc,"",%progbits
+ 1865              	.Ldebug_loc0:
+ 1866              	.LLST0:
+ 1867 0000 42000000 		.4byte	.LVL8
+ 1868 0004 4C000000 		.4byte	.LVL9
+ 1869 0008 0100     		.2byte	0x1
+ 1870 000a 50       		.byte	0x50
+ 1871 000b 58000000 		.4byte	.LVL12
+ 1872 000f 5A000000 		.4byte	.LVL13
+ 1873 0013 0100     		.2byte	0x1
+ 1874 0015 50       		.byte	0x50
+ 1875 0016 6A000000 		.4byte	.LVL15
+ 1876 001a 74000000 		.4byte	.LVL16
+ 1877 001e 0100     		.2byte	0x1
+ 1878 0020 50       		.byte	0x50
+ 1879 0021 80000000 		.4byte	.LVL19
+ 1880 0025 82000000 		.4byte	.LVL20
+ 1881 0029 0100     		.2byte	0x1
+ 1882 002b 50       		.byte	0x50
+ 1883 002c 92000000 		.4byte	.LVL22
+ 1884 0030 9C000000 		.4byte	.LVL23
+ 1885 0034 0100     		.2byte	0x1
+ 1886 0036 50       		.byte	0x50
+ 1887 0037 A8000000 		.4byte	.LVL26
+ 1888 003b AA000000 		.4byte	.LVL27
+ 1889 003f 0100     		.2byte	0x1
+ 1890 0041 50       		.byte	0x50
+ 1891 0042 CA000000 		.4byte	.LVL30
+ 1892 0046 D4000000 		.4byte	.LVL31
+ 1893 004a 0100     		.2byte	0x1
+ 1894 004c 50       		.byte	0x50
+ 1895 004d E0000000 		.4byte	.LVL34
+ 1896 0051 E2000000 		.4byte	.LVL35
+ 1897 0055 0100     		.2byte	0x1
+ 1898 0057 50       		.byte	0x50
+ 1899 0058 F2000000 		.4byte	.LVL37
+ 1900 005c FC000000 		.4byte	.LVL38
+ 1901 0060 0100     		.2byte	0x1
+ 1902 0062 50       		.byte	0x50
+ 1903 0063 08010000 		.4byte	.LVL41
+ 1904 0067 0A010000 		.4byte	.LVL42
+ 1905 006b 0100     		.2byte	0x1
+ 1906 006d 50       		.byte	0x50
+ 1907 006e 18010000 		.4byte	.LVL44
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 41
+
+
+ 1908 0072 22010000 		.4byte	.LVL45
+ 1909 0076 0100     		.2byte	0x1
+ 1910 0078 50       		.byte	0x50
+ 1911 0079 2E010000 		.4byte	.LVL48
+ 1912 007d 30010000 		.4byte	.LVL49
+ 1913 0081 0100     		.2byte	0x1
+ 1914 0083 50       		.byte	0x50
+ 1915 0084 4E010000 		.4byte	.LVL53
+ 1916 0088 58010000 		.4byte	.LVL54
+ 1917 008c 0100     		.2byte	0x1
+ 1918 008e 50       		.byte	0x50
+ 1919 008f 64010000 		.4byte	.LVL57
+ 1920 0093 66010000 		.4byte	.LVL58
+ 1921 0097 0100     		.2byte	0x1
+ 1922 0099 50       		.byte	0x50
+ 1923 009a 76010000 		.4byte	.LVL60
+ 1924 009e 80010000 		.4byte	.LVL61
+ 1925 00a2 0100     		.2byte	0x1
+ 1926 00a4 50       		.byte	0x50
+ 1927 00a5 8C010000 		.4byte	.LVL64
+ 1928 00a9 8E010000 		.4byte	.LVL65
+ 1929 00ad 0100     		.2byte	0x1
+ 1930 00af 50       		.byte	0x50
+ 1931 00b0 AC010000 		.4byte	.LVL68
+ 1932 00b4 B6010000 		.4byte	.LVL69
+ 1933 00b8 0100     		.2byte	0x1
+ 1934 00ba 50       		.byte	0x50
+ 1935 00bb C2010000 		.4byte	.LVL72
+ 1936 00bf C4010000 		.4byte	.LVL73
+ 1937 00c3 0100     		.2byte	0x1
+ 1938 00c5 50       		.byte	0x50
+ 1939 00c6 F0010000 		.4byte	.LVL77
+ 1940 00ca 14020000 		.4byte	.LVL80
+ 1941 00ce 0100     		.2byte	0x1
+ 1942 00d0 50       		.byte	0x50
+ 1943 00d1 00000000 		.4byte	0
+ 1944 00d5 00000000 		.4byte	0
+ 1945              	.LLST1:
+ 1946 00d9 04020000 		.4byte	.LVL78
+ 1947 00dd 0C020000 		.4byte	.LVL79
+ 1948 00e1 0100     		.2byte	0x1
+ 1949 00e3 53       		.byte	0x53
+ 1950 00e4 0C020000 		.4byte	.LVL79
+ 1951 00e8 17020000 		.4byte	.LVL81-1
+ 1952 00ec 1400     		.2byte	0x14
+ 1953 00ee 72       		.byte	0x72
+ 1954 00ef 00       		.sleb128 0
+ 1955 00f0 38       		.byte	0x38
+ 1956 00f1 24       		.byte	0x24
+ 1957 00f2 91       		.byte	0x91
+ 1958 00f3 B47F     		.sleb128 -76
+ 1959 00f5 94       		.byte	0x94
+ 1960 00f6 01       		.byte	0x1
+ 1961 00f7 08       		.byte	0x8
+ 1962 00f8 FF       		.byte	0xff
+ 1963 00f9 1A       		.byte	0x1a
+ 1964 00fa 21       		.byte	0x21
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 42
+
+
+ 1965 00fb 09       		.byte	0x9
+ 1966 00fc F4       		.byte	0xf4
+ 1967 00fd 24       		.byte	0x24
+ 1968 00fe 09       		.byte	0x9
+ 1969 00ff FA       		.byte	0xfa
+ 1970 0100 26       		.byte	0x26
+ 1971 0101 9F       		.byte	0x9f
+ 1972 0102 00000000 		.4byte	0
+ 1973 0106 00000000 		.4byte	0
+ 1974              	.LLST2:
+ 1975 010a 14000000 		.4byte	.LVL2
+ 1976 010e 18000000 		.4byte	.LVL3
+ 1977 0112 0200     		.2byte	0x2
+ 1978 0114 30       		.byte	0x30
+ 1979 0115 9F       		.byte	0x9f
+ 1980 0116 18000000 		.4byte	.LVL3
+ 1981 011a 38010000 		.4byte	.LVL51
+ 1982 011e 0100     		.2byte	0x1
+ 1983 0120 54       		.byte	0x54
+ 1984 0121 00000000 		.4byte	0
+ 1985 0125 00000000 		.4byte	0
+ 1986              		.section	.debug_aranges,"",%progbits
+ 1987 0000 1C000000 		.4byte	0x1c
+ 1988 0004 0200     		.2byte	0x2
+ 1989 0006 00000000 		.4byte	.Ldebug_info0
+ 1990 000a 04       		.byte	0x4
+ 1991 000b 00       		.byte	0
+ 1992 000c 0000     		.2byte	0
+ 1993 000e 0000     		.2byte	0
+ 1994 0010 00000000 		.4byte	.LFB64
+ 1995 0014 60020000 		.4byte	.LFE64-.LFB64
+ 1996 0018 00000000 		.4byte	0
+ 1997 001c 00000000 		.4byte	0
+ 1998              		.section	.debug_ranges,"",%progbits
+ 1999              	.Ldebug_ranges0:
+ 2000 0000 00000000 		.4byte	.LFB64
+ 2001 0004 60020000 		.4byte	.LFE64
+ 2002 0008 00000000 		.4byte	0
+ 2003 000c 00000000 		.4byte	0
+ 2004              		.section	.debug_line,"",%progbits
+ 2005              	.Ldebug_line0:
+ 2006 0000 6D020000 		.section	.debug_str,"MS",%progbits,1
+ 2006      0200FD01 
+ 2006      00000201 
+ 2006      FB0E0D00 
+ 2006      01010101 
+ 2007              	.LASF24:
+ 2008 0000 6D657373 		.ascii	"message\000"
+ 2008      61676500 
+ 2009              	.LASF32:
+ 2010 0008 68656164 		.ascii	"header\000"
+ 2010      657200
+ 2011              	.LASF2:
+ 2012 000f 5F5F7569 		.ascii	"__uint8_t\000"
+ 2012      6E74385F 
+ 2012      7400
+ 2013              	.LASF3:
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 43
+
+
+ 2014 0019 5F5F696E 		.ascii	"__int16_t\000"
+ 2014      7431365F 
+ 2014      7400
+ 2015              	.LASF36:
+ 2016 0023 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
+ 2016      50657269 
+ 2016      70686572 
+ 2016      616C5F49 
+ 2016      73446576 
+ 2017              	.LASF6:
+ 2018 0044 5F5F696E 		.ascii	"__int32_t\000"
+ 2018      7433325F 
+ 2018      7400
+ 2019              	.LASF7:
+ 2020 004e 6C6F6E67 		.ascii	"long int\000"
+ 2020      20696E74 
+ 2020      00
+ 2021              	.LASF44:
+ 2022 0057 55415254 		.ascii	"UART_Debug_PutArray\000"
+ 2022      5F446562 
+ 2022      75675F50 
+ 2022      75744172 
+ 2022      72617900 
+ 2023              	.LASF21:
+ 2024 006b 4572726F 		.ascii	"ErrorCode\000"
+ 2024      72436F64 
+ 2024      6500
+ 2025              	.LASF35:
+ 2026 0075 54656D70 		.ascii	"TemperatureData\000"
+ 2026      65726174 
+ 2026      75726544 
+ 2026      61746100 
+ 2027              	.LASF16:
+ 2028 0085 666C6F61 		.ascii	"float\000"
+ 2028      7400
+ 2029              	.LASF34:
+ 2030 008b 4F757441 		.ascii	"OutArray\000"
+ 2030      72726179 
+ 2030      00
+ 2031              	.LASF1:
+ 2032 0094 756E7369 		.ascii	"unsigned char\000"
+ 2032      676E6564 
+ 2032      20636861 
+ 2032      7200
+ 2033              	.LASF45:
+ 2034 00a2 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2034      43313120 
+ 2034      352E342E 
+ 2034      31203230 
+ 2034      31363036 
+ 2035 00d5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2035      20726576 
+ 2035      6973696F 
+ 2035      6E203233 
+ 2035      37373135 
+ 2036 0108 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2036      66756E63 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 44
+
+
+ 2036      74696F6E 
+ 2036      2D736563 
+ 2036      74696F6E 
+ 2037              	.LASF15:
+ 2038 0130 696E7431 		.ascii	"int16\000"
+ 2038      3600
+ 2039              	.LASF8:
+ 2040 0136 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2040      20756E73 
+ 2040      69676E65 
+ 2040      6420696E 
+ 2040      7400
+ 2041              	.LASF5:
+ 2042 0148 73686F72 		.ascii	"short unsigned int\000"
+ 2042      7420756E 
+ 2042      7369676E 
+ 2042      65642069 
+ 2042      6E7400
+ 2043              	.LASF33:
+ 2044 015b 666F6F74 		.ascii	"footer\000"
+ 2044      657200
+ 2045              	.LASF17:
+ 2046 0162 646F7562 		.ascii	"double\000"
+ 2046      6C6500
+ 2047              	.LASF38:
+ 2048 0169 55415254 		.ascii	"UART_Debug_PutString\000"
+ 2048      5F446562 
+ 2048      75675F50 
+ 2048      75745374 
+ 2048      72696E67 
+ 2049              	.LASF43:
+ 2050 017e 4932435F 		.ascii	"I2C_Peripheral_WriteRegister\000"
+ 2050      50657269 
+ 2050      70686572 
+ 2050      616C5F57 
+ 2050      72697465 
+ 2051              	.LASF48:
+ 2052 019b 6D61696E 		.ascii	"main\000"
+ 2052      00
+ 2053              	.LASF28:
+ 2054 01a0 6374726C 		.ascii	"ctrl_reg1\000"
+ 2054      5F726567 
+ 2054      3100
+ 2055              	.LASF30:
+ 2056 01aa 6374726C 		.ascii	"ctrl_reg4\000"
+ 2056      5F726567 
+ 2056      3400
+ 2057              	.LASF11:
+ 2058 01b4 756E7369 		.ascii	"unsigned int\000"
+ 2058      676E6564 
+ 2058      20696E74 
+ 2058      00
+ 2059              	.LASF10:
+ 2060 01c1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2060      206C6F6E 
+ 2060      6720756E 
+ 2060      7369676E 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 45
+
+
+ 2060      65642069 
+ 2061              	.LASF12:
+ 2062 01d8 75696E74 		.ascii	"uint8_t\000"
+ 2062      385F7400 
+ 2063              	.LASF31:
+ 2064 01e0 4F757454 		.ascii	"OutTemp\000"
+ 2064      656D7000 
+ 2065              	.LASF13:
+ 2066 01e8 696E7431 		.ascii	"int16_t\000"
+ 2066      365F7400 
+ 2067              	.LASF49:
+ 2068 01f0 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2068      52784275 
+ 2068      66666572 
+ 2068      00
+ 2069              	.LASF29:
+ 2070 01fd 746D705F 		.ascii	"tmp_cfg_reg\000"
+ 2070      6366675F 
+ 2070      72656700 
+ 2071              	.LASF27:
+ 2072 0209 73746174 		.ascii	"status_register\000"
+ 2072      75735F72 
+ 2072      65676973 
+ 2072      74657200 
+ 2073              	.LASF14:
+ 2074 0219 696E7433 		.ascii	"int32_t\000"
+ 2074      325F7400 
+ 2075              	.LASF23:
+ 2076 0221 73697A65 		.ascii	"sizetype\000"
+ 2076      74797065 
+ 2076      00
+ 2077              	.LASF26:
+ 2078 022a 6572726F 		.ascii	"error\000"
+ 2078      7200
+ 2079              	.LASF9:
+ 2080 0230 6C6F6E67 		.ascii	"long long int\000"
+ 2080      206C6F6E 
+ 2080      6720696E 
+ 2080      7400
+ 2081              	.LASF40:
+ 2082 023e 55415254 		.ascii	"UART_Debug_Start\000"
+ 2082      5F446562 
+ 2082      75675F53 
+ 2082      74617274 
+ 2082      00
+ 2083              	.LASF46:
+ 2084 024f 6D61696E 		.ascii	"main.c\000"
+ 2084      2E6300
+ 2085              	.LASF18:
+ 2086 0256 63686172 		.ascii	"char\000"
+ 2086      00
+ 2087              	.LASF42:
+ 2088 025b 4932435F 		.ascii	"I2C_Peripheral_ReadRegister\000"
+ 2088      50657269 
+ 2088      70686572 
+ 2088      616C5F52 
+ 2088      65616452 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 46
+
+
+ 2089              	.LASF4:
+ 2090 0277 73686F72 		.ascii	"short int\000"
+ 2090      7420696E 
+ 2090      7400
+ 2091              	.LASF19:
+ 2092 0281 4E4F5F45 		.ascii	"NO_ERROR\000"
+ 2092      52524F52 
+ 2092      00
+ 2093              	.LASF20:
+ 2094 028a 4552524F 		.ascii	"ERROR\000"
+ 2094      5200
+ 2095              	.LASF47:
+ 2096 0290 443A5C43 		.ascii	"D:\\Cloud\\OneDrive - Politecnico di Milano\\PhD\\M"
+ 2096      6C6F7564 
+ 2096      5C4F6E65 
+ 2096      44726976 
+ 2096      65202D20 
+ 2097 02bf 61746572 		.ascii	"ateriale Esercitazioni\\LabCerveri1920\\SecondoSeme"
+ 2097      69616C65 
+ 2097      20457365 
+ 2097      72636974 
+ 2097      617A696F 
+ 2098 02f0 73747265 		.ascii	"stre\\Practical lessons\\I2C\\PSoC_03\\03-I2C_Maste"
+ 2098      5C507261 
+ 2098      63746963 
+ 2098      616C206C 
+ 2098      6573736F 
+ 2099 031f 725F4164 		.ascii	"r_Advanced_Complete.cydsn\000"
+ 2099      76616E63 
+ 2099      65645F43 
+ 2099      6F6D706C 
+ 2099      6574652E 
+ 2100              	.LASF22:
+ 2101 0339 6C6F6E67 		.ascii	"long double\000"
+ 2101      20646F75 
+ 2101      626C6500 
+ 2102              	.LASF0:
+ 2103 0345 7369676E 		.ascii	"signed char\000"
+ 2103      65642063 
+ 2103      68617200 
+ 2104              	.LASF25:
+ 2105 0351 77686F5F 		.ascii	"who_am_i_reg\000"
+ 2105      616D5F69 
+ 2105      5F726567 
+ 2105      00
+ 2106              	.LASF37:
+ 2107 035e 73707269 		.ascii	"sprintf\000"
+ 2107      6E746600 
+ 2108              	.LASF41:
+ 2109 0366 43794465 		.ascii	"CyDelay\000"
+ 2109      6C617900 
+ 2110              	.LASF39:
+ 2111 036e 4932435F 		.ascii	"I2C_Peripheral_Start\000"
+ 2111      50657269 
+ 2111      70686572 
+ 2111      616C5F53 
+ 2111      74617274 
+ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccf2cPVN.s 			page 47
+
+
+ 2112              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
