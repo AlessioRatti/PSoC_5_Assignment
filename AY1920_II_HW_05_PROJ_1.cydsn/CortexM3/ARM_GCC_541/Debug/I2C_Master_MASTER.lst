@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
   28:Generated_Source\PSoC5/I2C_Master_MASTER.c **** volatile uint8   I2C_Master_mstrRdBufSize;    /* Master Read buffer size       */
   29:Generated_Source\PSoC5/I2C_Master_MASTER.c **** volatile uint8   I2C_Master_mstrRdBufIndex;   /* Master Read buffer Index      */
   30:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 2
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 2
 
 
   31:Generated_Source\PSoC5/I2C_Master_MASTER.c **** /* Receive buffer variables */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		@ link register save eliminated.
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 3
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 3
 
 
   33              	.LVL0:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
   66              	.LVL2:
  103:Generated_Source\PSoC5/I2C_Master_MASTER.c ****         {
  104:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             /* Master is ready and waiting for ReStart */
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 4
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 4
 
 
  105:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             errStatus = I2C_Master_MSTR_NO_ERROR;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  100 0054 184D     		ldr	r5, .L12+20
  101 0056 2A70     		strb	r2, [r5]
  123:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             I2C_Master_mstrWrBufPtr   = (volatile uint8 *) wrData;
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 5
 
 
  102              		.loc 1 123 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  139 0088 074B     		ldr	r3, .L12+4
  140              	.LVL12:
  141 008a 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 6
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 6
 
 
  142              	.L6:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  186 00c8 00E100E0 		.word	-536813312
  187              		.cfi_endproc
  188              	.LFE0:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 7
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 7
 
 
  189              		.size	I2C_Master_MasterWriteBuf, .-I2C_Master_MasterWriteBuf
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  195:Generated_Source\PSoC5/I2C_Master_MASTER.c **** *******************************************************************************/
  196:Generated_Source\PSoC5/I2C_Master_MASTER.c **** uint8 I2C_Master_MasterReadBuf(uint8 slaveAddress, uint8 * rdData, uint8 cnt, uint8 mode)
  197:Generated_Source\PSoC5/I2C_Master_MASTER.c ****       
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 8
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 8
 
 
  198:Generated_Source\PSoC5/I2C_Master_MASTER.c **** {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  230              		.loc 1 218 0
  231 0020 2149     		ldr	r1, .L25
  232 0022 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 9
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 9
 
 
  233 0024 C9B2     		uxtb	r1, r1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  265              		.loc 1 237 0
  266 004e 0026     		movs	r6, #0
  267 0050 194D     		ldr	r5, .L25+16
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 10
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 10
 
 
  268 0052 2E70     		strb	r6, [r5]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  306              	.LVL28:
  307              	.L18:
  254:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             }
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 11
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 11
 
 
  255:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             else
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  349 00ac D9490040 		.word	1073760729
  350 00b0 80E200E0 		.word	-536812928
  351 00b4 00000000 		.word	I2C_Master_mstrStatus
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 12
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 12
 
 
  352 00b8 00000000 		.word	I2C_Master_mstrRdBufIndex
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  298:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     uint8 errStatus;
  299:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
  300:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     errStatus = I2C_Master_MSTR_NOT_READY;
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 13
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 13
 
 
  301:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  409 0032 1A70     		strb	r2, [r3]
  410              	.L30:
  321:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             }
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 14
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 14
 
 
  322:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  357:Generated_Source\PSoC5/I2C_Master_MASTER.c ****             {
  358:Generated_Source\PSoC5/I2C_Master_MASTER.c ****                 /* Address has been NACKed: reset FSM to IDLE */
  359:Generated_Source\PSoC5/I2C_Master_MASTER.c ****                 I2C_Master_state = I2C_Master_SM_IDLE;
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 15
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 15
 
 
  430              		.loc 1 359 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  466              		.cfi_endproc
  467              	.LFE2:
  468              		.size	I2C_Master_MasterSendStart, .-I2C_Master_MasterSendStart
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 16
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 16
 
 
  469              		.section	.text.I2C_Master_MasterSendRestart,"ax",%progbits
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  486 0004 13F0040F 		tst	r3, #4
  487 0008 23D0     		beq	.L42
  413:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     {
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 17
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 17
 
 
  414:Generated_Source\PSoC5/I2C_Master_MASTER.c ****         /* Set address and read/write flag */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  524 003a FAD0     		beq	.L41
  432:Generated_Source\PSoC5/I2C_Master_MASTER.c ****         {
  433:Generated_Source\PSoC5/I2C_Master_MASTER.c ****         }
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 18
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 18
 
 
  434:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  461:Generated_Source\PSoC5/I2C_Master_MASTER.c **** }
  551              		.loc 1 461 0
  552 0058 7047     		bx	lr
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 19
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 19
 
 
  553              	.L45:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  492:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     uint8 errStatus;
  493:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
  494:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     errStatus = I2C_Master_MSTR_NOT_READY;
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 20
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 20
 
 
  495:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  520:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     return(errStatus);
  521:Generated_Source\PSoC5/I2C_Master_MASTER.c **** }
  605              		.loc 1 521 0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 21
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 21
 
 
  606 002a 7047     		bx	lr
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  552:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     errStatus = I2C_Master_MSTR_NOT_READY;
  553:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
  554:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     /* Check if START condition was generated */
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 22
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 22
 
 
  555:Generated_Source\PSoC5/I2C_Master_MASTER.c ****     if(I2C_Master_CHECK_MASTER_MODE(I2C_Master_MCSR_REG))
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  657              		.loc 1 581 0
  658 002e 6022     		movs	r2, #96
  659 0030 074B     		ldr	r3, .L57+8
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 23
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 23
 
 
  660 0032 1A70     		strb	r2, [r3]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  593:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
  594:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
  595:Generated_Source\PSoC5/I2C_Master_MASTER.c **** /*******************************************************************************
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 24
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 24
 
 
  596:Generated_Source\PSoC5/I2C_Master_MASTER.c **** * Function Name: I2C_Master_MasterReadByte
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  716 000e DBB2     		uxtb	r3, r3
  717 0010 492B     		cmp	r3, #73
  718 0012 05D1     		bne	.L62
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 25
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 25
 
 
  636:Generated_Source\PSoC5/I2C_Master_MASTER.c ****         {
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  750 0040 00E0     		b	.L60
  751              	.LVL68:
  752              	.L64:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 26
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 26
 
 
  627:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  779              		.loc 1 685 0
  780              		.cfi_startproc
  781              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 27
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 27
 
 
  782              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  819              		.align	2
  820              		.global	I2C_Master_MasterClearStatus
  821              		.thumb
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 28
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 28
 
 
  822              		.thumb_func
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  842              		.loc 1 736 0
  843 0010 034A     		ldr	r2, .L72+8
  844 0012 1360     		str	r3, [r2]
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 29
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 29
 
 
  737:Generated_Source\PSoC5/I2C_Master_MASTER.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  871 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  765:Generated_Source\PSoC5/I2C_Master_MASTER.c **** }
  872              		.loc 1 765 0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 30
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 30
 
 
  873 0004 7047     		bx	lr
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  901              	.L78:
  902 0008 00000000 		.word	I2C_Master_mstrWrBufIndex
  903              		.cfi_endproc
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 31
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 31
 
 
  904              	.LFE10:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  927              		.loc 1 822 0
  928 000e 0649     		ldr	r1, .L81+8
  929 0010 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 32
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 32
 
 
  930 0012 03F0FE03 		and	r3, r3, #254
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  954              		.loc 1 852 0
  955              		.cfi_startproc
  956              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 33
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 33
 
 
  957              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1975,28 +1975,28 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1002 0006 00000000 		.4byte	.Ldebug_abbrev0
  1003 000a 04       		.byte	0x4
  1004 000b 01       		.uleb128 0x1
- 1005 000c D4000000 		.4byte	.LASF49
+ 1005 000c 35010000 		.4byte	.LASF49
  1006 0010 0C       		.byte	0xc
- 1007 0011 0D020000 		.4byte	.LASF50
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 34
+ 1007 0011 6E020000 		.4byte	.LASF50
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 34
 
 
- 1008 0015 78020000 		.4byte	.LASF51
+ 1008 0015 7E000000 		.4byte	.LASF51
  1009 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1010 001d 00000000 		.4byte	0
  1011 0021 00000000 		.4byte	.Ldebug_line0
  1012 0025 02       		.uleb128 0x2
  1013 0026 01       		.byte	0x1
  1014 0027 06       		.byte	0x6
- 1015 0028 56040000 		.4byte	.LASF0
+ 1015 0028 0E040000 		.4byte	.LASF0
  1016 002c 02       		.uleb128 0x2
  1017 002d 01       		.byte	0x1
  1018 002e 08       		.byte	0x8
- 1019 002f C6000000 		.4byte	.LASF1
+ 1019 002f 27010000 		.4byte	.LASF1
  1020 0033 02       		.uleb128 0x2
  1021 0034 02       		.byte	0x2
  1022 0035 05       		.byte	0x5
- 1023 0036 E3030000 		.4byte	.LASF2
+ 1023 0036 9B030000 		.4byte	.LASF2
  1024 003a 02       		.uleb128 0x2
  1025 003b 02       		.byte	0x2
  1026 003c 07       		.byte	0x7
@@ -2004,19 +2004,19 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1028 0041 02       		.uleb128 0x2
  1029 0042 04       		.byte	0x4
  1030 0043 05       		.byte	0x5
- 1031 0044 35040000 		.4byte	.LASF4
+ 1031 0044 ED030000 		.4byte	.LASF4
  1032 0048 02       		.uleb128 0x2
  1033 0049 04       		.byte	0x4
  1034 004a 07       		.byte	0x7
- 1035 004b 7E010000 		.4byte	.LASF5
+ 1035 004b DF010000 		.4byte	.LASF5
  1036 004f 02       		.uleb128 0x2
  1037 0050 08       		.byte	0x8
  1038 0051 05       		.byte	0x5
- 1039 0052 88030000 		.4byte	.LASF6
+ 1039 0052 40030000 		.4byte	.LASF6
  1040 0056 02       		.uleb128 0x2
  1041 0057 08       		.byte	0x8
  1042 0058 07       		.byte	0x7
- 1043 0059 47020000 		.4byte	.LASF7
+ 1043 0059 A8020000 		.4byte	.LASF7
  1044 005d 03       		.uleb128 0x3
  1045 005e 04       		.byte	0x4
  1046 005f 05       		.byte	0x5
@@ -2024,34 +2024,34 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1048 0064 02       		.uleb128 0x2
  1049 0065 04       		.byte	0x4
  1050 0066 07       		.byte	0x7
- 1051 0067 7E000000 		.4byte	.LASF8
+ 1051 0067 DF000000 		.4byte	.LASF8
  1052 006b 04       		.uleb128 0x4
- 1053 006c 90010000 		.4byte	.LASF9
+ 1053 006c F1010000 		.4byte	.LASF9
  1054 0070 02       		.byte	0x2
  1055 0071 E401     		.2byte	0x1e4
  1056 0073 2C000000 		.4byte	0x2c
  1057 0077 04       		.uleb128 0x4
- 1058 0078 06020000 		.4byte	.LASF10
+ 1058 0078 67020000 		.4byte	.LASF10
  1059 007c 02       		.byte	0x2
  1060 007d E601     		.2byte	0x1e6
  1061 007f 48000000 		.4byte	0x48
  1062 0083 02       		.uleb128 0x2
  1063 0084 04       		.byte	0x4
  1064 0085 04       		.byte	0x4
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 35
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 35
 
 
  1065 0086 4B000000 		.4byte	.LASF11
  1066 008a 02       		.uleb128 0x2
  1067 008b 08       		.byte	0x8
  1068 008c 04       		.byte	0x4
- 1069 008d F3010000 		.4byte	.LASF12
+ 1069 008d 54020000 		.4byte	.LASF12
  1070 0091 02       		.uleb128 0x2
  1071 0092 01       		.byte	0x1
  1072 0093 08       		.byte	0x8
- 1073 0094 3E040000 		.4byte	.LASF13
+ 1073 0094 F6030000 		.4byte	.LASF13
  1074 0098 04       		.uleb128 0x4
- 1075 0099 62010000 		.4byte	.LASF14
+ 1075 0099 C3010000 		.4byte	.LASF14
  1076 009d 02       		.byte	0x2
  1077 009e 8E02     		.2byte	0x28e
  1078 00a0 A4000000 		.4byte	0xa4
@@ -2067,11 +2067,11 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1088 00ba 02       		.uleb128 0x2
  1089 00bb 08       		.byte	0x8
  1090 00bc 04       		.byte	0x4
- 1091 00bd 4A040000 		.4byte	.LASF16
+ 1091 00bd 02040000 		.4byte	.LASF16
  1092 00c1 02       		.uleb128 0x2
  1093 00c2 04       		.byte	0x4
  1094 00c3 07       		.byte	0x7
- 1095 00c4 7F030000 		.4byte	.LASF17
+ 1095 00c4 37030000 		.4byte	.LASF17
  1096 00c8 06       		.uleb128 0x6
  1097 00c9 51000000 		.4byte	.LASF21
  1098 00cd 01       		.byte	0x1
@@ -2083,13 +2083,13 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1104 00dc 9C       		.byte	0x9c
  1105 00dd 2D010000 		.4byte	0x12d
  1106 00e1 07       		.uleb128 0x7
- 1107 00e2 8B000000 		.4byte	.LASF18
+ 1107 00e2 EC000000 		.4byte	.LASF18
  1108 00e6 01       		.byte	0x1
  1109 00e7 50       		.byte	0x50
  1110 00e8 6B000000 		.4byte	0x6b
  1111 00ec 00000000 		.4byte	.LLST0
  1112 00f0 07       		.uleb128 0x7
- 1113 00f1 40020000 		.4byte	.LASF19
+ 1113 00f1 A1020000 		.4byte	.LASF19
  1114 00f5 01       		.byte	0x1
  1115 00f6 50       		.byte	0x50
  1116 00f7 2D010000 		.4byte	0x12d
@@ -2098,19 +2098,19 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1119 0100 636E7400 		.ascii	"cnt\000"
  1120 0104 01       		.byte	0x1
  1121 0105 50       		.byte	0x50
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 36
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 36
 
 
  1122 0106 6B000000 		.4byte	0x6b
  1123 010a 8E000000 		.4byte	.LLST2
  1124 010e 07       		.uleb128 0x7
- 1125 010f 21030000 		.4byte	.LASF20
+ 1125 010f D9020000 		.4byte	.LASF20
  1126 0113 01       		.byte	0x1
  1127 0114 50       		.byte	0x50
  1128 0115 6B000000 		.4byte	0x6b
  1129 0119 D7000000 		.4byte	.LLST3
  1130 011d 09       		.uleb128 0x9
- 1131 011e CC010000 		.4byte	.LASF24
+ 1131 011e 2D020000 		.4byte	.LASF24
  1132 0122 01       		.byte	0x1
  1133 0123 53       		.byte	0x53
  1134 0124 6B000000 		.4byte	0x6b
@@ -2130,13 +2130,13 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1148 0147 9C       		.byte	0x9c
  1149 0148 98010000 		.4byte	0x198
  1150 014c 07       		.uleb128 0x7
- 1151 014d 8B000000 		.4byte	.LASF18
+ 1151 014d EC000000 		.4byte	.LASF18
  1152 0151 01       		.byte	0x1
  1153 0152 C4       		.byte	0xc4
  1154 0153 6B000000 		.4byte	0x6b
  1155 0157 78010000 		.4byte	.LLST5
  1156 015b 07       		.uleb128 0x7
- 1157 015c FF010000 		.4byte	.LASF23
+ 1157 015c 60020000 		.4byte	.LASF23
  1158 0160 01       		.byte	0x1
  1159 0161 C4       		.byte	0xc4
  1160 0162 2D010000 		.4byte	0x12d
@@ -2148,23 +2148,23 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1166 0171 6B000000 		.4byte	0x6b
  1167 0175 06020000 		.4byte	.LLST7
  1168 0179 07       		.uleb128 0x7
- 1169 017a 21030000 		.4byte	.LASF20
+ 1169 017a D9020000 		.4byte	.LASF20
  1170 017e 01       		.byte	0x1
  1171 017f C4       		.byte	0xc4
  1172 0180 6B000000 		.4byte	0x6b
  1173 0184 4F020000 		.4byte	.LLST8
  1174 0188 09       		.uleb128 0x9
- 1175 0189 CC010000 		.4byte	.LASF24
+ 1175 0189 2D020000 		.4byte	.LASF24
  1176 018d 01       		.byte	0x1
  1177 018e C7       		.byte	0xc7
  1178 018f 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 37
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 37
 
 
  1179 0193 A2020000 		.4byte	.LLST9
  1180 0197 00       		.byte	0
  1181 0198 0B       		.uleb128 0xb
- 1182 0199 64030000 		.4byte	.LASF25
+ 1182 0199 1C030000 		.4byte	.LASF25
  1183 019d 01       		.byte	0x1
  1184 019e 2701     		.2byte	0x127
  1185 01a0 6B000000 		.4byte	0x6b
@@ -2174,27 +2174,27 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1189 01ad 9C       		.byte	0x9c
  1190 01ae E1010000 		.4byte	0x1e1
  1191 01b2 0C       		.uleb128 0xc
- 1192 01b3 8B000000 		.4byte	.LASF18
+ 1192 01b3 EC000000 		.4byte	.LASF18
  1193 01b7 01       		.byte	0x1
  1194 01b8 2701     		.2byte	0x127
  1195 01ba 6B000000 		.4byte	0x6b
  1196 01be F0020000 		.4byte	.LLST10
  1197 01c2 0D       		.uleb128 0xd
- 1198 01c3 FA010000 		.4byte	.LASF26
+ 1198 01c3 5B020000 		.4byte	.LASF26
  1199 01c7 01       		.byte	0x1
  1200 01c8 2701     		.2byte	0x127
  1201 01ca 6B000000 		.4byte	0x6b
  1202 01ce 01       		.uleb128 0x1
  1203 01cf 51       		.byte	0x51
  1204 01d0 0E       		.uleb128 0xe
- 1205 01d1 CC010000 		.4byte	.LASF24
+ 1205 01d1 2D020000 		.4byte	.LASF24
  1206 01d5 01       		.byte	0x1
  1207 01d6 2A01     		.2byte	0x12a
  1208 01d8 6B000000 		.4byte	0x6b
  1209 01dc 59030000 		.4byte	.LLST11
  1210 01e0 00       		.byte	0
  1211 01e1 0B       		.uleb128 0xb
- 1212 01e2 AF010000 		.4byte	.LASF27
+ 1212 01e2 10020000 		.4byte	.LASF27
  1213 01e6 01       		.byte	0x1
  1214 01e7 9401     		.2byte	0x194
  1215 01e9 6B000000 		.4byte	0x6b
@@ -2204,21 +2204,21 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1219 01f6 9C       		.byte	0x9c
  1220 01f7 2A020000 		.4byte	0x22a
  1221 01fb 0C       		.uleb128 0xc
- 1222 01fc 8B000000 		.4byte	.LASF18
+ 1222 01fc EC000000 		.4byte	.LASF18
  1223 0200 01       		.byte	0x1
  1224 0201 9401     		.2byte	0x194
  1225 0203 6B000000 		.4byte	0x6b
  1226 0207 90030000 		.4byte	.LLST12
  1227 020b 0D       		.uleb128 0xd
- 1228 020c FA010000 		.4byte	.LASF26
+ 1228 020c 5B020000 		.4byte	.LASF26
  1229 0210 01       		.byte	0x1
  1230 0211 9401     		.2byte	0x194
  1231 0213 6B000000 		.4byte	0x6b
  1232 0217 01       		.uleb128 0x1
  1233 0218 51       		.byte	0x51
  1234 0219 0E       		.uleb128 0xe
- 1235 021a CC010000 		.4byte	.LASF24
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 38
+ 1235 021a 2D020000 		.4byte	.LASF24
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 38
 
 
  1236 021e 01       		.byte	0x1
@@ -2227,7 +2227,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1239 0225 E0030000 		.4byte	.LLST13
  1240 0229 00       		.byte	0
  1241 022a 0B       		.uleb128 0xb
- 1242 022b B0030000 		.4byte	.LASF28
+ 1242 022b 68030000 		.4byte	.LASF28
  1243 022f 01       		.byte	0x1
  1244 0230 EA01     		.2byte	0x1ea
  1245 0232 6B000000 		.4byte	0x6b
@@ -2237,7 +2237,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1249 023f 9C       		.byte	0x9c
  1250 0240 55020000 		.4byte	0x255
  1251 0244 0E       		.uleb128 0xe
- 1252 0245 CC010000 		.4byte	.LASF24
+ 1252 0245 2D020000 		.4byte	.LASF24
  1253 0249 01       		.byte	0x1
  1254 024a EC01     		.2byte	0x1ec
  1255 024c 6B000000 		.4byte	0x6b
@@ -2254,20 +2254,20 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1266 026a 9C       		.byte	0x9c
  1267 026b 90020000 		.4byte	0x290
  1268 026f 0C       		.uleb128 0xc
- 1269 0270 ED030000 		.4byte	.LASF30
+ 1269 0270 A5030000 		.4byte	.LASF30
  1270 0274 01       		.byte	0x1
  1271 0275 2402     		.2byte	0x224
  1272 0277 6B000000 		.4byte	0x6b
  1273 027b 36040000 		.4byte	.LLST15
  1274 027f 0E       		.uleb128 0xe
- 1275 0280 CC010000 		.4byte	.LASF24
+ 1275 0280 2D020000 		.4byte	.LASF24
  1276 0284 01       		.byte	0x1
  1277 0285 2602     		.2byte	0x226
  1278 0287 6B000000 		.4byte	0x6b
  1279 028b 89040000 		.4byte	.LLST16
  1280 028f 00       		.byte	0
  1281 0290 0B       		.uleb128 0xb
- 1282 0291 5E020000 		.4byte	.LASF31
+ 1282 0291 BF020000 		.4byte	.LASF31
  1283 0295 01       		.byte	0x1
  1284 0296 6F02     		.2byte	0x26f
  1285 0298 6B000000 		.4byte	0x6b
@@ -2277,8 +2277,8 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1289 02a5 9C       		.byte	0x9c
  1290 02a6 CB020000 		.4byte	0x2cb
  1291 02aa 0C       		.uleb128 0xc
- 1292 02ab 38020000 		.4byte	.LASF32
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 39
+ 1292 02ab 99020000 		.4byte	.LASF32
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 39
 
 
  1293 02af 01       		.byte	0x1
@@ -2286,14 +2286,14 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1295 02b2 6B000000 		.4byte	0x6b
  1296 02b6 D8040000 		.4byte	.LLST17
  1297 02ba 0E       		.uleb128 0xe
- 1298 02bb ED030000 		.4byte	.LASF30
+ 1298 02bb A5030000 		.4byte	.LASF30
  1299 02bf 01       		.byte	0x1
  1300 02c0 7102     		.2byte	0x271
  1301 02c2 6B000000 		.4byte	0x6b
  1302 02c6 F9040000 		.4byte	.LLST18
  1303 02ca 00       		.byte	0
  1304 02cb 0B       		.uleb128 0xb
- 1305 02cc 7A040000 		.4byte	.LASF33
+ 1305 02cc 32040000 		.4byte	.LASF33
  1306 02d0 01       		.byte	0x1
  1307 02d1 AC02     		.2byte	0x2ac
  1308 02d3 6B000000 		.4byte	0x6b
@@ -2303,7 +2303,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1312 02e0 9C       		.byte	0x9c
  1313 02e1 F4020000 		.4byte	0x2f4
  1314 02e5 0F       		.uleb128 0xf
- 1315 02e6 43040000 		.4byte	.LASF34
+ 1315 02e6 FB030000 		.4byte	.LASF34
  1316 02ea 01       		.byte	0x1
  1317 02eb AE02     		.2byte	0x2ae
  1318 02ed 6B000000 		.4byte	0x6b
@@ -2311,7 +2311,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1320 02f2 50       		.byte	0x50
  1321 02f3 00       		.byte	0
  1322 02f4 0B       		.uleb128 0xb
- 1323 02f5 D6010000 		.4byte	.LASF35
+ 1323 02f5 37020000 		.4byte	.LASF35
  1324 02f9 01       		.byte	0x1
  1325 02fa D602     		.2byte	0x2d6
  1326 02fc 6B000000 		.4byte	0x6b
@@ -2321,7 +2321,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1330 0309 9C       		.byte	0x9c
  1331 030a 1D030000 		.4byte	0x31d
  1332 030e 0F       		.uleb128 0xf
- 1333 030f 43040000 		.4byte	.LASF34
+ 1333 030f FB030000 		.4byte	.LASF34
  1334 0313 01       		.byte	0x1
  1335 0314 D802     		.2byte	0x2d8
  1336 0316 6B000000 		.4byte	0x6b
@@ -2329,7 +2329,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1338 031b 50       		.byte	0x50
  1339 031c 00       		.byte	0
  1340 031d 10       		.uleb128 0x10
- 1341 031e 44030000 		.4byte	.LASF36
+ 1341 031e FC020000 		.4byte	.LASF36
  1342 0322 01       		.byte	0x1
  1343 0323 FA02     		.2byte	0x2fa
  1344 0325 6B000000 		.4byte	0x6b
@@ -2338,10 +2338,10 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1347 0331 01       		.uleb128 0x1
  1348 0332 9C       		.byte	0x9c
  1349 0333 10       		.uleb128 0x10
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 40
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 40
 
 
- 1350 0334 14040000 		.4byte	.LASF37
+ 1350 0334 CC030000 		.4byte	.LASF37
  1351 0338 01       		.byte	0x1
  1352 0339 1403     		.2byte	0x314
  1353 033b 6B000000 		.4byte	0x6b
@@ -2350,7 +2350,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1356 0347 01       		.uleb128 0x1
  1357 0348 9C       		.byte	0x9c
  1358 0349 11       		.uleb128 0x11
- 1359 034a 26030000 		.4byte	.LASF38
+ 1359 034a DE020000 		.4byte	.LASF38
  1360 034e 01       		.byte	0x1
  1361 034f 3103     		.2byte	0x331
  1362 0351 00000000 		.4byte	.LFB11
@@ -2358,7 +2358,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1364 0359 01       		.uleb128 0x1
  1365 035a 9C       		.byte	0x9c
  1366 035b 11       		.uleb128 0x11
- 1367 035c F5030000 		.4byte	.LASF39
+ 1367 035c AD030000 		.4byte	.LASF39
  1368 0360 01       		.byte	0x1
  1369 0361 5303     		.2byte	0x353
  1370 0363 00000000 		.4byte	.LFB12
@@ -2371,7 +2371,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1377 0373 23       		.byte	0x23
  1378 0374 A4000000 		.4byte	0xa4
  1379 0378 13       		.uleb128 0x13
- 1380 0379 B0000000 		.4byte	.LASF41
+ 1380 0379 11010000 		.4byte	.LASF41
  1381 037d 01       		.byte	0x1
  1382 037e 17       		.byte	0x17
  1383 037f A4000000 		.4byte	0xa4
@@ -2379,7 +2379,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1385 0384 03       		.byte	0x3
  1386 0385 00000000 		.4byte	I2C_Master_mstrStatus
  1387 0389 13       		.uleb128 0x13
- 1388 038a 67010000 		.4byte	.LASF42
+ 1388 038a C8010000 		.4byte	.LASF42
  1389 038e 01       		.byte	0x1
  1390 038f 18       		.byte	0x18
  1391 0390 A4000000 		.4byte	0xa4
@@ -2387,7 +2387,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1393 0395 03       		.byte	0x3
  1394 0396 00000000 		.4byte	I2C_Master_mstrControl
  1395 039a 13       		.uleb128 0x13
- 1396 039b 62040000 		.4byte	.LASF43
+ 1396 039b 1A040000 		.4byte	.LASF43
  1397 039f 01       		.byte	0x1
  1398 03a0 1B       		.byte	0x1b
  1399 03a1 AB030000 		.4byte	0x3ab
@@ -2398,10 +2398,10 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1404 03ac 04       		.byte	0x4
  1405 03ad A4000000 		.4byte	0xa4
  1406 03b1 13       		.uleb128 0x13
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 41
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 41
 
 
- 1407 03b2 96010000 		.4byte	.LASF44
+ 1407 03b2 F7010000 		.4byte	.LASF44
  1408 03b6 01       		.byte	0x1
  1409 03b7 1C       		.byte	0x1c
  1410 03b8 A4000000 		.4byte	0xa4
@@ -2409,7 +2409,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1412 03bd 03       		.byte	0x3
  1413 03be 00000000 		.4byte	I2C_Master_mstrRdBufSize
  1414 03c2 13       		.uleb128 0x13
- 1415 03c3 92040000 		.4byte	.LASF45
+ 1415 03c3 4A040000 		.4byte	.LASF45
  1416 03c7 01       		.byte	0x1
  1417 03c8 1D       		.byte	0x1d
  1418 03c9 A4000000 		.4byte	0xa4
@@ -2417,7 +2417,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1420 03ce 03       		.byte	0x3
  1421 03cf 00000000 		.4byte	I2C_Master_mstrRdBufIndex
  1422 03d3 13       		.uleb128 0x13
- 1423 03d4 98000000 		.4byte	.LASF46
+ 1423 03d4 F9000000 		.4byte	.LASF46
  1424 03d8 01       		.byte	0x1
  1425 03d9 20       		.byte	0x20
  1426 03da AB030000 		.4byte	0x3ab
@@ -2425,7 +2425,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1428 03df 03       		.byte	0x3
  1429 03e0 00000000 		.4byte	I2C_Master_mstrWrBufPtr
  1430 03e4 13       		.uleb128 0x13
- 1431 03e5 CA030000 		.4byte	.LASF47
+ 1431 03e5 82030000 		.4byte	.LASF47
  1432 03e9 01       		.byte	0x1
  1433 03ea 21       		.byte	0x21
  1434 03eb A4000000 		.4byte	0xa4
@@ -2433,7 +2433,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1436 03f0 03       		.byte	0x3
  1437 03f1 00000000 		.4byte	I2C_Master_mstrWrBufSize
  1438 03f5 13       		.uleb128 0x13
- 1439 03f6 96030000 		.4byte	.LASF48
+ 1439 03f6 4E030000 		.4byte	.LASF48
  1440 03fa 01       		.byte	0x1
  1441 03fb 22       		.byte	0x22
  1442 03fc A4000000 		.4byte	0xa4
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1461 000c 17       		.uleb128 0x17
  1462 000d 11       		.uleb128 0x11
  1463 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 42
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 42
 
 
  1464 000f 10       		.uleb128 0x10
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1518 0045 0B       		.uleb128 0xb
  1519 0046 3B       		.uleb128 0x3b
  1520 0047 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 43
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 43
 
 
  1521 0048 27       		.uleb128 0x27
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1575 007f 0B       		.uleb128 0xb
  1576 0080 49       		.uleb128 0x49
  1577 0081 13       		.uleb128 0x13
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 44
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 44
 
 
  1578 0082 02       		.uleb128 0x2
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1632 00b9 00       		.byte	0
  1633 00ba 0D       		.uleb128 0xd
  1634 00bb 05       		.uleb128 0x5
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 45
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 45
 
 
  1635 00bc 00       		.byte	0
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1689 00f2 27       		.uleb128 0x27
  1690 00f3 19       		.uleb128 0x19
  1691 00f4 49       		.uleb128 0x49
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 46
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 46
 
 
  1692 00f5 13       		.uleb128 0x13
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1746 012d 03       		.uleb128 0x3
  1747 012e 0E       		.uleb128 0xe
  1748 012f 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 47
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 47
 
 
  1749 0130 0B       		.uleb128 0xb
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1803 0063 96000000 		.4byte	.LVL13
  1804 0067 0400     		.2byte	0x4
  1805 0069 F3       		.byte	0xf3
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 48
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 48
 
 
  1806 006a 01       		.uleb128 0x1
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1860 00ec F3       		.byte	0xf3
  1861 00ed 01       		.uleb128 0x1
  1862 00ee 53       		.byte	0x53
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 49
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 49
 
 
  1863 00ef 9F       		.byte	0x9f
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1917 0170 00000000 		.4byte	0
  1918 0174 00000000 		.4byte	0
  1919              	.LLST5:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 50
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 50
 
 
  1920 0178 00000000 		.4byte	.LVL17
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  1974 01fc 51       		.byte	0x51
  1975 01fd 9F       		.byte	0x9f
  1976 01fe 00000000 		.4byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 51
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 51
 
 
  1977 0202 00000000 		.4byte	0
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2031 0281 9A000000 		.4byte	.LVL30
  2032 0285 A0000000 		.4byte	.LVL33
  2033 0289 0100     		.2byte	0x1
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 52
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 52
 
 
  2034 028b 53       		.byte	0x53
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2088 030d 5C000000 		.4byte	.LVL39
  2089 0311 0100     		.2byte	0x1
  2090 0313 50       		.byte	0x50
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 53
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 53
 
 
  2091 0314 5E000000 		.4byte	.LVL40
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2145 039a 50       		.byte	0x50
  2146 039b 0C000000 		.4byte	.LVL47
  2147 039f 0E000000 		.4byte	.LVL48
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 54
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 54
 
 
  2148 03a3 0400     		.2byte	0x4
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2202 0423 2A000000 		.4byte	.LVL57
  2203 0427 38000000 		.4byte	.LFE4
  2204 042b 0100     		.2byte	0x1
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 55
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 55
 
 
  2205 042d 50       		.byte	0x50
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2259 04ac 9F       		.byte	0x9f
  2260 04ad 3E000000 		.4byte	.LVL62
  2261 04b1 42000000 		.4byte	.LVL64
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 56
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 56
 
 
  2262 04b5 0200     		.2byte	0x2
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2316 000b 00       		.byte	0
  2317 000c 0000     		.2byte	0
  2318 000e 0000     		.2byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 57
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 57
 
 
  2319 0010 00000000 		.4byte	.LFB0
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2373 0060 00000000 		.4byte	.LFB12
  2374 0064 30000000 		.4byte	.LFE12
  2375 0068 00000000 		.4byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 58
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 58
 
 
  2376 006c 00000000 		.4byte	0
@@ -3465,262 +3465,250 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 1
  2393      7369676E 
  2393      65642069 
  2393      6E7400
- 2394              	.LASF8:
- 2395 007e 756E7369 		.ascii	"unsigned int\000"
- 2395      676E6564 
- 2395      20696E74 
- 2395      00
- 2396              	.LASF18:
- 2397 008b 736C6176 		.ascii	"slaveAddress\000"
- 2397      65416464 
- 2397      72657373 
- 2397      00
- 2398              	.LASF46:
- 2399 0098 4932435F 		.ascii	"I2C_Master_mstrWrBufPtr\000"
- 2399      4D617374 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 59
+ 2394              	.LASF51:
+ 2395 007e 433A5C55 		.ascii	"C:\\Users\\aless\\Documents\\PSoC_Creator\\AY1920_I"
+ 2395      73657273 
+ 2395      5C616C65 
+ 2395      73735C44 
+ 2395      6F63756D 
+ 2396 00ac 495F4857 		.ascii	"I_HW_05_RATTI_ALESSIO\\AY1920_II_HW_05_PROJ_1.cydsn"
+ 2396      5F30355F 
+ 2396      52415454 
+ 2396      495F414C 
+ 2396      45535349 
+ 2397 00de 00       		.ascii	"\000"
+ 2398              	.LASF8:
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 59
 
 
- 2399      65725F6D 
- 2399      73747257 
- 2399      72427566 
- 2400              	.LASF41:
- 2401 00b0 4932435F 		.ascii	"I2C_Master_mstrStatus\000"
- 2401      4D617374 
- 2401      65725F6D 
- 2401      73747253 
- 2401      74617475 
- 2402              	.LASF1:
- 2403 00c6 756E7369 		.ascii	"unsigned char\000"
- 2403      676E6564 
- 2403      20636861 
- 2403      7200
- 2404              	.LASF49:
- 2405 00d4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2405      43313120 
- 2405      352E342E 
- 2405      31203230 
- 2405      31363036 
- 2406 0107 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2406      20726576 
- 2406      6973696F 
- 2406      6E203233 
- 2406      37373135 
- 2407 013a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2407      66756E63 
- 2407      74696F6E 
- 2407      2D736563 
- 2407      74696F6E 
- 2408              	.LASF14:
- 2409 0162 72656738 		.ascii	"reg8\000"
- 2409      00
- 2410              	.LASF42:
- 2411 0167 4932435F 		.ascii	"I2C_Master_mstrControl\000"
- 2411      4D617374 
- 2411      65725F6D 
- 2411      73747243 
- 2411      6F6E7472 
- 2412              	.LASF5:
- 2413 017e 6C6F6E67 		.ascii	"long unsigned int\000"
- 2413      20756E73 
- 2413      69676E65 
- 2413      6420696E 
- 2413      7400
- 2414              	.LASF9:
- 2415 0190 75696E74 		.ascii	"uint8\000"
- 2415      3800
- 2416              	.LASF44:
- 2417 0196 4932435F 		.ascii	"I2C_Master_mstrRdBufSize\000"
- 2417      4D617374 
- 2417      65725F6D 
- 2417      73747252 
- 2417      64427566 
- 2418              	.LASF27:
- 2419 01af 4932435F 		.ascii	"I2C_Master_MasterSendRestart\000"
- 2419      4D617374 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 60
+ 2399 00df 756E7369 		.ascii	"unsigned int\000"
+ 2399      676E6564 
+ 2399      20696E74 
+ 2399      00
+ 2400              	.LASF18:
+ 2401 00ec 736C6176 		.ascii	"slaveAddress\000"
+ 2401      65416464 
+ 2401      72657373 
+ 2401      00
+ 2402              	.LASF46:
+ 2403 00f9 4932435F 		.ascii	"I2C_Master_mstrWrBufPtr\000"
+ 2403      4D617374 
+ 2403      65725F6D 
+ 2403      73747257 
+ 2403      72427566 
+ 2404              	.LASF41:
+ 2405 0111 4932435F 		.ascii	"I2C_Master_mstrStatus\000"
+ 2405      4D617374 
+ 2405      65725F6D 
+ 2405      73747253 
+ 2405      74617475 
+ 2406              	.LASF1:
+ 2407 0127 756E7369 		.ascii	"unsigned char\000"
+ 2407      676E6564 
+ 2407      20636861 
+ 2407      7200
+ 2408              	.LASF49:
+ 2409 0135 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2409      43313120 
+ 2409      352E342E 
+ 2409      31203230 
+ 2409      31363036 
+ 2410 0168 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2410      20726576 
+ 2410      6973696F 
+ 2410      6E203233 
+ 2410      37373135 
+ 2411 019b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2411      66756E63 
+ 2411      74696F6E 
+ 2411      2D736563 
+ 2411      74696F6E 
+ 2412              	.LASF14:
+ 2413 01c3 72656738 		.ascii	"reg8\000"
+ 2413      00
+ 2414              	.LASF42:
+ 2415 01c8 4932435F 		.ascii	"I2C_Master_mstrControl\000"
+ 2415      4D617374 
+ 2415      65725F6D 
+ 2415      73747243 
+ 2415      6F6E7472 
+ 2416              	.LASF5:
+ 2417 01df 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2417      20756E73 
+ 2417      69676E65 
+ 2417      6420696E 
+ 2417      7400
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 60
 
 
- 2419      65725F4D 
- 2419      61737465 
- 2419      7253656E 
- 2420              	.LASF24:
- 2421 01cc 65727253 		.ascii	"errStatus\000"
- 2421      74617475 
- 2421      7300
- 2422              	.LASF35:
- 2423 01d6 4932435F 		.ascii	"I2C_Master_MasterClearStatus\000"
+ 2418              	.LASF9:
+ 2419 01f1 75696E74 		.ascii	"uint8\000"
+ 2419      3800
+ 2420              	.LASF44:
+ 2421 01f7 4932435F 		.ascii	"I2C_Master_mstrRdBufSize\000"
+ 2421      4D617374 
+ 2421      65725F6D 
+ 2421      73747252 
+ 2421      64427566 
+ 2422              	.LASF27:
+ 2423 0210 4932435F 		.ascii	"I2C_Master_MasterSendRestart\000"
  2423      4D617374 
  2423      65725F4D 
  2423      61737465 
- 2423      72436C65 
- 2424              	.LASF12:
- 2425 01f3 646F7562 		.ascii	"double\000"
- 2425      6C6500
- 2426              	.LASF26:
- 2427 01fa 525F6E57 		.ascii	"R_nW\000"
- 2427      00
- 2428              	.LASF23:
- 2429 01ff 72644461 		.ascii	"rdData\000"
- 2429      746100
- 2430              	.LASF10:
- 2431 0206 75696E74 		.ascii	"uint32\000"
- 2431      333200
- 2432              	.LASF50:
- 2433 020d 47656E65 		.ascii	"Generated_Source\\PSoC5\\I2C_Master_MASTER.c\000"
- 2433      72617465 
- 2433      645F536F 
- 2433      75726365 
- 2433      5C50536F 
- 2434              	.LASF32:
- 2435 0238 61636B6E 		.ascii	"acknNak\000"
- 2435      4E616B00 
- 2436              	.LASF19:
- 2437 0240 77724461 		.ascii	"wrData\000"
- 2437      746100
- 2438              	.LASF7:
- 2439 0247 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2439      206C6F6E 
- 2439      6720756E 
- 2439      7369676E 
- 2439      65642069 
- 2440              	.LASF31:
- 2441 025e 4932435F 		.ascii	"I2C_Master_MasterReadByte\000"
- 2441      4D617374 
- 2441      65725F4D 
- 2441      61737465 
- 2441      72526561 
- 2442              	.LASF51:
- 2443 0278 443A5C43 		.ascii	"D:\\Cloud\\OneDrive - Politecnico di Milano\\PhD\\M"
- 2443      6C6F7564 
- 2443      5C4F6E65 
- 2443      44726976 
- 2443      65202D20 
- 2444 02a7 61746572 		.ascii	"ateriale Esercitazioni\\LabCerveri1920\\SecondoSeme"
- 2444      69616C65 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 61
+ 2423      7253656E 
+ 2424              	.LASF24:
+ 2425 022d 65727253 		.ascii	"errStatus\000"
+ 2425      74617475 
+ 2425      7300
+ 2426              	.LASF35:
+ 2427 0237 4932435F 		.ascii	"I2C_Master_MasterClearStatus\000"
+ 2427      4D617374 
+ 2427      65725F4D 
+ 2427      61737465 
+ 2427      72436C65 
+ 2428              	.LASF12:
+ 2429 0254 646F7562 		.ascii	"double\000"
+ 2429      6C6500
+ 2430              	.LASF26:
+ 2431 025b 525F6E57 		.ascii	"R_nW\000"
+ 2431      00
+ 2432              	.LASF23:
+ 2433 0260 72644461 		.ascii	"rdData\000"
+ 2433      746100
+ 2434              	.LASF10:
+ 2435 0267 75696E74 		.ascii	"uint32\000"
+ 2435      333200
+ 2436              	.LASF50:
+ 2437 026e 47656E65 		.ascii	"Generated_Source\\PSoC5\\I2C_Master_MASTER.c\000"
+ 2437      72617465 
+ 2437      645F536F 
+ 2437      75726365 
+ 2437      5C50536F 
+ 2438              	.LASF32:
+ 2439 0299 61636B6E 		.ascii	"acknNak\000"
+ 2439      4E616B00 
+ 2440              	.LASF19:
+ 2441 02a1 77724461 		.ascii	"wrData\000"
+ 2441      746100
+ 2442              	.LASF7:
+ 2443 02a8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2443      206C6F6E 
+ 2443      6720756E 
+ 2443      7369676E 
+ 2443      65642069 
+ 2444              	.LASF31:
+ 2445 02bf 4932435F 		.ascii	"I2C_Master_MasterReadByte\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 61
 
 
- 2444      20457365 
- 2444      72636974 
- 2444      617A696F 
- 2445 02d8 73747265 		.ascii	"stre\\Practical lessons\\I2C\\PSoC_03\\03-I2C_Maste"
- 2445      5C507261 
- 2445      63746963 
- 2445      616C206C 
- 2445      6573736F 
- 2446 0307 725F4164 		.ascii	"r_Advanced_Complete.cydsn\000"
- 2446      76616E63 
- 2446      65645F43 
- 2446      6F6D706C 
- 2446      6574652E 
- 2447              	.LASF20:
- 2448 0321 6D6F6465 		.ascii	"mode\000"
- 2448      00
- 2449              	.LASF38:
- 2450 0326 4932435F 		.ascii	"I2C_Master_MasterClearReadBuf\000"
- 2450      4D617374 
- 2450      65725F4D 
- 2450      61737465 
- 2450      72436C65 
- 2451              	.LASF36:
- 2452 0344 4932435F 		.ascii	"I2C_Master_MasterGetReadBufSize\000"
- 2452      4D617374 
- 2452      65725F4D 
- 2452      61737465 
- 2452      72476574 
- 2453              	.LASF25:
- 2454 0364 4932435F 		.ascii	"I2C_Master_MasterSendStart\000"
- 2454      4D617374 
- 2454      65725F4D 
- 2454      61737465 
- 2454      7253656E 
- 2455              	.LASF17:
- 2456 037f 73697A65 		.ascii	"sizetype\000"
- 2456      74797065 
- 2456      00
- 2457              	.LASF6:
- 2458 0388 6C6F6E67 		.ascii	"long long int\000"
- 2458      206C6F6E 
- 2458      6720696E 
- 2458      7400
- 2459              	.LASF48:
- 2460 0396 4932435F 		.ascii	"I2C_Master_mstrWrBufIndex\000"
- 2460      4D617374 
- 2460      65725F6D 
- 2460      73747257 
- 2460      72427566 
- 2461              	.LASF28:
- 2462 03b0 4932435F 		.ascii	"I2C_Master_MasterSendStop\000"
- 2462      4D617374 
- 2462      65725F4D 
- 2462      61737465 
- 2462      7253656E 
- 2463              	.LASF47:
- 2464 03ca 4932435F 		.ascii	"I2C_Master_mstrWrBufSize\000"
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 62
+ 2445      4D617374 
+ 2445      65725F4D 
+ 2445      61737465 
+ 2445      72526561 
+ 2446              	.LASF20:
+ 2447 02d9 6D6F6465 		.ascii	"mode\000"
+ 2447      00
+ 2448              	.LASF38:
+ 2449 02de 4932435F 		.ascii	"I2C_Master_MasterClearReadBuf\000"
+ 2449      4D617374 
+ 2449      65725F4D 
+ 2449      61737465 
+ 2449      72436C65 
+ 2450              	.LASF36:
+ 2451 02fc 4932435F 		.ascii	"I2C_Master_MasterGetReadBufSize\000"
+ 2451      4D617374 
+ 2451      65725F4D 
+ 2451      61737465 
+ 2451      72476574 
+ 2452              	.LASF25:
+ 2453 031c 4932435F 		.ascii	"I2C_Master_MasterSendStart\000"
+ 2453      4D617374 
+ 2453      65725F4D 
+ 2453      61737465 
+ 2453      7253656E 
+ 2454              	.LASF17:
+ 2455 0337 73697A65 		.ascii	"sizetype\000"
+ 2455      74797065 
+ 2455      00
+ 2456              	.LASF6:
+ 2457 0340 6C6F6E67 		.ascii	"long long int\000"
+ 2457      206C6F6E 
+ 2457      6720696E 
+ 2457      7400
+ 2458              	.LASF48:
+ 2459 034e 4932435F 		.ascii	"I2C_Master_mstrWrBufIndex\000"
+ 2459      4D617374 
+ 2459      65725F6D 
+ 2459      73747257 
+ 2459      72427566 
+ 2460              	.LASF28:
+ 2461 0368 4932435F 		.ascii	"I2C_Master_MasterSendStop\000"
+ 2461      4D617374 
+ 2461      65725F4D 
+ 2461      61737465 
+ 2461      7253656E 
+ 2462              	.LASF47:
+ 2463 0382 4932435F 		.ascii	"I2C_Master_mstrWrBufSize\000"
+ 2463      4D617374 
+ 2463      65725F6D 
+ 2463      73747257 
+ 2463      72427566 
+ 2464              	.LASF2:
+ 2465 039b 73686F72 		.ascii	"short int\000"
+ 2465      7420696E 
+ 2465      7400
+ 2466              	.LASF30:
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccw1JcPL.s 			page 62
 
 
- 2464      4D617374 
- 2464      65725F6D 
- 2464      73747257 
- 2464      72427566 
- 2465              	.LASF2:
- 2466 03e3 73686F72 		.ascii	"short int\000"
- 2466      7420696E 
- 2466      7400
- 2467              	.LASF30:
- 2468 03ed 74686542 		.ascii	"theByte\000"
- 2468      79746500 
- 2469              	.LASF39:
- 2470 03f5 4932435F 		.ascii	"I2C_Master_MasterClearWriteBuf\000"
- 2470      4D617374 
- 2470      65725F4D 
- 2470      61737465 
- 2470      72436C65 
- 2471              	.LASF37:
- 2472 0414 4932435F 		.ascii	"I2C_Master_MasterGetWriteBufSize\000"
- 2472      4D617374 
- 2472      65725F4D 
- 2472      61737465 
- 2472      72476574 
- 2473              	.LASF4:
- 2474 0435 6C6F6E67 		.ascii	"long int\000"
- 2474      20696E74 
- 2474      00
- 2475              	.LASF13:
- 2476 043e 63686172 		.ascii	"char\000"
- 2476      00
- 2477              	.LASF34:
- 2478 0443 73746174 		.ascii	"status\000"
- 2478      757300
- 2479              	.LASF16:
- 2480 044a 6C6F6E67 		.ascii	"long double\000"
- 2480      20646F75 
- 2480      626C6500 
- 2481              	.LASF0:
- 2482 0456 7369676E 		.ascii	"signed char\000"
- 2482      65642063 
- 2482      68617200 
- 2483              	.LASF43:
- 2484 0462 4932435F 		.ascii	"I2C_Master_mstrRdBufPtr\000"
- 2484      4D617374 
- 2484      65725F6D 
- 2484      73747252 
- 2484      64427566 
- 2485              	.LASF33:
- 2486 047a 4932435F 		.ascii	"I2C_Master_MasterStatus\000"
- 2486      4D617374 
- 2486      65725F4D 
- 2486      61737465 
- 2486      72537461 
- 2487              	.LASF45:
- 2488 0492 4932435F 		.ascii	"I2C_Master_mstrRdBufIndex\000"
- 2488      4D617374 
- 2488      65725F6D 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\cckXRrVd.s 			page 63
-
-
- 2488      73747252 
- 2488      64427566 
- 2489              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2467 03a5 74686542 		.ascii	"theByte\000"
+ 2467      79746500 
+ 2468              	.LASF39:
+ 2469 03ad 4932435F 		.ascii	"I2C_Master_MasterClearWriteBuf\000"
+ 2469      4D617374 
+ 2469      65725F4D 
+ 2469      61737465 
+ 2469      72436C65 
+ 2470              	.LASF37:
+ 2471 03cc 4932435F 		.ascii	"I2C_Master_MasterGetWriteBufSize\000"
+ 2471      4D617374 
+ 2471      65725F4D 
+ 2471      61737465 
+ 2471      72476574 
+ 2472              	.LASF4:
+ 2473 03ed 6C6F6E67 		.ascii	"long int\000"
+ 2473      20696E74 
+ 2473      00
+ 2474              	.LASF13:
+ 2475 03f6 63686172 		.ascii	"char\000"
+ 2475      00
+ 2476              	.LASF34:
+ 2477 03fb 73746174 		.ascii	"status\000"
+ 2477      757300
+ 2478              	.LASF16:
+ 2479 0402 6C6F6E67 		.ascii	"long double\000"
+ 2479      20646F75 
+ 2479      626C6500 
+ 2480              	.LASF0:
+ 2481 040e 7369676E 		.ascii	"signed char\000"
+ 2481      65642063 
+ 2481      68617200 
+ 2482              	.LASF43:
+ 2483 041a 4932435F 		.ascii	"I2C_Master_mstrRdBufPtr\000"
+ 2483      4D617374 
+ 2483      65725F6D 
+ 2483      73747252 
+ 2483      64427566 
+ 2484              	.LASF33:
+ 2485 0432 4932435F 		.ascii	"I2C_Master_MasterStatus\000"
+ 2485      4D617374 
+ 2485      65725F4D 
+ 2485      61737465 
+ 2485      72537461 
+ 2486              	.LASF45:
+ 2487 044a 4932435F 		.ascii	"I2C_Master_mstrRdBufIndex\000"
+ 2487      4D617374 
+ 2487      65725F6D 
+ 2487      73747252 
+ 2487      64427566 
+ 2488              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

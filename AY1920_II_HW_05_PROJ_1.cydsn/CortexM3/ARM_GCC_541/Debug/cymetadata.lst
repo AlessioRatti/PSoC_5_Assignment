@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
   55 001a 01       		.byte	1
   56 001b 40       		.byte	64
   57 001c 02       		.byte	2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 2
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 2
 
 
   58 001d 42       		.byte	66
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  112 0053 02       		.byte	2
  113 0054 A4       		.byte	-92
  114 0055 01       		.byte	1
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 3
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 3
 
 
  115 0056 A8       		.byte	-88
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  169 008c 17       		.byte	23
  170 008d 24       		.byte	36
  171 008e 18       		.byte	24
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 4
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 4
 
 
  172 008f 08       		.byte	8
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  226 00c5 04       		.byte	4
  227 00c6 4F       		.byte	79
  228 00c7 40       		.byte	64
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 5
 
 
  229 00c8 57       		.byte	87
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  283 00fe 00       		.byte	0
  284 00ff 10       		.byte	16
  285 0100 02       		.byte	2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 6
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 6
 
 
  286 0101 40       		.byte	64
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  340 0137 22       		.byte	34
  341 0138 3A       		.byte	58
  342 0139 02       		.byte	2
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 7
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 7
 
 
  343 013a 3B       		.byte	59
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  397 0170 88       		.byte	-120
  398 0171 13       		.byte	19
  399 0172 89       		.byte	-119
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 8
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 8
 
 
  400 0173 18       		.byte	24
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  454 01a9 0F       		.byte	15
  455 01aa B5       		.byte	-75
  456 01ab 20       		.byte	32
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 9
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 9
 
 
  457 01ac B7       		.byte	-73
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  511 01e2 03       		.byte	3
  512 01e3 20       		.byte	32
  513 01e4 05       		.byte	5
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 10
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 10
 
 
  514 01e5 14       		.byte	20
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  568 021b 80       		.byte	-128
  569 021c 31       		.byte	49
  570 021d 18       		.byte	24
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 11
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 11
 
 
  571 021e 32       		.byte	50
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  625 0254 94       		.byte	-108
  626 0255 04       		.byte	4
  627 0256 98       		.byte	-104
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 12
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 12
 
 
  628 0257 40       		.byte	64
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  682 028d 10       		.byte	16
  683 028e E6       		.byte	-26
  684 028f 10       		.byte	16
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 13
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 13
 
 
  685 0290 13       		.byte	19
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  739 02c6 88       		.byte	-120
  740 02c7 40       		.byte	64
  741 02c8 93       		.byte	-109
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 14
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 14
 
 
  742 02c9 10       		.byte	16
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  796 02ff 00       		.byte	0
  797 0300 33       		.byte	51
  798 0301 3C       		.byte	60
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 15
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 15
 
 
  799 0302 0C       		.byte	12
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  853 0338 0C       		.byte	12
  854 0339 00       		.byte	0
  855 033a 00       		.byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 16
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 16
 
 
  856 033b 00       		.byte	0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  910 0371 00       		.byte	0
  911 0372 00       		.byte	0
  912 0373 00       		.byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 17
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 17
 
 
  913 0374 00       		.byte	0
@@ -1016,9 +1016,9 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  961      00000000 
  962              		.text
  963              	.Letext0:
- 964              		.file 1 "d:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
- 965              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 18
+ 964              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 965              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 18
 
 
  966              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
@@ -1029,15 +1029,15 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  971 0006 00000000 		.4byte	.Ldebug_abbrev0
  972 000a 04       		.byte	0x4
  973 000b 01       		.uleb128 0x1
- 974 000c 24000000 		.4byte	.LASF17
+ 974 000c 85000000 		.4byte	.LASF17
  975 0010 0C       		.byte	0xc
- 976 0011 27020000 		.4byte	.LASF18
- 977 0015 72010000 		.4byte	.LASF19
+ 976 0011 DF010000 		.4byte	.LASF18
+ 977 0015 0A000000 		.4byte	.LASF19
  978 0019 00000000 		.4byte	.Ldebug_line0
  979 001d 02       		.uleb128 0x2
  980 001e 01       		.byte	0x1
  981 001f 06       		.byte	0x6
- 982 0020 1B020000 		.4byte	.LASF0
+ 982 0020 D3010000 		.4byte	.LASF0
  983 0024 03       		.uleb128 0x3
  984 0025 00000000 		.4byte	.LASF9
  985 0029 01       		.byte	0x1
@@ -1046,31 +1046,31 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  988 002f 02       		.uleb128 0x2
  989 0030 01       		.byte	0x1
  990 0031 08       		.byte	0x8
- 991 0032 16000000 		.4byte	.LASF1
+ 991 0032 77000000 		.4byte	.LASF1
  992 0036 02       		.uleb128 0x2
  993 0037 02       		.byte	0x2
  994 0038 05       		.byte	0x5
- 995 0039 5F010000 		.4byte	.LASF2
+ 995 0039 C0010000 		.4byte	.LASF2
  996 003d 02       		.uleb128 0x2
  997 003e 02       		.byte	0x2
  998 003f 07       		.byte	0x7
- 999 0040 C4000000 		.4byte	.LASF3
+ 999 0040 25010000 		.4byte	.LASF3
  1000 0044 02       		.uleb128 0x2
  1001 0045 04       		.byte	0x4
  1002 0046 05       		.byte	0x5
- 1003 0047 69010000 		.4byte	.LASF4
+ 1003 0047 CA010000 		.4byte	.LASF4
  1004 004b 02       		.uleb128 0x2
  1005 004c 04       		.byte	0x4
  1006 004d 07       		.byte	0x7
- 1007 004e B2000000 		.4byte	.LASF5
+ 1007 004e 13010000 		.4byte	.LASF5
  1008 0052 02       		.uleb128 0x2
  1009 0053 08       		.byte	0x8
  1010 0054 05       		.byte	0x5
- 1011 0055 51010000 		.4byte	.LASF6
+ 1011 0055 B2010000 		.4byte	.LASF6
  1012 0059 02       		.uleb128 0x2
  1013 005a 08       		.byte	0x8
  1014 005b 07       		.byte	0x7
- 1015 005c 06010000 		.4byte	.LASF7
+ 1015 005c 67010000 		.4byte	.LASF7
  1016 0060 04       		.uleb128 0x4
  1017 0061 04       		.byte	0x4
  1018 0062 05       		.byte	0x5
@@ -1078,12 +1078,12 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1020 0067 02       		.uleb128 0x2
  1021 0068 04       		.byte	0x4
  1022 0069 07       		.byte	0x7
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 19
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 19
 
 
- 1023 006a F9000000 		.4byte	.LASF8
+ 1023 006a 5A010000 		.4byte	.LASF8
  1024 006e 03       		.uleb128 0x3
- 1025 006f 1D010000 		.4byte	.LASF10
+ 1025 006f 7E010000 		.4byte	.LASF10
  1026 0073 02       		.byte	0x2
  1027 0074 18       		.byte	0x18
  1028 0075 24000000 		.4byte	0x24
@@ -1097,11 +1097,11 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1036 008a 02       		.uleb128 0x2
  1037 008b 04       		.byte	0x4
  1038 008c 07       		.byte	0x7
- 1039 008d 48010000 		.4byte	.LASF11
+ 1039 008d A9010000 		.4byte	.LASF11
  1040 0091 07       		.uleb128 0x7
  1041 0092 6E000000 		.4byte	0x6e
  1042 0096 08       		.uleb128 0x8
- 1043 0097 E7000000 		.4byte	.LASF12
+ 1043 0097 48010000 		.4byte	.LASF12
  1044 009b 03       		.byte	0x3
  1045 009c 1F       		.byte	0x1f
  1046 009d A7000000 		.4byte	0xa7
@@ -1118,7 +1118,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1057 00ba 03       		.byte	0x3
  1058 00bb 00       		.byte	0
  1059 00bc 08       		.uleb128 0x8
- 1060 00bd D7000000 		.4byte	.LASF13
+ 1060 00bd 38010000 		.4byte	.LASF13
  1061 00c1 03       		.byte	0x3
  1062 00c2 9C       		.byte	0x9c
  1063 00c3 CD000000 		.4byte	0xcd
@@ -1128,7 +1128,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1067 00cd 07       		.uleb128 0x7
  1068 00ce AC000000 		.4byte	0xac
  1069 00d2 08       		.uleb128 0x8
- 1070 00d3 3A010000 		.4byte	.LASF14
+ 1070 00d3 9B010000 		.4byte	.LASF14
  1071 00d7 03       		.byte	0x3
  1072 00d8 AA       		.byte	0xaa
  1073 00d9 E3000000 		.4byte	0xe3
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1077 00e3 07       		.uleb128 0x7
  1078 00e4 AC000000 		.4byte	0xac
  1079 00e8 05       		.uleb128 0x5
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 20
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 20
 
 
  1080 00e9 91000000 		.4byte	0x91
@@ -1148,7 +1148,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1084 00f6 FF       		.byte	0xff
  1085 00f7 00       		.byte	0
  1086 00f8 08       		.uleb128 0x8
- 1087 00f9 25010000 		.4byte	.LASF15
+ 1087 00f9 86010000 		.4byte	.LASF15
  1088 00fd 03       		.byte	0x3
  1089 00fe B8       		.byte	0xb8
  1090 00ff 09010000 		.4byte	0x109
@@ -1165,7 +1165,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1101 011c 0B       		.byte	0xb
  1102 011d 00       		.byte	0
  1103 011e 08       		.uleb128 0x8
- 1104 011f 0A000000 		.4byte	.LASF16
+ 1104 011f 6B000000 		.4byte	.LASF16
  1105 0123 03       		.byte	0x3
  1106 0124 E5       		.byte	0xe5
  1107 0125 2F010000 		.4byte	0x12f
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1134 0012 0B       		.uleb128 0xb
  1135 0013 0B       		.uleb128 0xb
  1136 0014 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 21
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 21
 
 
  1137 0015 0B       		.uleb128 0xb
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1191 004b 08       		.uleb128 0x8
  1192 004c 34       		.uleb128 0x34
  1193 004d 00       		.byte	0
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 22
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 22
 
 
  1194 004e 03       		.uleb128 0x3
@@ -1306,131 +1306,122 @@ ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 1
  1232 0000 5F5F7569 		.ascii	"__uint8_t\000"
  1232      6E74385F 
  1232      7400
- 1233              	.LASF16:
- 1234 000a 63795F6D 		.ascii	"cy_metadata\000"
- 1234      65746164 
- 1234      61746100 
- 1235              	.LASF1:
- 1236 0016 756E7369 		.ascii	"unsigned char\000"
- 1236      676E6564 
- 1236      20636861 
- 1236      7200
- 1237              	.LASF17:
- 1238 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1238      43313120 
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 23
+ 1233              	.LASF19:
+ 1234 000a 433A5C55 		.ascii	"C:\\Users\\aless\\Documents\\PSoC_Creator\\AY1920_I"
+ 1234      73657273 
+ 1234      5C616C65 
+ 1234      73735C44 
+ 1234      6F63756D 
+ 1235 0038 495F4857 		.ascii	"I_HW_05_RATTI_ALESSIO\\AY1920_II_HW_05_PROJ_1.cydsn"
+ 1235      5F30355F 
+ 1235      52415454 
+ 1235      495F414C 
+ 1235      45535349 
+ 1236 006a 00       		.ascii	"\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 23
 
 
- 1238      352E342E 
- 1238      31203230 
- 1238      31363036 
- 1239 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1239      20726576 
- 1239      6973696F 
- 1239      6E203233 
- 1239      37373135 
- 1240 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1240      66756E63 
- 1240      74696F6E 
- 1240      2D736563 
- 1240      74696F6E 
- 1241              	.LASF5:
- 1242 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
- 1242      20756E73 
- 1242      69676E65 
- 1242      6420696E 
- 1242      7400
- 1243              	.LASF3:
- 1244 00c4 73686F72 		.ascii	"short unsigned int\000"
- 1244      7420756E 
- 1244      7369676E 
- 1244      65642069 
- 1244      6E7400
- 1245              	.LASF13:
- 1246 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 1246      6574615F 
- 1246      63757374 
- 1246      6E766C00 
- 1247              	.LASF12:
- 1248 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
- 1248      6574615F 
- 1248      636F6E66 
- 1248      69676563 
- 1248      6300
- 1249              	.LASF8:
- 1250 00f9 756E7369 		.ascii	"unsigned int\000"
- 1250      676E6564 
- 1250      20696E74 
- 1250      00
- 1251              	.LASF7:
- 1252 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1252      206C6F6E 
- 1252      6720756E 
- 1252      7369676E 
- 1252      65642069 
- 1253              	.LASF10:
- 1254 011d 75696E74 		.ascii	"uint8_t\000"
- 1254      385F7400 
- 1255              	.LASF15:
- 1256 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 1256      6574615F 
- 1256      666C6173 
- 1256      6870726F 
- 1256      74656374 
- 1257              	.LASF14:
-ARM GAS  C:\Users\Gabriele\AppData\Local\Temp\ccj51M6z.s 			page 24
+ 1237              	.LASF16:
+ 1238 006b 63795F6D 		.ascii	"cy_metadata\000"
+ 1238      65746164 
+ 1238      61746100 
+ 1239              	.LASF1:
+ 1240 0077 756E7369 		.ascii	"unsigned char\000"
+ 1240      676E6564 
+ 1240      20636861 
+ 1240      7200
+ 1241              	.LASF17:
+ 1242 0085 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1242      43313120 
+ 1242      352E342E 
+ 1242      31203230 
+ 1242      31363036 
+ 1243 00b8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1243      20726576 
+ 1243      6973696F 
+ 1243      6E203233 
+ 1243      37373135 
+ 1244 00eb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1244      66756E63 
+ 1244      74696F6E 
+ 1244      2D736563 
+ 1244      74696F6E 
+ 1245              	.LASF5:
+ 1246 0113 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1246      20756E73 
+ 1246      69676E65 
+ 1246      6420696E 
+ 1246      7400
+ 1247              	.LASF3:
+ 1248 0125 73686F72 		.ascii	"short unsigned int\000"
+ 1248      7420756E 
+ 1248      7369676E 
+ 1248      65642069 
+ 1248      6E7400
+ 1249              	.LASF13:
+ 1250 0138 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1250      6574615F 
+ 1250      63757374 
+ 1250      6E766C00 
+ 1251              	.LASF12:
+ 1252 0148 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1252      6574615F 
+ 1252      636F6E66 
+ 1252      69676563 
+ 1252      6300
+ 1253              	.LASF8:
+ 1254 015a 756E7369 		.ascii	"unsigned int\000"
+ 1254      676E6564 
+ 1254      20696E74 
+ 1254      00
+ 1255              	.LASF7:
+ 1256 0167 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1256      206C6F6E 
+ 1256      6720756E 
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccu5RJbZ.s 			page 24
 
 
- 1258 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 1258      6574615F 
- 1258      776F6E76 
- 1258      6C00
- 1259              	.LASF11:
- 1260 0148 73697A65 		.ascii	"sizetype\000"
- 1260      74797065 
- 1260      00
- 1261              	.LASF6:
- 1262 0151 6C6F6E67 		.ascii	"long long int\000"
- 1262      206C6F6E 
- 1262      6720696E 
- 1262      7400
- 1263              	.LASF2:
- 1264 015f 73686F72 		.ascii	"short int\000"
- 1264      7420696E 
- 1264      7400
- 1265              	.LASF4:
- 1266 0169 6C6F6E67 		.ascii	"long int\000"
- 1266      20696E74 
- 1266      00
- 1267              	.LASF19:
- 1268 0172 443A5C43 		.ascii	"D:\\Cloud\\OneDrive - Politecnico di Milano\\PhD\\M"
- 1268      6C6F7564 
- 1268      5C4F6E65 
- 1268      44726976 
- 1268      65202D20 
- 1269 01a1 61746572 		.ascii	"ateriale Esercitazioni\\LabCerveri1920\\SecondoSeme"
- 1269      69616C65 
- 1269      20457365 
- 1269      72636974 
- 1269      617A696F 
- 1270 01d2 73747265 		.ascii	"stre\\Practical lessons\\I2C\\PSoC_03\\03-I2C_Maste"
- 1270      5C507261 
- 1270      63746963 
- 1270      616C206C 
- 1270      6573736F 
- 1271 0201 725F4164 		.ascii	"r_Advanced_Complete.cydsn\000"
- 1271      76616E63 
- 1271      65645F43 
- 1271      6F6D706C 
- 1271      6574652E 
- 1272              	.LASF0:
- 1273 021b 7369676E 		.ascii	"signed char\000"
- 1273      65642063 
- 1273      68617200 
- 1274              	.LASF18:
- 1275 0227 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
- 1275      72617465 
- 1275      645F536F 
- 1275      75726365 
- 1275      5C50536F 
- 1276              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1256      7369676E 
+ 1256      65642069 
+ 1257              	.LASF10:
+ 1258 017e 75696E74 		.ascii	"uint8_t\000"
+ 1258      385F7400 
+ 1259              	.LASF15:
+ 1260 0186 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1260      6574615F 
+ 1260      666C6173 
+ 1260      6870726F 
+ 1260      74656374 
+ 1261              	.LASF14:
+ 1262 019b 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1262      6574615F 
+ 1262      776F6E76 
+ 1262      6C00
+ 1263              	.LASF11:
+ 1264 01a9 73697A65 		.ascii	"sizetype\000"
+ 1264      74797065 
+ 1264      00
+ 1265              	.LASF6:
+ 1266 01b2 6C6F6E67 		.ascii	"long long int\000"
+ 1266      206C6F6E 
+ 1266      6720696E 
+ 1266      7400
+ 1267              	.LASF2:
+ 1268 01c0 73686F72 		.ascii	"short int\000"
+ 1268      7420696E 
+ 1268      7400
+ 1269              	.LASF4:
+ 1270 01ca 6C6F6E67 		.ascii	"long int\000"
+ 1270      20696E74 
+ 1270      00
+ 1271              	.LASF0:
+ 1272 01d3 7369676E 		.ascii	"signed char\000"
+ 1272      65642063 
+ 1272      68617200 
+ 1273              	.LASF18:
+ 1274 01df 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1274      72617465 
+ 1274      645F536F 
+ 1274      75726365 
+ 1274      5C50536F 
+ 1275              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

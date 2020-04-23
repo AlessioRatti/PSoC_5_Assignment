@@ -14,6 +14,8 @@
 #include "project.h"
 #include "stdio.h"
 
+#define LENGTH_T 2  // number of bytes to store temp
+
 /**
 *   \brief 7-bit I2C address of the slave device.
 */
@@ -277,7 +279,8 @@ int main(void)
     
     for(;;)
     {
-        CyDelay(100);
+        CyDelay(200);
+        /*
         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
                                             LIS3DH_OUT_ADC_3L,
                                             &TemperatureData[0]);
@@ -285,11 +288,18 @@ int main(void)
         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
                                             LIS3DH_OUT_ADC_3H,
                                             &TemperatureData[1]);
+        */
+        
+        error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+                                                 LIS3DH_OUT_ADC_3L,
+                                                 LENGTH_T,
+                                                 TemperatureData);
+        
         if(error == NO_ERROR)
         {
-            OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
-            OutArray[1] = (uint8_t)(OutTemp & 0xFF);
-            OutArray[2] = (uint8_t)(OutTemp >> 8);
+            OutTemp = (int16)(TemperatureData[0] | (TemperatureData[1]<<8))>>6;
+            OutArray[1] = (uint8_t)(OutTemp & 0xFF);    // LSB
+            OutArray[2] = (uint8_t)(OutTemp >> 8);      // MSB
             UART_Debug_PutArray(OutArray, 4);
         }
     }
