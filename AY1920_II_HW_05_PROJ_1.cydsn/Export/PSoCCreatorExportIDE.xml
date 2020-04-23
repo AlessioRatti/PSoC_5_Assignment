@@ -41,6 +41,7 @@
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
           <File BuildType="BUILD" Toolchain="">I2C_Interface.h</File>
           <File BuildType="BUILD" Toolchain="">ErrorCodes.h</File>
+          <File BuildType="BUILD" Toolchain="">Regs.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\aless\Documents\PSoC_Creator\AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_1.cydsn\Generated_Source\PSoC5">
