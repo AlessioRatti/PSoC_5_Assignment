@@ -15,15 +15,19 @@
 #include "stdio.h"
 #include "Regs.h"
 
-// Number of bytes needed to store temp
-#define LENGTH_T 2
-
 // Set normal mode to the accelerator (50Hz)
 #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x47
 // Enable temperature sensor and ADC
 #define LIS3DH_TEMP_CFG_REG_ACTIVE 0xC0
 // Enable BDU option
 #define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
+
+// Number of bytes needed to store temp
+#define LENGTH_T 2
+
+// Bridge Control Panel
+#define HEAD 0xA0
+#define TAIL 0xC0
 
 int main(void)
 {
@@ -105,26 +109,15 @@ int main(void)
     }
     
     int16_t OutTemp;
-    uint8_t header = 0xA0;
-    uint8_t footer = 0xC0;
     uint8_t OutArray[4]; 
     uint8_t TemperatureData[2];
     
-    OutArray[0] = header;
-    OutArray[3] = footer;
+    OutArray[0] = HEAD;
+    OutArray[3] = TAIL;
     
     for(;;)
     {
         CyDelay(200);
-        /*
-        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                            LIS3DH_OUT_ADC_3L,
-                                            &TemperatureData[0]);
-        
-        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                            LIS3DH_OUT_ADC_3H,
-                                            &TemperatureData[1]);
-        */
         
         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
                                                  LIS3DH_OUT_ADC_3L,
