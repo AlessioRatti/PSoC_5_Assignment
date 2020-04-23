@@ -15,13 +15,14 @@
 #include "stdio.h"
 #include "Regs.h"
 
-#define LENGTH_T 2  // number of bytes to store temp
+// Number of bytes needed to store temp
+#define LENGTH_T 2
 
-// set normal mode to the accelerator
+// Set normal mode to the accelerator (50Hz)
 #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x47
-
+// Enable temperature sensor and ADC
 #define LIS3DH_TEMP_CFG_REG_ACTIVE 0xC0
-
+// Enable BDU option
 #define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
 
 int main(void)
@@ -49,182 +50,58 @@ int main(void)
         
     }
     
-    /******************************************/
-    /*            I2C Reading                 */
-    /******************************************/
-    
-    /* Read WHO AM I REGISTER register */
-    uint8_t who_am_i_reg;
-    ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                                  LIS3DH_WHO_AM_I_REG_ADDR, 
-                                                  &who_am_i_reg);
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "WHO AM I REG: 0x%02X [Expected: 0x33]\r\n", who_am_i_reg);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm\r\n");   
-    }
-    
-    /*      I2C Reading Status Register       */
-    
-    uint8_t status_register; 
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_STATUS_REG,
-                                        &status_register);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "STATUS REGISTER: 0x%02X\r\n", status_register);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read status register\r\n");   
-    }
+    // Support variable for error flags
+    uint8_t error;
     
     /******************************************/
-    /*        Read Control Register 1         */
-    /******************************************/
-    uint8_t ctrl_reg1; 
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_CTRL_REG1,
-                                        &ctrl_reg1);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "CONTROL REGISTER 1: 0x%02X\r\n", ctrl_reg1);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
-    }
-    
-    /******************************************/
-    /*            I2C Writing                 */
+    /*            CTRL_REG1 config            */
     /******************************************/
     
-        
-    UART_Debug_PutString("\r\nWriting new values..\r\n");
-    
-    if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
-    {
-        ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
-    
-        error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-                                             LIS3DH_CTRL_REG1,
-                                             ctrl_reg1);
-    
-        if (error == NO_ERROR)
-        {
-            sprintf(message, "CONTROL REGISTER 1 successfully written as: 0x%02X\r\n", ctrl_reg1);
-            UART_Debug_PutString(message); 
-        }
-        else
-        {
-            UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");   
-        }
-    }
-    
-    /******************************************/
-    /*     Read Control Register 1 again      */
-    /******************************************/
+    error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+                                         LIS3DH_CTRL_REG1,
+                                         LIS3DH_NORMAL_MODE_CTRL_REG1);
 
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_CTRL_REG1,
-                                        &ctrl_reg1);
-    
     if (error == NO_ERROR)
     {
-        sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1);
-        UART_Debug_PutString(message); 
+        UART_Debug_PutString("CONTROL REGISTER 1 successfully written\r\n"); 
     }
     else
     {
-        UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+        UART_Debug_PutString("ERROR occurred during I2C comm to set control register 1\r\n");   
     }
     
      /******************************************/
-     /* I2C Reading Temperature sensor CFG reg */
+     /*          TEMP_CFG_REG config           */
      /******************************************/
-
-    uint8_t tmp_cfg_reg;
-
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
-    }
-    
-    
-    tmp_cfg_reg = LIS3DH_TEMP_CFG_REG_ACTIVE; // must be changed to the appropriate value
     
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_TEMP_CFG_REG,
-                                         tmp_cfg_reg);
-    
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
+                                         LIS3DH_TEMP_CFG_REG_ACTIVE);
     
     if (error == NO_ERROR)
     {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER after being updated: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
+        UART_Debug_PutString("TEMPERATURE CONFIG REGISTER successfully written!\r\n"); 
     }
     else
     {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
+        UART_Debug_PutString("ERROR occurred during I2C comm to read temperature config register\r\n");   
     }
     
-    uint8_t ctrl_reg4;
-
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_CTRL_REG4,
-                                        &ctrl_reg4);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "CONTROL REGISTER 4: 0x%02X\r\n", ctrl_reg4);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
-    }
-    
-    
-    ctrl_reg4 = LIS3DH_CTRL_REG4_BDU_ACTIVE; // must be changed to the appropriate value
+    /******************************************/
+    /*            CTRL_REG4 config            */
+    /******************************************/
     
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_CTRL_REG4,
-                                         ctrl_reg4);
-    
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_CTRL_REG4,
-                                        &ctrl_reg4);
-    
+                                         LIS3DH_CTRL_REG4_BDU_ACTIVE);
     
     if (error == NO_ERROR)
     {
-        sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
-        UART_Debug_PutString(message); 
+        UART_Debug_PutString("CONTROL REGISTER 4 successfully written\r\n"); 
     }
     else
     {
-        UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+        UART_Debug_PutString("ERROR occurred during I2C comm to read control register4\r\n");   
     }
     
     int16_t OutTemp;
