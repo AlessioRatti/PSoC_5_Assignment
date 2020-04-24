@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
   28:main.c        **** // Bridge Control Panel
   29:main.c        **** #define HEAD 0xA0
   30:main.c        **** #define TAIL 0xC0
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 2
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 2
 
 
   31:main.c        **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
   64              	.LVL4:
   65 001e 38B1     		cbz	r0, .L3
   49:main.c        ****         {
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 3
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 3
 
 
   50:main.c        ****             // print out the address is hex format
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
   97              	.LVL10:
   98 0048 02E0     		b	.L6
   99              	.LVL11:
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 4
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 4
 
 
  100              	.L5:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
   96:main.c        ****     /******************************************/
   97:main.c        ****     
   98:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 5
 
 
  129              		.loc 1 98 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  161              	.LVL26:
  121:main.c        ****         
  122:main.c        ****         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 6
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 6
 
 
  162              		.loc 1 122 0
@@ -324,16 +324,17 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  175 00ae 43EA0223 		orr	r3, r3, r2, lsl #8
  176 00b2 43F38913 		sbfx	r3, r3, #6, #10
  177              	.LVL28:
- 130:main.c        ****             OutArray[1] = (uint8_t)(OutTemp & 0xFF);    // LSB
- 178              		.loc 1 130 0
+ 130:main.c        ****             // Followed ST config (LSB first)
+ 131:main.c        ****             OutArray[1] = (uint8_t)(OutTemp & 0xFF);    // LSB
+ 178              		.loc 1 131 0
  179 00b6 8DF80930 		strb	r3, [sp, #9]
- 131:main.c        ****             OutArray[2] = (uint8_t)(OutTemp >> 8);      // MSB
- 180              		.loc 1 131 0
+ 132:main.c        ****             OutArray[2] = (uint8_t)(OutTemp >> 8);      // MSB
+ 180              		.loc 1 132 0
  181 00ba C3F30723 		ubfx	r3, r3, #8, #8
  182              	.LVL29:
  183 00be 8DF80A30 		strb	r3, [sp, #10]
- 132:main.c        ****             UART_Debug_PutArray(OutArray, 4);
- 184              		.loc 1 132 0
+ 133:main.c        ****             UART_Debug_PutArray(OutArray, 4);
+ 184              		.loc 1 133 0
  185 00c2 0421     		movs	r1, #4
  186 00c4 02A8     		add	r0, sp, #8
  187              	.LVL30:
@@ -357,10 +358,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  205              		.align	2
  206              	.LC0:
  207 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 7
+
+
  207      63652030 
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 7
-
-
  207      78253032 
  207      58206973 
  207      20636F6E 
@@ -417,10 +418,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  228      340D0A00 
  229              		.text
  230              	.Letext0:
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 8
+
+
  231              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 8
-
-
  232              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  233              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
  234              		.file 5 "I2C_Interface.h"
@@ -477,10 +478,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  285 0062 02       		.uleb128 0x2
  286 0063 04       		.byte	0x4
  287 0064 05       		.byte	0x5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 9
+
+
  288 0065 47000000 		.4byte	.LASF7
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 9
-
-
  289 0069 02       		.uleb128 0x2
  290 006a 04       		.byte	0x4
  291 006b 07       		.byte	0x7
@@ -537,10 +538,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  342 00cf 01       		.byte	0x1
  343 00d0 37000000 		.4byte	0x37
  344 00d4 09       		.byte	0x9
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 10
+
+
  345 00d5 15       		.byte	0x15
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 10
-
-
  346 00d6 E7000000 		.4byte	0xe7
  347 00da 07       		.uleb128 0x7
  348 00db 9F020000 		.4byte	.LASF19
@@ -597,10 +598,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  399 0147 40       		.sleb128 -64
  400 0148 09       		.uleb128 0x9
  401 0149 C5000000 		.4byte	.LASF27
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 11
+
+
  402 014d 01       		.byte	0x1
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 11
-
-
  403 014e 71       		.byte	0x71
  404 014f 32030000 		.4byte	0x332
  405 0153 03       		.uleb128 0x3
@@ -657,10 +658,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  456 01b2 01       		.uleb128 0x1
  457 01b3 50       		.byte	0x50
  458 01b4 02       		.uleb128 0x2
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 12
+
+
  459 01b5 91       		.byte	0x91
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 12
-
-
  460 01b6 44       		.sleb128 -60
  461 01b7 00       		.byte	0
  462 01b8 00       		.byte	0
@@ -717,10 +718,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  513 0215 50000000 		.4byte	.LVL13
  514 0219 69030000 		.4byte	0x369
  515 021d 2B020000 		.4byte	0x22b
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 13
+
+
  516 0221 0E       		.uleb128 0xe
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 13
-
-
  517 0222 01       		.uleb128 0x1
  518 0223 50       		.byte	0x50
  519 0224 05       		.uleb128 0x5
@@ -777,10 +778,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  570 0284 0E       		.uleb128 0xe
  571 0285 01       		.uleb128 0x1
  572 0286 50       		.byte	0x50
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 14
+
+
  573 0287 01       		.uleb128 0x1
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 14
-
-
  574 0288 48       		.byte	0x48
  575 0289 0E       		.uleb128 0xe
  576 028a 01       		.uleb128 0x1
@@ -837,10 +838,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  627 02e7 50       		.byte	0x50
  628 02e8 01       		.uleb128 0x1
  629 02e9 48       		.byte	0x48
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 15
+
+
  630 02ea 0E       		.uleb128 0xe
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 15
-
-
  631 02eb 01       		.uleb128 0x1
  632 02ec 51       		.byte	0x51
  633 02ed 01       		.uleb128 0x1
@@ -897,10 +898,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  684 0342 13       		.uleb128 0x13
  685 0343 AB010000 		.4byte	.LASF41
  686 0347 0A       		.byte	0xa
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 16
+
+
  687 0348 1207     		.2byte	0x712
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 16
-
-
  688 034a 4E030000 		.4byte	0x34e
  689 034e 14       		.uleb128 0x14
  690 034f A2000000 		.4byte	0xa2
@@ -957,10 +958,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  741 0002 01       		.byte	0x1
  742 0003 25       		.uleb128 0x25
  743 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 17
+
+
  744 0005 13       		.uleb128 0x13
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 17
-
-
  745 0006 0B       		.uleb128 0xb
  746 0007 03       		.uleb128 0x3
  747 0008 0E       		.uleb128 0xe
@@ -1017,10 +1018,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  798 003b 3A       		.uleb128 0x3a
  799 003c 0B       		.uleb128 0xb
  800 003d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 18
+
+
  801 003e 05       		.uleb128 0x5
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 18
-
-
  802 003f 49       		.uleb128 0x49
  803 0040 13       		.uleb128 0x13
  804 0041 00       		.byte	0
@@ -1077,10 +1078,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  855 0076 01       		.uleb128 0x1
  856 0077 13       		.uleb128 0x13
  857 0078 00       		.byte	0
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 19
+
+
  858 0079 00       		.byte	0
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 19
-
-
  859 007a 09       		.uleb128 0x9
  860 007b 34       		.uleb128 0x34
  861 007c 00       		.byte	0
@@ -1137,10 +1138,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  912 00af 17       		.uleb128 0x17
  913 00b0 00       		.byte	0
  914 00b1 00       		.byte	0
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 20
+
+
  915 00b2 0D       		.uleb128 0xd
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 20
-
-
  916 00b3 898201   		.uleb128 0x4109
  917 00b6 01       		.byte	0x1
  918 00b7 11       		.uleb128 0x11
@@ -1197,10 +1198,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  969 00f1 00       		.byte	0
  970 00f2 00       		.byte	0
  971 00f3 13       		.uleb128 0x13
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 21
+
+
  972 00f4 34       		.uleb128 0x34
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 21
-
-
  973 00f5 00       		.byte	0
  974 00f6 03       		.uleb128 0x3
  975 00f7 0E       		.uleb128 0xe
@@ -1257,10 +1258,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  1026 001e 0100     		.2byte	0x1
  1027 0020 50       		.byte	0x50
  1028 0021 64000000 		.4byte	.LVL17
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 22
+
+
  1029 0025 66000000 		.4byte	.LVL18
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 22
-
-
  1030 0029 0100     		.2byte	0x1
  1031 002b 50       		.byte	0x50
  1032 002c 74000000 		.4byte	.LVL20
@@ -1317,10 +1318,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  1083 009a 0100     		.2byte	0x1
  1084 009c 54       		.byte	0x54
  1085 009d 00000000 		.4byte	0
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 23
+
+
  1086 00a1 00000000 		.4byte	0
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 23
-
-
  1087              		.section	.debug_aranges,"",%progbits
  1088 0000 1C000000 		.4byte	0x1c
  1089 0004 0200     		.2byte	0x2
@@ -1377,10 +1378,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  1121      5C616C65 
  1121      73735C44 
  1121      6F63756D 
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 24
+
+
  1122 007e 495F4857 		.ascii	"I_HW_05_RATTI_ALESSIO\\AY1920_II_HW_05_PROJ_1.cydsn"
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 24
-
-
  1122      5F30355F 
  1122      52415454 
  1122      495F414C 
@@ -1437,10 +1438,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  1142              	.LASF5:
  1143 0198 73686F72 		.ascii	"short unsigned int\000"
  1143      7420756E 
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 25
+
+
  1143      7369676E 
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 25
-
-
  1143      65642069 
  1143      6E7400
  1144              	.LASF41:
@@ -1497,10 +1498,10 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 1
  1167      325F7400 
  1168              	.LASF22:
  1169 025b 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsi2KBc.s 			page 26
+
+
  1169      74797065 
-ARM GAS  C:\Users\aless\AppData\Local\Temp\cccS295o.s 			page 26
-
-
  1169      00
  1170              	.LASF24:
  1171 0264 6572726F 		.ascii	"error\000"
