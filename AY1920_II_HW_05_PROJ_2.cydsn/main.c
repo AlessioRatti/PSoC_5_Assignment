@@ -87,7 +87,18 @@ int main(void)
     
     for(;;)
     {
-        
+        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+                                            LIS3DH_STATUS_REG,
+                                            &status_reg);
+        if(status_reg & (1<<ZYXDA))
+        {
+            // Read aceleration
+            error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+                                                     OUT_X_L,
+                                                     AXES_ACTIVE*BYTES_PER_AXIS,
+                                                     AccelerationData);
+            UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+        }
     }
 }
 
