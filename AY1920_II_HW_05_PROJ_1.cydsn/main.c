@@ -127,6 +127,7 @@ int main(void)
         if(error == NO_ERROR)
         {
             OutTemp = (int16)(TemperatureData[0] | (TemperatureData[1]<<8))>>6;
+            // Followed ST config (LSB first)
             OutArray[1] = (uint8_t)(OutTemp & 0xFF);    // LSB
             OutArray[2] = (uint8_t)(OutTemp >> 8);      // MSB
             UART_Debug_PutArray(OutArray, 4);

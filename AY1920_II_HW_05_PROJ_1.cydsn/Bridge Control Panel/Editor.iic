@@ -1,2 +1,3 @@
 ; Temperature
+; Assumed that temperature ranges from -10 to 40 Celsius during testing
 rx8 [h=A0] @0Temp @1Temp [t=C0]
