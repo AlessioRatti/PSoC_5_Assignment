@@ -17,6 +17,7 @@
 
 // Set normal mode to the accelerator (3-axes, 100Hz)
 #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
+// CTRL_REG4 left untouched, +-2g FSR by default
 
 // Bridge Control Panel
 #define HEAD 0xA0
@@ -74,7 +75,15 @@ int main(void)
     }
     
     /* Private variables ---------------------------------------------------------*/
+    // ACCELERATION
+    uint8_t status_reg;                         // Store status register current value
+    uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
+    int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
     
+    // UART
+    uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
+    OutArray[0] = HEAD;
+    OutArray[AXES_ACTIVE*BYTES_PER_AXIS+1] = TAIL;
     
     for(;;)
     {
