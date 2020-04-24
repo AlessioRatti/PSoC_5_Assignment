@@ -1,0 +1,4 @@
+; Acceleration
+; Standard: LSB first
+; y-axis [-2000 2000] mg
+rx8 [h=A0] @0Xaxis @1Xaxis @0Yaxis @1Yaxis @0Zaxis @1Zaxis [t=C0]
