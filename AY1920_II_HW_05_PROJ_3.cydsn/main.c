@@ -29,13 +29,6 @@
 #define AXES_ACTIVE 3       // all axes active
 #define BYTES_PER_AXIS 2    // L & H regs
 
-// Conversion
-#define mg_per_digit 4      // 4 mg per quantized level (not accurate)
-#define milli 1000          // conversion for m
-#define levels_per_g 256    // levels to g
-#define g_CONST 9.807       // physical constant (rounded at 3 decimal places)
-
-
 int main(void)
 {
     /* MCU Configuration--------------------------------------------------------*/
