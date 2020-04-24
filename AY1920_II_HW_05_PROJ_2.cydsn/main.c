@@ -97,7 +97,29 @@ int main(void)
                                                      OUT_X_L,
                                                      AXES_ACTIVE*BYTES_PER_AXIS,
                                                      AccelerationData);
-            UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+            if (error == NO_ERROR)
+            {
+                // Acceleration
+                OutAcc[0] = (int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>6;
+                OutAcc[1] = (int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>6;
+                OutAcc[2] = (int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>6;
+                
+                // X-AXIS
+                OutArray[1] = OutAcc[0] & 0xFF;     // MSB
+                OutArray[2] = OutAcc[0] >>8;        // LSB
+                // Y-AXIS
+                OutArray[3] = OutAcc[1] & 0xFF;     // MSB
+                OutArray[4] = OutAcc[1] >>8;        // LSB
+                // Z-AXIS
+                OutArray[5] = OutAcc[2] & 0xFF;     // MSB
+                OutArray[6] = OutAcc[2] >>8;        // LSB
+                
+                UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+            }
+            else
+            {
+                UART_Debug_PutString("Error occurred while acquiring acceleration data\r\n");   
+            }
         }
     }
 }
