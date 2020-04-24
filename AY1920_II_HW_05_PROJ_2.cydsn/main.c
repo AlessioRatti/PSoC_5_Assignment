@@ -28,6 +28,11 @@
 #define AXES_ACTIVE 3       // all axes active
 #define BYTES_PER_AXIS 2    // L & H regs
 
+// Conversion
+#define mg_per_digit 4      // 4 mg per quantized level (not accurate)
+#define milli 1000          // conversion for m
+#define levels_per_g 256    // levels to g
+
 
 int main(void)
 {
@@ -100,9 +105,9 @@ int main(void)
             if (error == NO_ERROR)
             {
                 // Acceleration
-                OutAcc[0] = (int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>6;
-                OutAcc[1] = (int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>6;
-                OutAcc[2] = (int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>6;
+                OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>6)*milli/levels_per_g;
+                OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>6)*milli/levels_per_g;
+                OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>6)*milli/levels_per_g;
                 
                 // X-AXIS
                 OutArray[1] = OutAcc[0] & 0xFF;     // MSB
