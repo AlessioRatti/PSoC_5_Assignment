@@ -31,7 +31,6 @@
 #define BYTES_PER_AXIS 2    // L & H regs
 
 // Conversion (still avoiding mg per level)
-#define milli 1000          // conversion for mm
 #define levels_per_g 511    // levels -> g
 #define g_CONST 9.807       // gravitational constant
 
@@ -100,12 +99,14 @@ int main(void)
     uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
     int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
     
-    float acc_ms2[3];
+    // union of float exactly matched with 4 uint8_t in the memory
+    union {
+        float axis;
+        uint8_t bytes[4];
+    } axes[3];
     
     // UART
-    uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
-    OutArray[0] = HEAD;
-    OutArray[AXES_ACTIVE*BYTES_PER_AXIS+1] = TAIL;
+    // No variables needed thanks to the union
     
     for(;;)
     {
@@ -126,31 +127,14 @@ int main(void)
                 OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
                 OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
                 
-                // Convert to m/s^2
-                acc_ms2[0] = (float) (OutAcc[0]*g_CONST/levels_per_g);
-                acc_ms2[1] = (float) (OutAcc[1]*g_CONST/levels_per_g);
-                acc_ms2[2] = (float) (OutAcc[2]*g_CONST/levels_per_g);
+                // Exploit the union, convert to m/s^2 as float
+                axes[0].axis = (float) (OutAcc[0]*g_CONST/levels_per_g);
+                axes[1].axis = (float) (OutAcc[1]*g_CONST/levels_per_g);
+                axes[2].axis = (float) (OutAcc[2]*g_CONST/levels_per_g);
                 
                 // decimal places truncated for the printf
-                //sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", acc_ms2[0], acc_ms2[1], acc_ms2[2]);
-                //UART_Debug_PutString(message);
-                
-                // Cast float to int with 3 significant figures (mm/s^2)
-                OutAcc[0] = (float) (acc_ms2[0]*milli);
-                OutAcc[1] = (float) (acc_ms2[1]*milli);
-                OutAcc[2] = (float) (acc_ms2[2]*milli);
-                
-                // X-AXIS
-                OutArray[1] = OutAcc[0] & 0xFF;     // LSB
-                OutArray[2] = OutAcc[0] >>8;        // MSB
-                // Y-AXIS
-                OutArray[3] = OutAcc[1] & 0xFF;     // LSB
-                OutArray[4] = OutAcc[1] >>8;        // MSB
-                // Z-AXIS
-                OutArray[5] = OutAcc[2] & 0xFF;     // LSB
-                OutArray[6] = OutAcc[2] >>8;        // MSB
-                
-                UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+                sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", axes[0].axis, axes[1].axis, axes[2].axis);
+                UART_Debug_PutString(message);
             }
             else
             {
