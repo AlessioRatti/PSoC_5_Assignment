@@ -4,6 +4,7 @@
 * In this project we test the accelerometer output
 * capabilities by sampling with high resolution 
 * all 3 axes at 100Hz.
+* Data is sent as mm/s^2.
 *
 * \author Alessio Ratti
 * \date , 2020
@@ -28,6 +29,11 @@
 #define ZYXDA 3             // new data available
 #define AXES_ACTIVE 3       // all axes active
 #define BYTES_PER_AXIS 2    // L & H regs
+
+// Conversion (still avoiding mg per level)
+#define milli 1000          // conversion for mm
+#define levels_per_g 511    // levels -> g
+#define g_CONST 9.807       // gravitational constant
 
 int main(void)
 {
@@ -94,6 +100,8 @@ int main(void)
     uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
     int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
     
+    float acc_ms2[3];
+    
     // UART
     uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
     OutArray[0] = HEAD;
@@ -117,7 +125,20 @@ int main(void)
                 OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4);
                 OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
                 OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
-                // Effective scaling performed in BCP
+                
+                // Convert to m/s^2
+                acc_ms2[0] = (float) (OutAcc[0]*g_CONST/levels_per_g);
+                acc_ms2[1] = (float) (OutAcc[1]*g_CONST/levels_per_g);
+                acc_ms2[2] = (float) (OutAcc[2]*g_CONST/levels_per_g);
+                
+                // decimal places truncated for the printf
+                sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", acc_ms2[0], acc_ms2[1], acc_ms2[2]);
+                UART_Debug_PutString(message);
+                
+                // Cast float to int with 3 significant figures (mm/s^2)
+                OutAcc[0] = (float) (acc_ms2[0]*milli);
+                OutAcc[1] = (float) (acc_ms2[0]*milli);
+                OutAcc[2] = (float) (acc_ms2[0]*milli);
                 
                 // X-AXIS
                 OutArray[1] = OutAcc[0] & 0xFF;     // LSB
@@ -129,7 +150,7 @@ int main(void)
                 OutArray[5] = OutAcc[2] & 0xFF;     // LSB
                 OutArray[6] = OutAcc[2] >>8;        // MSB
                 
-                UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+                //UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
             }
             else
             {

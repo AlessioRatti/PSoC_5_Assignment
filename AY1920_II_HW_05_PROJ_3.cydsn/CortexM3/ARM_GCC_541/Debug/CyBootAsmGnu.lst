@@ -11761,7 +11761,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 197
 
 
- 443              	.set CYDEV_HEAP_SIZE, 0x80
+ 443              	.set CYDEV_HEAP_SIZE, 0x200
  444              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
  445              	.set CYDEV_INTR_RISING, 0x00008000
  446              	.set CYDEV_IS_EXPORTING_CODE, 0
