@@ -1,5 +1,5 @@
 ; Acceleration
 ; Standard: LSB first
-; Scaling 9.807/512
-; y-axis [-40 40] m/s^2
+; Scaling: 9.807/511 (0.019) rounded at 3 significant figures
+; y-axis range: [-40 40] m/s^2 (+-4g)
 rx8 [h=A0] @0Xaxis @1Xaxis @0Yaxis @1Yaxis @0Zaxis @1Zaxis [t=C0]

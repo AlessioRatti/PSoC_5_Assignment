@@ -1,11 +1,11 @@
 /**
-* \brief Main source file for the I2C-Master project.
+* \brief Main source file for the AY1920_II_HW_05_PROJ_1
 *
-* In this project we set up a I2C master device with
-* to understand the I2C protocol and communicate with a
-* a I2C Slave device (LIS3DH Accelerometer).
+* Implementing multiread and multiwrite functions to
+* communicate with the LIS3DH and acquire the temperature
+* values from the embedded temperature sensor.
 *
-* \author Gabriele Belotti
+* \author Alessio Ratti
 * \date , 2020
 */
 
@@ -130,7 +130,7 @@ int main(void)
             // Followed ST config (LSB first)
             OutArray[1] = (uint8_t)(OutTemp & 0xFF);    // LSB
             OutArray[2] = (uint8_t)(OutTemp >> 8);      // MSB
-            UART_Debug_PutArray(OutArray, 4);
+            UART_Debug_PutArray(OutArray, LENGTH_T+2);
         }
     }
 }

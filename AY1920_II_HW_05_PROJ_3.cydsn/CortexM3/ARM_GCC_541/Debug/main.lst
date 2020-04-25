@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 1
 
 
    1              		.syntax unified
@@ -29,13 +29,13 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
   26              	.LFB64:
   27              		.file 1 "main.c"
    1:main.c        **** /**
-   2:main.c        **** * \brief Main source file for the I2C-Master project.
+   2:main.c        **** * \brief Main source file for the AY1920_II_HW_05_PROJ_3
    3:main.c        **** *
-   4:main.c        **** * In this project we set up a I2C master device with
-   5:main.c        **** * to understand the I2C protocol and communicate with a
-   6:main.c        **** * a I2C Slave device (LIS3DH Accelerometer).
+   4:main.c        **** * In this project we test the accelerometer output
+   5:main.c        **** * capabilities by sampling with high resolution 
+   6:main.c        **** * all 3 axes at 100Hz.
    7:main.c        **** *
-   8:main.c        **** * \author Gabriele Belotti
+   8:main.c        **** * \author Alessio Ratti
    9:main.c        **** * \date , 2020
   10:main.c        **** */
   11:main.c        **** 
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
   28:main.c        **** #define ZYXDA 3             // new data available
   29:main.c        **** #define AXES_ACTIVE 3       // all axes active
   30:main.c        **** #define BYTES_PER_AXIS 2    // L & H regs
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 2
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 2
 
 
   31:main.c        **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
   64              	.LVL4:
   65 001e 38B1     		cbz	r0, .L3
   49:main.c        ****         {
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 3
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 3
 
 
   50:main.c        ****             // print out the address is hex format
@@ -146,74 +146,71 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
   83 0034 F0DD     		ble	.L4
   84              	.LBE2:
   53:main.c        ****         }
-  54:main.c        ****         
-  55:main.c        ****     }
-  56:main.c        ****     
-  57:main.c        ****     // Support variable for error flags
-  58:main.c        ****     uint8_t error;
-  59:main.c        ****     
-  60:main.c        ****     /******************************************/
-  61:main.c        ****     /*            CTRL_REG1 config            */
-  62:main.c        ****     /******************************************/
-  63:main.c        ****     
-  64:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-  85              		.loc 1 64 0 is_stmt 1
+  54:main.c        ****     }
+  55:main.c        ****     
+  56:main.c        ****     // Support variable for error flags
+  57:main.c        ****     uint8_t error;
+  58:main.c        ****     
+  59:main.c        ****     /******************************************/
+  60:main.c        ****     /*            CTRL_REG1 config            */
+  61:main.c        ****     /******************************************/
+  62:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+  85              		.loc 1 62 0 is_stmt 1
   86 0036 5722     		movs	r2, #87
   87 0038 2021     		movs	r1, #32
   88 003a 1820     		movs	r0, #24
   89 003c FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
   90              	.LVL8:
-  65:main.c        ****                                          LIS3DH_CTRL_REG1,
-  66:main.c        ****                                          LIS3DH_NORMAL_MODE_CTRL_REG1);
-  67:main.c        **** 
-  68:main.c        ****     if (error == NO_ERROR)
-  91              		.loc 1 68 0
+  63:main.c        ****                                          LIS3DH_CTRL_REG1,
+  64:main.c        ****                                          LIS3DH_NORMAL_MODE_CTRL_REG1);
+  65:main.c        **** 
+  66:main.c        ****     if (error == NO_ERROR)
+  91              		.loc 1 66 0
   92 0040 18B9     		cbnz	r0, .L5
-  69:main.c        ****     {
-  70:main.c        ****         UART_Debug_PutString("CONTROL REGISTER 1 successfully written\r\n"); 
-  93              		.loc 1 70 0
+  67:main.c        ****     {
+  68:main.c        ****         UART_Debug_PutString("CONTROL REGISTER 1 successfully written\r\n"); 
+  93              		.loc 1 68 0
   94 0042 2F48     		ldr	r0, .L14+4
   95              	.LVL9:
   96 0044 FFF7FEFF 		bl	UART_Debug_PutString
   97              	.LVL10:
   98 0048 02E0     		b	.L6
   99              	.LVL11:
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 4
-
-
  100              	.L5:
-  71:main.c        ****     }
-  72:main.c        ****     else
-  73:main.c        ****     {
-  74:main.c        ****         UART_Debug_PutString("ERROR occurred during I2C comm to set control register 1\r\n");   
- 101              		.loc 1 74 0
+  69:main.c        ****     }
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 4
+
+
+  70:main.c        ****     else
+  71:main.c        ****     {
+  72:main.c        ****         UART_Debug_PutString("ERROR occurred during I2C comm to set control register 1\r\n");   
+ 101              		.loc 1 72 0
  102 004a 2E48     		ldr	r0, .L14+8
  103              	.LVL12:
  104 004c FFF7FEFF 		bl	UART_Debug_PutString
  105              	.LVL13:
  106              	.L6:
-  75:main.c        ****     }
-  76:main.c        ****     
+  73:main.c        ****     }
+  74:main.c        ****     
+  75:main.c        ****     /******************************************/
+  76:main.c        ****     /*            CTRL_REG4 config            */
   77:main.c        ****     /******************************************/
-  78:main.c        ****     /*            CTRL_REG4 config            */
-  79:main.c        ****     /******************************************/
-  80:main.c        ****     
-  81:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
- 107              		.loc 1 81 0
+  78:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 107              		.loc 1 78 0
  108 0050 1822     		movs	r2, #24
  109 0052 2321     		movs	r1, #35
  110 0054 1046     		mov	r0, r2
  111 0056 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
  112              	.LVL14:
-  82:main.c        ****                                          LIS3DH_CTRL_REG4,
-  83:main.c        ****                                          LIS3DH_CTRL_REG4_HR);
-  84:main.c        **** 
-  85:main.c        ****     if (error == NO_ERROR)
- 113              		.loc 1 85 0
+  79:main.c        ****                                          LIS3DH_CTRL_REG4,
+  80:main.c        ****                                          LIS3DH_CTRL_REG4_HR);
+  81:main.c        **** 
+  82:main.c        ****     if (error == NO_ERROR)
+ 113              		.loc 1 82 0
  114 005a 18B9     		cbnz	r0, .L7
-  86:main.c        ****     {
-  87:main.c        ****         UART_Debug_PutString("CONTROL REGISTER 4 successfully written\r\n"); 
- 115              		.loc 1 87 0
+  83:main.c        ****     {
+  84:main.c        ****         UART_Debug_PutString("CONTROL REGISTER 4 successfully written\r\n"); 
+ 115              		.loc 1 84 0
  116 005c 2A48     		ldr	r0, .L14+12
  117              	.LVL15:
  118 005e FFF7FEFF 		bl	UART_Debug_PutString
@@ -221,123 +218,124 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  120 0062 02E0     		b	.L8
  121              	.LVL17:
  122              	.L7:
-  88:main.c        ****     }
-  89:main.c        ****     else
-  90:main.c        ****     {
-  91:main.c        ****         UART_Debug_PutString("ERROR occurred during I2C comm to set control register 4\r\n");   
- 123              		.loc 1 91 0
+  85:main.c        ****     }
+  86:main.c        ****     else
+  87:main.c        ****     {
+  88:main.c        ****         UART_Debug_PutString("ERROR occurred during I2C comm to set control register 4\r\n");   
+ 123              		.loc 1 88 0
  124 0064 2948     		ldr	r0, .L14+16
  125              	.LVL18:
  126 0066 FFF7FEFF 		bl	UART_Debug_PutString
  127              	.LVL19:
  128              	.L8:
-  92:main.c        ****     }
-  93:main.c        ****     
-  94:main.c        ****     /* Private variables ---------------------------------------------------------*/
-  95:main.c        ****     // ACCELERATION
-  96:main.c        ****     uint8_t status_reg;                         // Store status register current value
-  97:main.c        ****     uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
-  98:main.c        ****     int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 5
+  89:main.c        ****     }
+  90:main.c        ****     
+  91:main.c        ****     /* Private variables ---------------------------------------------------------*/
+  92:main.c        ****     // ACCELERATION
+  93:main.c        ****     uint8_t status_reg;                         // Store status register current value
+  94:main.c        ****     uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
+  95:main.c        ****     int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
+  96:main.c        ****     
+  97:main.c        ****     // UART
+  98:main.c        ****     uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 5
 
 
-  99:main.c        ****     
- 100:main.c        ****     // UART
- 101:main.c        ****     uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
- 102:main.c        ****     OutArray[0] = HEAD;
- 129              		.loc 1 102 0
+  99:main.c        ****     OutArray[0] = HEAD;
+ 129              		.loc 1 99 0
  130 006a A023     		movs	r3, #160
  131 006c 8DF80430 		strb	r3, [sp, #4]
- 103:main.c        ****     OutArray[AXES_ACTIVE*BYTES_PER_AXIS+1] = TAIL;
- 132              		.loc 1 103 0
+ 100:main.c        ****     OutArray[AXES_ACTIVE*BYTES_PER_AXIS+1] = TAIL;
+ 132              		.loc 1 100 0
  133 0070 C023     		movs	r3, #192
  134 0072 8DF80B30 		strb	r3, [sp, #11]
  135              	.L10:
- 104:main.c        ****     
- 105:main.c        ****     for(;;)
- 106:main.c        ****     {
- 107:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 136              		.loc 1 107 0
+ 101:main.c        ****     
+ 102:main.c        ****     for(;;)
+ 103:main.c        ****     {
+ 104:main.c        ****         error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 136              		.loc 1 104 0
  137 0076 0DF11302 		add	r2, sp, #19
  138 007a 2721     		movs	r1, #39
  139 007c 1820     		movs	r0, #24
  140 007e FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  141              	.LVL20:
- 108:main.c        ****                                             LIS3DH_STATUS_REG,
- 109:main.c        ****                                             &status_reg);
- 110:main.c        ****         if(status_reg & (1<<ZYXDA))
- 142              		.loc 1 110 0
+ 105:main.c        ****                                             LIS3DH_STATUS_REG,
+ 106:main.c        ****                                             &status_reg);
+ 107:main.c        ****         if(status_reg & (1<<ZYXDA))
+ 142              		.loc 1 107 0
  143 0082 9DF81330 		ldrb	r3, [sp, #19]	@ zero_extendqisi2
  144 0086 13F0080F 		tst	r3, #8
  145 008a F4D0     		beq	.L10
- 111:main.c        ****         {
- 112:main.c        ****             // Read aceleration
- 113:main.c        ****             error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
- 146              		.loc 1 113 0
+ 108:main.c        ****         {
+ 109:main.c        ****             // Read aceleration
+ 110:main.c        ****             error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+ 146              		.loc 1 110 0
  147 008c 03AB     		add	r3, sp, #12
  148 008e 0622     		movs	r2, #6
  149 0090 2821     		movs	r1, #40
  150 0092 1820     		movs	r0, #24
  151 0094 FFF7FEFF 		bl	I2C_Peripheral_ReadRegisterMulti
  152              	.LVL21:
- 114:main.c        ****                                                      OUT_X_L,
- 115:main.c        ****                                                      AXES_ACTIVE*BYTES_PER_AXIS,
- 116:main.c        ****                                                      AccelerationData);
- 117:main.c        ****             if (error == NO_ERROR)
- 153              		.loc 1 117 0
+ 111:main.c        ****                                                      OUT_X_L,
+ 112:main.c        ****                                                      AXES_ACTIVE*BYTES_PER_AXIS,
+ 113:main.c        ****                                                      AccelerationData);
+ 114:main.c        ****             if (error == NO_ERROR)
+ 153              		.loc 1 114 0
  154 0098 58BB     		cbnz	r0, .L11
- 118:main.c        ****             {
- 119:main.c        ****                 // Acceleration
- 120:main.c        ****                 OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4);
- 155              		.loc 1 120 0
+ 115:main.c        ****             {
+ 116:main.c        ****                 // Acceleration
+ 117:main.c        ****                 OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4);
+ 155              		.loc 1 117 0
  156 009a 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
  157 009e 9DF80D10 		ldrb	r1, [sp, #13]	@ zero_extendqisi2
  158 00a2 43EA0121 		orr	r1, r3, r1, lsl #8
  159 00a6 41F30B11 		sbfx	r1, r1, #4, #12
- 121:main.c        ****                 OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
- 160              		.loc 1 121 0
+ 118:main.c        ****                 OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
+ 160              		.loc 1 118 0
  161 00aa 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
  162 00ae 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 6
-
-
  163 00b2 43EA0222 		orr	r2, r3, r2, lsl #8
  164 00b6 42F30B12 		sbfx	r2, r2, #4, #12
- 122:main.c        ****                 OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
- 165              		.loc 1 122 0
+ 119:main.c        ****                 OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 6
+
+
+ 165              		.loc 1 119 0
  166 00ba 9DF81030 		ldrb	r3, [sp, #16]	@ zero_extendqisi2
  167 00be 9DF81100 		ldrb	r0, [sp, #17]	@ zero_extendqisi2
  168              	.LVL22:
  169 00c2 43EA0023 		orr	r3, r3, r0, lsl #8
  170 00c6 43F30B13 		sbfx	r3, r3, #4, #12
- 123:main.c        ****                 
- 124:main.c        ****                 // X-AXIS
- 125:main.c        ****                 OutArray[1] = OutAcc[0] & 0xFF;     // MSB
- 171              		.loc 1 125 0
+ 120:main.c        ****                 // Effective scaling performed in BCP
+ 121:main.c        ****                 
+ 122:main.c        ****                 // X-AXIS
+ 123:main.c        ****                 OutArray[1] = OutAcc[0] & 0xFF;     // LSB
+ 171              		.loc 1 123 0
  172 00ca 8DF80510 		strb	r1, [sp, #5]
- 126:main.c        ****                 OutArray[2] = OutAcc[0] >>8;        // LSB
- 173              		.loc 1 126 0
+ 124:main.c        ****                 OutArray[2] = OutAcc[0] >>8;        // MSB
+ 173              		.loc 1 124 0
  174 00ce 0912     		asrs	r1, r1, #8
  175 00d0 8DF80610 		strb	r1, [sp, #6]
- 127:main.c        ****                 // Y-AXIS
- 128:main.c        ****                 OutArray[3] = OutAcc[1] & 0xFF;     // MSB
- 176              		.loc 1 128 0
+ 125:main.c        ****                 // Y-AXIS
+ 126:main.c        ****                 OutArray[3] = OutAcc[1] & 0xFF;     // LSB
+ 176              		.loc 1 126 0
  177 00d4 8DF80720 		strb	r2, [sp, #7]
- 129:main.c        ****                 OutArray[4] = OutAcc[1] >>8;        // LSB
- 178              		.loc 1 129 0
+ 127:main.c        ****                 OutArray[4] = OutAcc[1] >>8;        // MSB
+ 178              		.loc 1 127 0
  179 00d8 1212     		asrs	r2, r2, #8
  180 00da 8DF80820 		strb	r2, [sp, #8]
- 130:main.c        ****                 // Z-AXIS
- 131:main.c        ****                 OutArray[5] = OutAcc[2] & 0xFF;     // MSB
- 181              		.loc 1 131 0
+ 128:main.c        ****                 // Z-AXIS
+ 129:main.c        ****                 OutArray[5] = OutAcc[2] & 0xFF;     // LSB
+ 181              		.loc 1 129 0
  182 00de 8DF80930 		strb	r3, [sp, #9]
- 132:main.c        ****                 OutArray[6] = OutAcc[2] >>8;        // LSB
- 183              		.loc 1 132 0
+ 130:main.c        ****                 OutArray[6] = OutAcc[2] >>8;        // MSB
+ 183              		.loc 1 130 0
  184 00e2 1B12     		asrs	r3, r3, #8
  185 00e4 8DF80A30 		strb	r3, [sp, #10]
- 133:main.c        ****                 
- 134:main.c        ****                 UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
- 186              		.loc 1 134 0
+ 131:main.c        ****                 
+ 132:main.c        ****                 UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+ 186              		.loc 1 132 0
  187 00e8 0821     		movs	r1, #8
  188 00ea 01A8     		add	r0, sp, #4
  189 00ec FFF7FEFF 		bl	UART_Debug_PutArray
@@ -345,11 +343,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  191 00f0 C1E7     		b	.L10
  192              	.LVL24:
  193              	.L11:
- 135:main.c        ****             }
- 136:main.c        ****             else
- 137:main.c        ****             {
- 138:main.c        ****                 UART_Debug_PutString("Error occurred while acquiring acceleration data\r\n");   
- 194              		.loc 1 138 0
+ 133:main.c        ****             }
+ 134:main.c        ****             else
+ 135:main.c        ****             {
+ 136:main.c        ****                 UART_Debug_PutString("Error occurred while acquiring acceleration data\r\n");   
+ 194              		.loc 1 136 0
  195 00f2 0748     		ldr	r0, .L14+20
  196              	.LVL25:
  197 00f4 FFF7FEFF 		bl	UART_Debug_PutString
@@ -358,11 +356,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  200              	.L15:
  201 00fa 00BF     		.align	2
  202              	.L14:
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 7
-
-
  203 00fc 00000000 		.word	.LC0
  204 0100 20000000 		.word	.LC1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 7
+
+
  205 0104 4C000000 		.word	.LC2
  206 0108 88000000 		.word	.LC3
  207 010c B4000000 		.word	.LC4
@@ -418,11 +416,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  232      65642077 
  232      68696C65 
  233 0121 0A00     		.ascii	"\012\000"
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 8
-
-
  234              		.text
  235              	.Letext0:
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 8
+
+
  236              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  237              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  238              		.file 4 "I2C_Interface.h"
@@ -478,11 +476,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  288 005e 62000000 		.4byte	0x62
  289 0062 02       		.uleb128 0x2
  290 0063 04       		.byte	0x4
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 9
-
-
  291 0064 05       		.byte	0x5
  292 0065 52000000 		.4byte	.LASF7
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 9
+
+
  293 0069 02       		.uleb128 0x2
  294 006a 04       		.byte	0x4
  295 006b 07       		.byte	0x7
@@ -538,11 +536,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  345 00ca DB000000 		.4byte	0xdb
  346 00ce 06       		.uleb128 0x6
  347 00cf AF020000 		.4byte	.LASF18
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 10
-
-
  348 00d3 00       		.byte	0
  349 00d4 06       		.uleb128 0x6
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 10
+
+
  350 00d5 B8020000 		.4byte	.LASF19
  351 00d9 01       		.byte	0x1
  352 00da 00       		.byte	0
@@ -575,13 +573,13 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  379 0110 09       		.uleb128 0x9
  380 0111 51020000 		.4byte	.LASF23
  381 0115 01       		.byte	0x1
- 382 0116 3A       		.byte	0x3a
+ 382 0116 39       		.byte	0x39
  383 0117 8C000000 		.4byte	0x8c
  384 011b 00000000 		.4byte	.LLST0
  385 011f 08       		.uleb128 0x8
  386 0120 12000000 		.4byte	.LASF24
  387 0124 01       		.byte	0x1
- 388 0125 60       		.byte	0x60
+ 388 0125 5D       		.byte	0x5d
  389 0126 8C000000 		.4byte	0x8c
  390 012a 02       		.uleb128 0x2
  391 012b 91       		.byte	0x91
@@ -589,7 +587,7 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  393 012d 08       		.uleb128 0x8
  394 012e E6020000 		.4byte	.LASF25
  395 0132 01       		.byte	0x1
- 396 0133 61       		.byte	0x61
+ 396 0133 5E       		.byte	0x5e
  397 0134 F8020000 		.4byte	0x2f8
  398 0138 03       		.uleb128 0x3
  399 0139 91       		.byte	0x91
@@ -597,15 +595,15 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  401 013c 0A       		.uleb128 0xa
  402 013d A8020000 		.4byte	.LASF41
  403 0141 01       		.byte	0x1
- 404 0142 62       		.byte	0x62
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 11
-
-
+ 404 0142 5F       		.byte	0x5f
  405 0143 08030000 		.4byte	0x308
  406 0147 08       		.uleb128 0x8
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 11
+
+
  407 0148 75000000 		.4byte	.LASF26
  408 014c 01       		.byte	0x1
- 409 014d 65       		.byte	0x65
+ 409 014d 62       		.byte	0x62
  410 014e 18030000 		.4byte	0x318
  411 0152 03       		.uleb128 0x3
  412 0153 91       		.byte	0x91
@@ -658,11 +656,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  459 01a8 30000000 		.4byte	.LVL6
  460 01ac 4F030000 		.4byte	0x34f
  461 01b0 0E       		.uleb128 0xe
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 12
-
-
  462 01b1 01       		.uleb128 0x1
  463 01b2 50       		.byte	0x50
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 12
+
+
  464 01b3 02       		.uleb128 0x2
  465 01b4 91       		.byte	0x91
  466 01b5 44       		.sleb128 -60
@@ -718,11 +716,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  516 020e 20000000 		.4byte	.LC1
  517 0212 00       		.byte	0
  518 0213 0D       		.uleb128 0xd
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 13
-
-
  519 0214 50000000 		.4byte	.LVL13
  520 0218 4F030000 		.4byte	0x34f
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 13
+
+
  521 021c 2A020000 		.4byte	0x22a
  522 0220 0E       		.uleb128 0xe
  523 0221 01       		.uleb128 0x1
@@ -778,11 +776,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  573 0277 82000000 		.4byte	.LVL20
  574 027b 86030000 		.4byte	0x386
  575 027f 95020000 		.4byte	0x295
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 14
-
-
  576 0283 0E       		.uleb128 0xe
  577 0284 01       		.uleb128 0x1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 14
+
+
  578 0285 50       		.byte	0x50
  579 0286 01       		.uleb128 0x1
  580 0287 48       		.byte	0x48
@@ -838,11 +836,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  630 02cc B47F     		.sleb128 -76
  631 02ce 0E       		.uleb128 0xe
  632 02cf 01       		.uleb128 0x1
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 15
-
-
  633 02d0 51       		.byte	0x51
  634 02d1 01       		.uleb128 0x1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 15
+
+
  635 02d2 38       		.byte	0x38
  636 02d3 00       		.byte	0
  637 02d4 0F       		.uleb128 0xf
@@ -898,11 +896,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  687 0343 5D       		.byte	0x5d
  688 0344 15       		.uleb128 0x15
  689 0345 D6020000 		.4byte	.LASF28
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 16
-
-
  690 0349 D6020000 		.4byte	.LASF28
  691 034d 05       		.byte	0x5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 16
+
+
  692 034e E7       		.byte	0xe7
  693 034f 15       		.uleb128 0x15
  694 0350 F7010000 		.4byte	.LASF29
@@ -958,11 +956,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  744 0008 0E       		.uleb128 0xe
  745 0009 1B       		.uleb128 0x1b
  746 000a 0E       		.uleb128 0xe
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 17
-
-
  747 000b 55       		.uleb128 0x55
  748 000c 17       		.uleb128 0x17
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 17
+
+
  749 000d 11       		.uleb128 0x11
  750 000e 01       		.uleb128 0x1
  751 000f 10       		.uleb128 0x10
@@ -1018,11 +1016,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  801 0041 01       		.uleb128 0x1
  802 0042 13       		.uleb128 0x13
  803 0043 00       		.byte	0
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 18
-
-
  804 0044 00       		.byte	0
  805 0045 06       		.uleb128 0x6
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 18
+
+
  806 0046 28       		.uleb128 0x28
  807 0047 00       		.byte	0
  808 0048 03       		.uleb128 0x3
@@ -1078,11 +1076,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  858 007c 09       		.uleb128 0x9
  859 007d 34       		.uleb128 0x34
  860 007e 00       		.byte	0
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 19
-
-
  861 007f 03       		.uleb128 0x3
  862 0080 0E       		.uleb128 0xe
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 19
+
+
  863 0081 3A       		.uleb128 0x3a
  864 0082 0B       		.uleb128 0xb
  865 0083 3B       		.uleb128 0x3b
@@ -1138,11 +1136,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  915 00b7 11       		.uleb128 0x11
  916 00b8 01       		.uleb128 0x1
  917 00b9 31       		.uleb128 0x31
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 20
-
-
  918 00ba 13       		.uleb128 0x13
  919 00bb 01       		.uleb128 0x1
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 20
+
+
  920 00bc 13       		.uleb128 0x13
  921 00bd 00       		.byte	0
  922 00be 00       		.byte	0
@@ -1198,11 +1196,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  972 00f7 0E       		.uleb128 0xe
  973 00f8 3A       		.uleb128 0x3a
  974 00f9 0B       		.uleb128 0xb
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 21
-
-
  975 00fa 3B       		.uleb128 0x3b
  976 00fb 05       		.uleb128 0x5
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 21
+
+
  977 00fc 49       		.uleb128 0x49
  978 00fd 13       		.uleb128 0x13
  979 00fe 3F       		.uleb128 0x3f
@@ -1258,11 +1256,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  1029 002c 98000000 		.4byte	.LVL21
  1030 0030 C2000000 		.4byte	.LVL22
  1031 0034 0100     		.2byte	0x1
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 22
-
-
  1032 0036 50       		.byte	0x50
  1033 0037 F2000000 		.4byte	.LVL24
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 22
+
+
  1034 003b F4000000 		.4byte	.LVL25
  1035 003f 0100     		.2byte	0x1
  1036 0041 50       		.byte	0x50
@@ -1318,11 +1316,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  1077      656700
  1078              	.LASF3:
  1079 001d 5F5F696E 		.ascii	"__int16_t\000"
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 23
-
-
  1079      7431365F 
  1079      7400
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 23
+
+
  1080              	.LASF27:
  1081 0027 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
  1081      50657269 
@@ -1378,11 +1376,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  1099      73735C44 
  1099      6F63756D 
  1100 0148 495F4857 		.ascii	"I_HW_05_RATTI_ALESSIO\\AY1920_II_HW_05_PROJ_3.cydsn"
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 24
-
-
  1100      5F30355F 
  1100      52415454 
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 24
+
+
  1100      495F414C 
  1100      45535349 
  1101 017a 00       		.ascii	"\000"
@@ -1438,11 +1436,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  1121      6720756E 
  1121      7369676E 
  1121      65642069 
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 25
-
-
  1122              	.LASF12:
  1123 0230 75696E74 		.ascii	"uint8_t\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 25
+
+
  1123      385F7400 
  1124              	.LASF13:
  1125 0238 696E7431 		.ascii	"int16_t\000"
@@ -1498,11 +1496,11 @@ ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 1
  1151 02be 6C6F6E67 		.ascii	"long double\000"
  1151      20646F75 
  1151      626C6500 
-ARM GAS  C:\Users\aless\AppData\Local\Temp\ccsIs015.s 			page 26
-
-
  1152              	.LASF0:
  1153 02ca 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\aless\AppData\Local\Temp\ccQ8PYeM.s 			page 26
+
+
  1153      65642063 
  1153      68617200 
  1154              	.LASF28:

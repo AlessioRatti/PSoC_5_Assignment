@@ -1,11 +1,11 @@
 /**
-* \brief Main source file for the I2C-Master project.
+* \brief Main source file for the AY1920_II_HW_05_PROJ_3
 *
-* In this project we set up a I2C master device with
-* to understand the I2C protocol and communicate with a
-* a I2C Slave device (LIS3DH Accelerometer).
+* In this project we test the accelerometer output
+* capabilities by sampling with high resolution 
+* all 3 axes at 100Hz.
 *
-* \author Gabriele Belotti
+* \author Alessio Ratti
 * \date , 2020
 */
 
@@ -51,7 +51,6 @@ int main(void)
             sprintf(message, "Device 0x%02X is connected\r\n", i);
             UART_Debug_PutString(message); 
         }
-        
     }
     
     // Support variable for error flags
@@ -60,7 +59,6 @@ int main(void)
     /******************************************/
     /*            CTRL_REG1 config            */
     /******************************************/
-    
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_CTRL_REG1,
                                          LIS3DH_NORMAL_MODE_CTRL_REG1);
@@ -77,7 +75,6 @@ int main(void)
     /******************************************/
     /*            CTRL_REG4 config            */
     /******************************************/
-    
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_CTRL_REG4,
                                          LIS3DH_CTRL_REG4_HR);
@@ -120,16 +117,17 @@ int main(void)
                 OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4);
                 OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
                 OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
+                // Effective scaling performed in BCP
                 
                 // X-AXIS
-                OutArray[1] = OutAcc[0] & 0xFF;     // MSB
-                OutArray[2] = OutAcc[0] >>8;        // LSB
+                OutArray[1] = OutAcc[0] & 0xFF;     // LSB
+                OutArray[2] = OutAcc[0] >>8;        // MSB
                 // Y-AXIS
-                OutArray[3] = OutAcc[1] & 0xFF;     // MSB
-                OutArray[4] = OutAcc[1] >>8;        // LSB
+                OutArray[3] = OutAcc[1] & 0xFF;     // LSB
+                OutArray[4] = OutAcc[1] >>8;        // MSB
                 // Z-AXIS
-                OutArray[5] = OutAcc[2] & 0xFF;     // MSB
-                OutArray[6] = OutAcc[2] >>8;        // LSB
+                OutArray[5] = OutAcc[2] & 0xFF;     // LSB
+                OutArray[6] = OutAcc[2] >>8;        // MSB
                 
                 UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
             }
