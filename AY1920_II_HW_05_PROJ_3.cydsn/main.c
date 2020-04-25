@@ -132,13 +132,13 @@ int main(void)
                 acc_ms2[2] = (float) (OutAcc[2]*g_CONST/levels_per_g);
                 
                 // decimal places truncated for the printf
-                sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", acc_ms2[0], acc_ms2[1], acc_ms2[2]);
-                UART_Debug_PutString(message);
+                //sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", acc_ms2[0], acc_ms2[1], acc_ms2[2]);
+                //UART_Debug_PutString(message);
                 
                 // Cast float to int with 3 significant figures (mm/s^2)
                 OutAcc[0] = (float) (acc_ms2[0]*milli);
-                OutAcc[1] = (float) (acc_ms2[0]*milli);
-                OutAcc[2] = (float) (acc_ms2[0]*milli);
+                OutAcc[1] = (float) (acc_ms2[1]*milli);
+                OutAcc[2] = (float) (acc_ms2[2]*milli);
                 
                 // X-AXIS
                 OutArray[1] = OutAcc[0] & 0xFF;     // LSB
@@ -150,7 +150,7 @@ int main(void)
                 OutArray[5] = OutAcc[2] & 0xFF;     // LSB
                 OutArray[6] = OutAcc[2] >>8;        // MSB
                 
-                //UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+                UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
             }
             else
             {
