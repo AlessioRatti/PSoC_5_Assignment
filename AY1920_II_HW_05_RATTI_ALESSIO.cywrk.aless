@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_3\Source Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_3\TopDesign">
 <ExpandedNodeIds>
 <v>AY1920_II_HW_05_RATTI_ALESSIO</v>
 <v>AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_1\TopDesign</v>
@@ -382,6 +382,7 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\AY1920_II_HW_05_PROJ_3.cydsn\main.c" />
+<name v=".\AY1920_II_HW_05_PROJ_3.cydsn\TopDesign\TopDesign.cysch" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -389,7 +390,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="971, 529" SelectedTabbedMdiWindow="e5991c61-9f2d-4b3c-8384-e8b3172bef0f"><DocumentWindow Key="C:\Users\aless\Documents\PSoC_Creator\AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_3.cydsn\main.c" Guid="e5991c61-9f2d-4b3c-8384-e8b3172bef0f" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="922, 529" SelectedTabbedMdiWindow="eb02efe4-833a-493b-8c4e-bf844412a7ad"><DocumentWindow Key="C:\Users\aless\Documents\PSoC_Creator\AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_3.cydsn\main.c" Guid="164c79a1-e1b0-4ee6-b014-dbcbc884a4e7" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="b66ed713-695a-4d3b-af18-4671b821f00e" /><DocumentWindow Key="C:\Users\aless\Documents\PSoC_Creator\AY1920_II_HW_05_RATTI_ALESSIO\AY1920_II_HW_05_PROJ_3.cydsn\TopDesign\TopDesign.cysch" Guid="eb02efe4-833a-493b-8c4e-bf844412a7ad" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

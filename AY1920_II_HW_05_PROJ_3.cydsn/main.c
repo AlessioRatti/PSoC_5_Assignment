@@ -1,10 +1,8 @@
 /**
-* \brief Main source file for the AY1920_II_HW_05_PROJ_3
+* \brief Main source file for the AY1920_II_HW_05_PROJ_3 alt
 *
-* In this project we test the accelerometer output
-* capabilities by sampling with high resolution 
-* all 3 axes at 100Hz.
-* Data is sent as mm/s^2.
+* Further development of project 2.3
+* Data is actually sent as float over UART [m/s^2]
 *
 * \author Alessio Ratti
 * \date , 2020
@@ -34,9 +32,11 @@
 #define levels_per_g 511    // levels -> g
 #define g_CONST 9.807       // gravitational constant
 
+// Custom PutArray function prototype
+void UART_Debug_BCP(const uint8 string[], uint8 byteCount, uint8 head, uint8 tail);
+
 int main(void)
 {
-    /* MCU Configuration--------------------------------------------------------*/
     CyGlobalIntEnable; /* Enable global interrupts. */
     
     I2C_Peripheral_Start();
@@ -102,11 +102,12 @@ int main(void)
     // union of float exactly matched with 4 uint8_t in the memory
     union {
         float axis;
+        int32_t middle;
+        uint8_t init[2];
         uint8_t bytes[4];
     } axes[3];
     
-    // UART
-    // No variables needed thanks to the union
+    // UART (no variables needed thanks to the structure)
     
     for(;;)
     {
@@ -122,25 +123,52 @@ int main(void)
                                                      AccelerationData);
             if (error == NO_ERROR)
             {
-                // Acceleration
-                OutAcc[0] = ((int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4);
-                OutAcc[1] = ((int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4);
-                OutAcc[2] = ((int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4);
+                // From raw to signed integer
+                OutAcc[0] = (int16_t) (AccelerationData[0] | (AccelerationData[1]<<8))>>4;
+                OutAcc[1] = (int16_t) (AccelerationData[2] | (AccelerationData[3]<<8))>>4;
+                OutAcc[2] = (int16_t) (AccelerationData[4] | (AccelerationData[5]<<8))>>4;
                 
-                // Exploit the union, convert to m/s^2 as float
-                axes[0].axis = (float) (OutAcc[0]*g_CONST/levels_per_g);
-                axes[1].axis = (float) (OutAcc[1]*g_CONST/levels_per_g);
-                axes[2].axis = (float) (OutAcc[2]*g_CONST/levels_per_g);
+                // Convert to m/s^2 as float
+                // from signed integer to float (automatic conversion into 4 blocks of uint8_t)
+                axes[0].axis = (float) OutAcc[0]*g_CONST/levels_per_g;
+                axes[1].axis = (float) OutAcc[1]*g_CONST/levels_per_g;
+                axes[2].axis = (float) OutAcc[2]*g_CONST/levels_per_g;
                 
-                // decimal places truncated for the printf
-                sprintf(message, "X: %+02.3f Y: %+02.3f Z: %+02.3f\r\n", axes[0].axis, axes[1].axis, axes[2].axis);
-                UART_Debug_PutString(message);
+                // Debug: decimal places truncated for the printf
+                // sprintf(message, "X: %+03.3f Y: %+03.3f Z: %+03.3f\r\n", axes[0].axis, axes[1].axis, axes[2].axis);
+                // UART_Debug_PutString(message);
+                
+                /* Thanks to the union structure there's no need to convert to uint8,
+                 * moreover, the values are allocated consecutively in the memory,
+                 * no need for further re-arrangement with the help of the custom
+                 * function as well.
+                */
+                UART_Debug_BCP(&axes[0].bytes[0], AXES_ACTIVE*4, HEAD, TAIL);
             }
             else
             {
                 UART_Debug_PutString("Error occurred while acquiring acceleration data\r\n");   
             }
         }
+    }
+}
+
+// Custom version of the PutArray function
+// it avoids having to deal with head and tail (I can avoid placing the data in a separated array)
+void UART_Debug_BCP(const uint8 string[], uint8 byteCount, uint8 head, uint8 tail)
+{
+    uint8 bufIndex = 0u;
+
+    /* If not Initialized then skip this function */
+    if(UART_Debug_initVar != 0u)
+    {
+        UART_Debug_PutChar(head);   // tranmit head
+        while(bufIndex < byteCount) // transmit body
+        {
+            UART_Debug_PutChar(string[bufIndex]);
+            bufIndex++;
+        }
+        UART_Debug_PutChar(tail);   // transmit tail
     }
 }
 

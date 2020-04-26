@@ -1,5 +1,3 @@
-; Acceleration
-; Standard: LSB first
-; Scaling: 1/1000
-; y-axis range: [-40 40] m/s^2 (+-4g)
-rx8 [h=A0] @0Xaxis @1Xaxis @0Yaxis @1Yaxis @0Zaxis @1Zaxis [t=C0]
+; Acceleration in high res as FLOAT
+; Baud Rate: 19200bps
+rx8 [h=A0] @0Xaxis @1Xaxis @2Xaxis @3Xaxis @0Yaxis @1Yaxis @2Yaxis @3Yaxis @0Zaxis @1Zaxis @2Zaxis @3Zaxis [t=C0]
