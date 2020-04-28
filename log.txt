@@ -1,0 +1,227 @@
+commit a5f2b89d737d8a91279f57488954cee78bfa2525
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Tue Apr 28 17:32:20 2020 +0200
+
+    Final touches to README.md
+
+commit e79b30addc1f1dda09f597d8ddc0b8ce9ccae1e9
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Tue Apr 28 17:25:48 2020 +0200
+
+    Fixed images in readme.md
+
+commit ef09baa32b9e4c534216659958e97c72e424dd52
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Tue Apr 28 17:12:24 2020 +0200
+
+    Updated readme.md with links to images
+
+commit c77e27d3df4f6202bfeede37c5dbdb1135849ee3
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Tue Apr 28 17:07:29 2020 +0200
+
+    Fixed overflow in Project 3 at 32k (int to long int) and polished BCP files
+
+commit 2690a8dc79919b5e99c30b6fd23092466c295e86
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Sat Apr 25 12:45:38 2020 +0200
+
+    Project 3:
+    - Casted float to int16 (mm/s^2)
+    - Changed scaling in BCP to 1/1000
+    > Project 3 completed according to requirements
+    TODO: I would like to implement another version that uses
+    less memory in the microcontroller and is able to send
+    floating point precision data to BCP.
+    This will be carried out in another branch in case something goes wrong.
+
+commit 3befac6c893e3fa3c861d2c80a4180c427e24d16
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Sat Apr 25 12:28:30 2020 +0200
+
+    Project 3:
+    - Added physical conversion constant
+    - Added float variable to contain acceleration values in m/s^2
+    - Converted values to m/s^2
+    - Set the environment to print float values:
+      * System > Heap size: 0x200
+      * Build Settings > ARM > Linker > Command Line > Custom flags: -u_printf_float
+    - Print a test message via UART for debug purposes
+
+commit 1562a313888b3c8c4428121dfbe151f10a9519a6
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Sat Apr 25 11:57:06 2020 +0200
+
+    Project 1:
+    - Fixed project description in main.c
+    Project 2:
+    - Fixed project description in main.c
+    - Fixed up some comments in main.c
+    Project 3:
+    - Set the baud rate to 9600 both in TopDesign and BCP
+    - Conversion factor set to exactly 0.019 in BCP (3 significant figures as requested)
+      TODO: apply conversion to mm/s^2 in main.c
+
+commit 964d0914832dc0f418a0594fbd81b9d924d85859
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 22:56:35 2020 +0200
+
+    Project 3:
+    - Removed all conversion constants in main.c (conversion will take place in BCP)
+    - Kept acceleration data as 16-bit right aligned (no conversion) in main.c
+    - Set baud rate to 19200 in BCP
+    - y-axis from -40 to 40 m/s^2 in BCP
+    - All axis scaled by 9.807/512 (conversion factor) in BCP
+    TODO: Try sending float values directly from the microcontroller while still minimizing resources needed
+
+commit 8b49510f554fd3baa030f4a131a7b43d8b4a834b
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 21:59:10 2020 +0200
+
+    Project 3:
+    - Cloned Project 2 to start Project 3
+    - Re-discussed UART baud rate on TopDesign
+    - Increased UART baud rate to 19200 on TopDesign
+    - Set CTRL_REG4 for high-res and +-4g FSR
+    - Added gravitational constant with 3 significant figures
+    - Added CTRL_REG4 configuration
+    - Kept private vars
+    - Adjusted casting for 12 bits
+    - Removed the conversion into mg (now it's 12-bit raw)
+    TODO: Implement conversion into m/s^2
+
+commit 951d7ef113d05f87021881d2ec7e2c1a2ce0e3fe
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 21:08:37 2020 +0200
+
+    Project 2:
+    - Added UART baud rate discussion on top-design
+    - Added BCP settings: Editor.iic, Variable_Settings.ini
+
+commit 92a11856c4959cf6f5af32ebfb38f62deb71d7c7
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 17:18:58 2020 +0200
+
+    Project 2:
+    - Implemented manual conversion to mg
+    NB: chosen 1000/256 as a conversion factor insted of 4 to be more accurate
+    TODO: Add comments regarding UART bandwidth
+
+commit c357aabba8f2f954b76ca4c8686c342d1a8c2b63
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 16:53:29 2020 +0200
+
+    Project 2:
+    - Converted 3 axial outputs into 3 right-justified 16-bit integers
+    - Broke down the values to 6 uint8_t for UART transmission
+    - UART array transmission
+    The 3 acc values are correcly displaied on BCP
+    TODO: Apply correct scaling
+
+commit 3fb5e47007c4386c85dee18d885d9b0c87313912
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 13:16:39 2020 +0200
+
+    Project 2:
+    In main.c, infinite loop
+    - Added polling on status register, if data is available read acceleration
+    - Send dummy array to BCP to test if data is received at 100sps (it is)
+
+commit 1a2e18e70433d4d1d0a70f51df85e7fe68b7a8f6
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 13:09:50 2020 +0200
+
+    Project 2:
+    - Added acceleration-related vars
+    - Added UART-related vars
+
+commit 8735032bc4f292dc81d855d6bfe8e827b442d281
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 12:39:41 2020 +0200
+
+    Project 2:
+    - Copied Project_1
+    - Added X-Axis register to Regs.h
+    - changed CTRL_REG1 to acquire data at 100Hz
+    - Removed activation of temp sensor, ADC and BDU
+    - Defined new constants for accelerometer (ZYXDA, AXES_ACTIVE, BYTES_PER_AXIS)
+    - Removed TEMP_CFG_REG and CTRL_REG4 configuration
+    - Cleared private variables and instructions in the infinite cycle
+
+commit e647134414d59730c5a220f8e0854ef1454e199e
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Fri Apr 24 10:05:03 2020 +0200
+
+    Project 1:
+    - Added comment regarding y-axis range in Editor.iic
+    - Fixed y-axis range in Variable_Settings.ini
+
+commit 09be6d400094cf9abf2608b6c418812f9e41a769
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 13:40:53 2020 +0200
+
+    Project 1:
+    - Optimized BCP variables using defines in main.c
+    - Removed old single byte temperature read calls in main.c
+
+commit 44d66d91b8aa334d2025fb13bdb13c8ec34ed0a5
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 13:36:59 2020 +0200
+
+    Project 1:
+    - Removed in main.c
+        > WHO_AM_I_REG read
+        > STATUS_REG read
+        > CTRL_REG1 read
+        > TEMP_CFG_REG read
+        > CTRL_REG4 read
+
+commit f83d49312c177694bf398cf5a462eed9388ba687
+Author: Alessio Ratti <62115072+AlessioRatti@users.noreply.github.com>
+Date:   Thu Apr 23 13:00:15 2020 +0200
+
+    GitHub: Set theme jekyll-theme-midnight
+
+commit 19f1cb351b4f22e963f0a99d59845b52eae61039
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 13:09:28 2020 +0200
+
+    Project 1: Register addresses moved from main.c to Regs.h
+
+commit df36a58edfe18db8d054915a7d29280926059626
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 12:39:59 2020 +0200
+
+    Project 1: Added BCP config files as required in the project specs
+
+commit 76c72c8ecce54392eb2689069d8c947889f56844
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 12:33:47 2020 +0200
+
+    Project 1:
+    - Changed multi R/W with my functions
+    - Used multiread in the loop code
+
+commit ca8515e1cce603f929eed65589f3496e354125af
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Thu Apr 23 11:29:55 2020 +0200
+
+    Project 1: Renamed Workspace and Project 1 in conformity with guidelines
+
+commit 038afd2a91101cb85508575c54e4cee911f975ab
+Author: Alessio Ratti <62115072+AlessioRatti@users.noreply.github.com>
+Date:   Wed Apr 22 18:21:42 2020 +0200
+
+    GitHub: Create README.md
+
+commit 1491431e67ad4cdc9d449b2b5e95e4fc441d1cc7
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Wed Apr 22 18:18:56 2020 +0200
+
+    Project 1: Added I2C multi r/w functions in I2C_Interface.c
+
+commit ae8864d3342d29f8671d853d33e301a8596ab2ab
+Author: Alessio <alessio1.ratti@mail.polimi.it>
+Date:   Wed Apr 22 17:34:31 2020 +0200
+
+    My first commit
