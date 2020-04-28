@@ -51,7 +51,6 @@ int main(void)
             sprintf(message, "Device 0x%02X is connected\r\n", i);
             UART_Debug_PutString(message); 
         }
-        
     }
     
     // Support variable for error flags

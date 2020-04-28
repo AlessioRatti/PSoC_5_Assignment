@@ -4,7 +4,7 @@
 * In this project we test the accelerometer output
 * capabilities by sampling with high resolution 
 * all 3 axes at 100Hz.
-* Data is sent as mm/s^2.
+* Data is sent as mm/s^2 (int).
 *
 * \author Alessio Ratti
 * \date , 2020
@@ -26,9 +26,10 @@
 #define TAIL 0xC0
 
 // Acc defines
-#define ZYXDA 3             // new data available
-#define AXES_ACTIVE 3       // all axes active
-#define BYTES_PER_AXIS 2    // L & H regs
+#define ZYXDA 3                 // new data available
+#define AXES_ACTIVE 3           // all axes active
+#define READ_BYTES_PER_AXIS 2   // L & H regs
+#define UART_BYTES_PER_AXIS 4   // bytes needed for transmission
 
 // Conversion (still avoiding mg per level)
 #define milli 1000          // conversion for mm
@@ -96,16 +97,19 @@ int main(void)
     
     /* Private variables ---------------------------------------------------------*/
     // ACCELERATION
-    uint8_t status_reg;                         // Store status register current value
-    uint8_t AccelerationData[AXES_ACTIVE*2];    // Raw acceleration data in 8-bit
-    int16_t OutAcc[AXES_ACTIVE];                // Right-aligned 16-bit acceleration data in mg
+    uint8_t status_reg;                     // Store status register current value
+    // Raw acceleration data in 8-bit
+    uint8_t AccelerationData[AXES_ACTIVE*READ_BYTES_PER_AXIS];    
+    int16_t OutAcc[AXES_ACTIVE];            // Right-aligned 16-bit acceleration data
+    float acc_ms2[3];                       // Acceleration in m/s^2
+    int32_t acc_mms2[3];                    // Acceleration in mm/s^2 (int)
     
-    float acc_ms2[3];
+    
     
     // UART
-    uint8_t OutArray[AXES_ACTIVE*BYTES_PER_AXIS+2];
+    uint8_t OutArray[AXES_ACTIVE*UART_BYTES_PER_AXIS+2];
     OutArray[0] = HEAD;
-    OutArray[AXES_ACTIVE*BYTES_PER_AXIS+1] = TAIL;
+    OutArray[AXES_ACTIVE*UART_BYTES_PER_AXIS+1] = TAIL;
     
     for(;;)
     {
@@ -117,7 +121,7 @@ int main(void)
             // Read aceleration
             error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
                                                      OUT_X_L,
-                                                     AXES_ACTIVE*BYTES_PER_AXIS,
+                                                     AXES_ACTIVE*READ_BYTES_PER_AXIS,
                                                      AccelerationData);
             if (error == NO_ERROR)
             {
@@ -136,21 +140,27 @@ int main(void)
                 //UART_Debug_PutString(message);
                 
                 // Cast float to int with 3 significant figures (mm/s^2)
-                OutAcc[0] = (float) (acc_ms2[0]*milli);
-                OutAcc[1] = (float) (acc_ms2[1]*milli);
-                OutAcc[2] = (float) (acc_ms2[2]*milli);
+                acc_mms2[0] = (float) (acc_ms2[0]*milli);
+                acc_mms2[1] = (float) (acc_ms2[1]*milli);
+                acc_mms2[2] = (float) (acc_ms2[2]*milli);
                 
                 // X-AXIS
-                OutArray[1] = OutAcc[0] & 0xFF;     // LSB
-                OutArray[2] = OutAcc[0] >>8;        // MSB
+                OutArray[1]  = (acc_mms2[0]     ) & 0xFF;   // LSB
+                OutArray[2]  = (acc_mms2[0] >> 8) & 0xFF;
+                OutArray[3]  = (acc_mms2[0] >>16) & 0xFF;
+                OutArray[4]  = (acc_mms2[0] >>24) & 0xFF;   // MSB
                 // Y-AXIS
-                OutArray[3] = OutAcc[1] & 0xFF;     // LSB
-                OutArray[4] = OutAcc[1] >>8;        // MSB
+                OutArray[5]  = (acc_mms2[1]     ) & 0xFF;   // LSB
+                OutArray[6]  = (acc_mms2[1] >> 8) & 0xFF;
+                OutArray[7]  = (acc_mms2[1] >>16) & 0xFF;
+                OutArray[8]  = (acc_mms2[1] >>24) & 0xFF;   // MSB
                 // Z-AXIS
-                OutArray[5] = OutAcc[2] & 0xFF;     // LSB
-                OutArray[6] = OutAcc[2] >>8;        // MSB
+                OutArray[9]  = (acc_mms2[2]     ) & 0xFF;   // LSB
+                OutArray[10] = (acc_mms2[2] >> 8) & 0xFF;
+                OutArray[11] = (acc_mms2[2] >>16) & 0xFF;
+                OutArray[12] = (acc_mms2[2] >>24) & 0xFF;   // MSB
                 
-                UART_Debug_PutArray(OutArray, AXES_ACTIVE*BYTES_PER_AXIS+2);
+                UART_Debug_PutArray(OutArray, AXES_ACTIVE*UART_BYTES_PER_AXIS+2);
             }
             else
             {
@@ -161,3 +171,5 @@ int main(void)
 }
 
 /* [] END OF FILE */
+
+
