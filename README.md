@@ -1,7 +1,5 @@
 <a href="https://www.cypress.com/"><img src="https://raw.githubusercontent.com/AlessioRatti/PSoC_5_Assignment/master/Cypress%20Logo%20Full%20Color_JPEG.jpg" title="Cypress Logo" alt="Cypress Logo"></a>
 
-<!-- [![FVCproductions](https://www.cypress.com/file/349411/download)](https://www.cypress.com/) -->
-
 # PSoC 5 Assignment
 
 ## PsoC I2C
@@ -51,4 +49,5 @@ While doing the assignment, you are asked to do source-code versioning following
 ---
 
 <img src="https://raw.githubusercontent.com/AlessioRatti/PSoC_5_Assignment/master/schematic.png" title="schematic" alt="schematic">
+
 > Fig.2 Schematic
