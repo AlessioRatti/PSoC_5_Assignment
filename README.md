@@ -1,4 +1,4 @@
-<a href="https://www.cypress.com/"><img src="https://www.cypress.com/file/349411/download" title="Cypress Logo" alt="Cypress Logo"></a>
+<a href="https://www.cypress.com/"><img src="https://raw.githubusercontent.com/AlessioRatti/PSoC_5_Assignment/master/Cypress%20Logo%20Full%20Color_JPEG.jpg" title="Cypress Logo" alt="Cypress Logo"></a>
 
 <!-- [![FVCproductions](https://www.cypress.com/file/349411/download)](https://www.cypress.com/) -->
 
@@ -8,7 +8,7 @@
 
 **Objective:** 3 projects within a single workspace using PSoC Creator and the CY8CKIT-059 KIT along with the ST LIS3DH 3-Axis accelerometer breakout board by Adafruit.
 
-![prototype](my_board.jpg "prototype")
+<img src="https://raw.githubusercontent.com/AlessioRatti/PSoC_5_Assignment/master/my_board1.jpg" title="Prototype" alt="Prototype">
 > Fig.1 Prototype
 
 ---
@@ -50,5 +50,5 @@ While doing the assignment, you are asked to do source-code versioning following
 
 ---
 
-![schematic](schematic.png "schematic")
+<img src="https://raw.githubusercontent.com/AlessioRatti/PSoC_5_Assignment/master/schematic.png" title="schematic" alt="schematic">
 > Fig.2 Schematic
